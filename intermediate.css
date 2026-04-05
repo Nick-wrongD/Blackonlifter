@@ -705,11 +705,15 @@ body {
     .ip-principles-grid { grid-template-columns:1fr; }
 }
 @media(max-width:680px){
+    .ip-hero { padding:100px 0 60px; }
+    .ip-hero-title span:first-child { font-size:clamp(1.6rem,3.5vw,2.5rem); }
+    .ip-hero-accent { font-size:clamp(2.8rem,7vw,5rem); }
     .ip-day-tabs        { gap:2px; }
     .ip-day-tab         { padding:10px 12px; font-size:10px; }
     .ip-day-header      { flex-direction:column; }
     .ip-set-scheme      { grid-template-columns:1fr 1fr; }
-    .ip-stats-strip     { display:none; }
+    .ip-stats-strip     { flex-wrap:wrap; }
+    .ip-stat { flex:1; min-width:80px; }
     .ip-pillars-stats   { grid-template-columns:1fr; }
 }
 @media(max-width:480px){
@@ -718,4 +722,14 @@ body {
     .ip-exercise-body   { padding:0 14px 16px; }
     .ip-exercise-item   { border-radius:16px; }
     .ip-pillars-section { padding:24px 18px; }
+    .ip-hero-title span:first-child { font-size:1.4rem; }
+    .ip-hero-accent { font-size:2.4rem; }
+    .ip-stats-strip { padding:14px 16px; }
+}
+/* TV and large displays */
+@media(min-width:1800px){
+    .ip-hero-title span:first-child { font-size:4.5rem; }
+    .ip-hero-accent { font-size:9rem; }
+    .ip-hero-subtitle { font-size:18px; max-width:700px; }
+    .ip-pillars-section { padding:50px 46px; }
 }

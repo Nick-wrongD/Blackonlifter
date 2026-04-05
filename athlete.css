@@ -1139,7 +1139,37 @@ body{
     .music-progress-wrap { display: none; }
 }
 @media(max-width:680px){
-    .athlete-hero-image-wrap{display:none;}
+    /* Mobile: Reposition hero image as centered background element */
+    .athlete-hero{
+        padding-top:100px;
+        padding-bottom:40px;
+        min-height:auto;
+    }
+    .athlete-hero-image-wrap{
+        position:absolute;
+        top:80px;
+        left:50%;
+        right:auto;
+        bottom:auto;
+        transform:translateX(-50%);
+        width:85%;
+        max-width:400px;
+        opacity:0.20;
+        z-index:1;
+        pointer-events:none;
+    }
+    .athlete-ref-img{
+        mask-image:radial-gradient(ellipse at center, rgba(0,0,0,0.9) 20%, transparent 70%);
+        -webkit-mask-image:radial-gradient(ellipse at center, rgba(0,0,0,0.9) 20%, transparent 70%);
+        animation:none;
+    }
+    .athlete-ref-label{display:none;}
+    .athlete-hero-content{text-align:center;}
+    .athlete-eyebrow{justify-content:center;}
+    .athlete-title{align-items:center;}
+    .athlete-subtitle{margin-left:auto;margin-right:auto;}
+    .hero-stats-strip{margin-left:auto;margin-right:auto;}
+    .split-overview{align-items:center;}
     .day-tabs{gap:2px;}
     .day-tab{padding:10px 12px;font-size:10px;}
     .day-header{flex-direction:column;}
@@ -1150,9 +1180,20 @@ body{
 }
 @media(max-width:480px){
     .container{padding:0 14px;}
+    .athlete-hero-image-wrap{
+        width:100%;
+        max-width:320px;
+        opacity:0.15;
+    }
     .exercise-item{border-radius:16px;}
     .exercise-header{padding:14px 16px;}
     .exercise-body{padding:0 14px 16px;}
-    .hero-stats-strip { display: none; }
+    .hero-stats-strip{flex-wrap:wrap;}
+    .hero-stat{flex:1;min-width:80px;}
     .music-volume-wrap { display: none; }
+}
+/* TV and large displays */
+@media(min-width:1800px){
+    .athlete-hero-image-wrap{width:55%;max-width:900px;}
+    .athlete-ref-img{filter:drop-shadow(0 0 80px rgba(0,229,255,0.25));}
 }

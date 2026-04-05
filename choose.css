@@ -281,6 +281,64 @@ body {
 /* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
-@media(max-width:1100px) { .level-grid { grid-template-columns:1fr 1fr; } }
-@media(max-width:640px)  { .level-grid { grid-template-columns:1fr; } }
-@media(max-width:480px)  { .container { padding:0 14px; } }
+@media(max-width:1100px) { 
+    .level-grid { grid-template-columns:1fr 1fr; } 
+}
+@media(max-width:768px) {
+    .choose-hero { padding:110px 0 50px; }
+    .choose-title span:first-child { font-size:clamp(1.8rem,4vw,3rem); }
+    .choose-title-accent { font-size:clamp(3rem,8vw,6rem); }
+    .choose-subtitle { font-size:15px; }
+    /* Ensure claw marks are visible and properly sized on tablets */
+    .level-claw-mark { 
+        width:45px; 
+        height:70px; 
+        opacity:0.65; 
+    }
+}
+@media(max-width:640px) { 
+    .level-grid { grid-template-columns:1fr; }
+    .level-card { 
+        padding:28px 20px 24px;
+        max-width:400px;
+        margin:0 auto;
+    }
+    /* Make claw marks more prominent on mobile */
+    .level-claw-mark { 
+        width:50px; 
+        height:80px; 
+        opacity:0.70;
+        top:12px;
+        right:12px;
+    }
+    .level-icon { width:64px; height:64px; font-size:24px; }
+    .level-name { font-size:1.8rem; }
+}
+@media(max-width:480px) { 
+    .container { padding:0 14px; }
+    .choose-hero { padding:100px 0 40px; }
+    .choose-title span:first-child { font-size:1.6rem; }
+    .choose-title-accent { font-size:2.8rem; }
+    .level-card {
+        padding:24px 18px 22px;
+    }
+    /* Ensure claw marks scale properly on small phones */
+    .level-claw-mark { 
+        width:40px; 
+        height:65px; 
+        opacity:0.60;
+    }
+    .level-btn { padding:12px; font-size:12px; }
+    .level-tags { gap:5px; }
+    .level-tags span { padding:4px 9px; font-size:10px; }
+    .level-features { gap:6px; }
+    .level-feature { font-size:11px; }
+}
+/* TV and large displays */
+@media(min-width:1800px) {
+    .level-grid { grid-template-columns:repeat(3, 1fr); gap:30px; }
+    .level-card { padding:36px 30px 32px; }
+    .level-claw-mark { width:50px; height:85px; }
+    .level-icon { width:80px; height:80px; font-size:32px; }
+    .level-name { font-size:2.4rem; }
+}

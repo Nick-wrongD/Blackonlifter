@@ -604,7 +604,37 @@ body{
     .hyp-nutrition-grid{grid-template-columns:1fr;}
 }
 @media(max-width:740px){
-    .hyp-hero-image-wrap{display:none;}
+    /* Mobile: Reposition hero image as centered background element */
+    .hyp-hero{
+        padding-top:100px;
+        padding-bottom:40px;
+        min-height:auto;
+    }
+    .hyp-hero-image-wrap{
+        position:absolute;
+        top:80px;
+        left:50%;
+        right:auto;
+        bottom:auto;
+        transform:translateX(-50%);
+        width:85%;
+        max-width:400px;
+        opacity:0.18;
+        z-index:1;
+        pointer-events:none;
+    }
+    .hyp-ref-img{
+        mask-image:radial-gradient(ellipse at center, rgba(0,0,0,0.9) 20%, transparent 70%);
+        -webkit-mask-image:radial-gradient(ellipse at center, rgba(0,0,0,0.9) 20%, transparent 70%);
+        animation:none;
+    }
+    .hyp-ref-label{display:none;}
+    .hyp-hero-content{text-align:center;}
+    .hyp-eyebrow{justify-content:center;}
+    .hyp-title{align-items:center;}
+    .hyp-subtitle{margin-left:auto;margin-right:auto;}
+    .hyp-stats-strip{margin-left:auto;margin-right:auto;}
+    .hyp-split-overview{justify-content:center;}
     .hyp-day-tabs{gap:3px;}
     .hyp-day-tab{padding:9px 8px;font-size:10px;}
     .hyp-day-header{flex-direction:column;}
@@ -614,11 +644,21 @@ body{
 }
 @media(max-width:480px){
     .container{padding:0 14px;}
+    .hyp-hero-image-wrap{
+        width:100%;
+        max-width:320px;
+        opacity:0.15;
+    }
     .hyp-exercise-item{border-radius:14px;}
     .hyp-exercise-header{padding:14px 16px;}
     .hyp-exercise-body{padding:0 14px 16px;}
-    .hyp-stats-strip{width:100%;}
-    .hyp-stat{padding:14px 16px;}
+    .hyp-stats-strip{width:100%;flex-wrap:wrap;}
+    .hyp-stat{padding:14px 16px;flex:1;min-width:80px;}
     .hyp-set-scheme{grid-template-columns:1fr;}
     .hyp-split-overview{grid-template-columns:repeat(2,1fr);}
+}
+/* TV and large displays */
+@media(min-width:1800px){
+    .hyp-hero-image-wrap{width:55%;max-width:900px;}
+    .hyp-ref-img{filter:drop-shadow(0 0 80px rgba(168,85,247,0.40));}
 }
