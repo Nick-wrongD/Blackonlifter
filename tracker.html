@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Training Logger</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tracker.css">
+    <style>
+    /* ═══════════════════════════════════════════
+       BEGINNER PROGRAM — ATHLETE MODE STYLE
+    ═══════════════════════════════════════════ */
+
+    /* ── PAGE ENTRANCE ANIMATIONS ── */
+    @keyframes bpSlideInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bpSlideInLeft {
+        from { opacity: 0; transform: translateX(-30px); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes bpFadeIn {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bpGlowPulse {
+        0%,100% { box-shadow: 0 0 18px rgba(0,229,255,0.12); }
+        50%      { box-shadow: 0 0 44px rgba(0,229,255,0.36), 0 0 70px rgba(0,229,255,0.12); }
+    }
+    @keyframes bpGoldGlow {
+        0%,100% { box-shadow: 0 0 18px rgba(255,171,64,0.12); }
+        50%      { box-shadow: 0 0 44px rgba(255,171,64,0.36), 0 0 70px rgba(255,171,64,0.12); }
+    }
+    @keyframes bpBorderAnim {
+        0%,100% { border-color: rgba(0,229,255,0.10); }
+        50%      { border-color: rgba(0,229,255,0.32); }
+    }
+    @keyframes bpScanLine {
+        0%   { transform: translateY(-100%); }
+        100% { transform: translateY(250%); }
+    }
+    @keyframes bpGridPan {
+        from { background-position: 0 0; }
+        to   { background-position: 80px 80px; }
+    }
+    @keyframes bpBodyReveal {
+        from { opacity: 0; transform: translateY(-10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .beginner-program-section {
+        padding: 0 0 100px;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* ── PROGRAM HERO BANNER ── */
+    .bp-hero {
+        position: relative;
+        padding: 80px 0 60px;
+        overflow: hidden;
+        background: linear-gradient(155deg, #050c06 0%, #0a1408 40%, #070d08 70%, #060f08 100%);
+        margin-bottom: 0;
+    }
+    .bp-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(0,229,255,0.028) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,229,255,0.028) 1px, transparent 1px);
+        background-size: 80px 80px;
+        mask-image: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent 80%);
+        animation: bpGridPan 30s linear infinite;
+    }
+    .bp-hero::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(0,229,255,0.6), transparent);
+        animation: bpScanLine 8s linear infinite;
+        z-index: 3;
+    }
+    .bp-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 0%, rgba(100,220,100,0.08), transparent 55%);
+        z-index: 1;
+    }
+    .bp-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+    .bp-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #6ee66e;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        animation: bpSlideInUp 0.7s 0.1s both;
+    }
+    .bp-hero-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        background: #6ee66e;
+        box-shadow: 0 0 10px rgba(100,220,100,0.9);
+        animation: bpDotPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes bpDotPulse {
+        0%,100% { box-shadow: 0 0 6px rgba(100,220,100,0.6); }
+        50%      { box-shadow: 0 0 20px rgba(100,220,100,1), 0 0 40px rgba(100,220,100,0.35); }
+    }
+    .bp-hero-title {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        line-height: 0.88;
+        margin-bottom: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        animation: bpSlideInUp 0.7s 0.2s both;
+    }
+    .bp-hero-title span:first-child {
+        font-size: clamp(2rem, 4vw, 3.6rem);
+        font-weight: 600;
+        color: rgba(255,255,255,0.88);
+        letter-spacing: 3px;
+    }
+    .bp-hero-accent {
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        font-weight: 700;
+        color: #6ee66e !important;
+        text-shadow: 0 0 50px rgba(100,220,100,0.3);
+    }
+    .bp-hero-subtitle {
+        color: rgba(255,255,255,0.5);
+        font-size: 16px;
+        line-height: 1.8;
+        max-width: 600px;
+        margin: 0 auto 32px;
+        animation: bpSlideInUp 0.7s 0.3s both;
+    }
+
+    /* ── HERO STATS STRIP ── */
+    .bp-stats-strip {
+        display: flex;
+        gap: 0;
+        background: rgba(8,14,9,0.6);
+        border: 1px solid rgba(100,220,100,0.14);
+        border-radius: 18px;
+        max-width: 480px;
+        margin: 0 auto 32px;
+        overflow: hidden;
+        animation: bpSlideInUp 0.7s 0.4s both;
+    }
+    .bp-stat {
+        flex: 1;
+        padding: 16px 20px;
+        text-align: center;
+        position: relative;
+    }
+    .bp-stat:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0; top: 20%; height: 60%;
+        width: 1px;
+        background: rgba(255,255,255,0.06);
+    }
+    .bp-stat-val {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+    .bp-stat-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 1.8px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 700;
+    }
+
+    /* ── DAY OVERVIEW CARDS ── */
+    .bp-day-overview {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 860px;
+        margin: 0 auto;
+        animation: bpSlideInUp 0.7s 0.5s both;
+    }
+    .bp-overview-card {
+        padding: 14px 18px;
+        border-radius: 14px;
+        background: rgba(8,14,9,0.55);
+        border: 1px solid rgba(255,255,255,0.07);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+        flex: 1;
+        min-width: 110px;
+        position: relative;
+        overflow: hidden;
+    }
+    .bp-overview-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(100,220,100,0.08), transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .bp-overview-card:hover, .bp-overview-card.active-bp-card {
+        border-color: rgba(100,220,100,0.3);
+        background: rgba(100,220,100,0.06);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(100,220,100,0.10);
+    }
+    .bp-overview-card:hover::after, .bp-overview-card.active-bp-card::after { opacity: 1; }
+    .bp-overview-card.rest-bp-card {
+        border-color: rgba(255,171,64,0.12);
+        background: rgba(255,171,64,0.04);
+    }
+    .bp-overview-card.rest-bp-card:hover {
+        border-color: rgba(255,171,64,0.25);
+        background: rgba(255,171,64,0.06);
+        box-shadow: 0 8px 24px rgba(255,171,64,0.08);
+    }
+    .bp-overview-num {
+        font-size: 10px; font-weight: 800;
+        letter-spacing: 1.5px; text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+    }
+    .bp-overview-name {
+        font-family: var(--font-display);
+        font-size: 1.1rem; font-weight: 700;
+        color: #fff;
+    }
+    .bp-overview-card.rest-bp-card .bp-overview-name { color: #ffab40; }
+    .bp-overview-focus {
+        font-size: 11px;
+        color: rgba(255,255,255,0.5);
+    }
+
+    /* ── MAIN PROGRAM AREA ── */
+    .bp-main {
+        padding: 50px 0 0;
+    }
+
+    /* ── DAY TABS (Athlete style) ── */
+    .bp-day-tabs {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 36px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        flex-wrap: wrap;
+        background: rgba(8,12,9,0.5);
+        border-radius: 16px 16px 0 0;
+        padding: 8px 8px 0;
+        backdrop-filter: blur(10px);
+    }
+    .bp-day-tab {
+        padding: 14px 18px;
+        border: none;
+        background: transparent;
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: rgba(255,255,255,0.5);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        transition: all 0.3s;
+        border-radius: 10px 10px 0 0;
+    }
+    .bp-day-tab:hover { color: #fff; background: rgba(255,255,255,0.04); }
+    .bp-day-tab.active {
+        color: #6ee66e;
+        border-bottom-color: #6ee66e;
+        background: rgba(100,220,100,0.06);
+    }
+    .bp-day-tab.rest-bp-tab.active {
+        color: #ffab40;
+        border-bottom-color: #ffab40;
+        background: rgba(255,171,64,0.06);
+    }
+
+    /* ── DAY SECTIONS ── */
+    .bp-day-section { display: none; }
+    .bp-active-day {
+        display: block;
+        animation: bpFadeIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* ── DAY HEADER ── */
+    .bp-day-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+        padding: 26px 30px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(8,14,9,0.8), rgba(6,11,7,0.9));
+        border: 1px solid rgba(255,255,255,0.07);
+        flex-wrap: wrap;
+        gap: 16px;
+        position: relative;
+        overflow: hidden;
+        animation: bpGlowPulse 4s ease-in-out infinite;
+    }
+    .bp-day-header.gold-day {
+        animation: bpGoldGlow 4s ease-in-out infinite;
+    }
+    .bp-day-header::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #6ee66e, transparent);
+        opacity: 0.5;
+    }
+    .bp-day-header.gold-day::before {
+        background: linear-gradient(90deg, transparent, #ffab40, transparent);
+    }
+    .bp-day-header-left { display: flex; align-items: center; gap: 18px; }
+    .bp-day-badge {
+        width: 64px; height: 64px;
+        border-radius: 18px;
+        display: grid; place-items: center;
+        font-size: 24px;
+        border: 1px solid rgba(100,220,100,0.22);
+        background: linear-gradient(135deg, rgba(100,220,100,0.14), rgba(60,180,60,0.08));
+        color: #6ee66e;
+        flex-shrink: 0;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bp-day-badge:hover { transform: scale(1.1) rotate(5deg); }
+    .bp-day-badge.upper-badge {
+        border-color: rgba(160,90,220,0.22);
+        background: linear-gradient(135deg, rgba(160,90,220,0.14), rgba(120,60,200,0.08));
+        color: #c080ff;
+    }
+    .bp-day-badge.rest-badge {
+        border-color: rgba(255,171,64,0.22);
+        background: linear-gradient(135deg, rgba(255,171,64,0.14), rgba(255,143,0,0.08));
+        color: #ffab40;
+    }
+    .bp-day-badge.engine-badge {
+        border-color: rgba(255,120,60,0.22);
+        background: linear-gradient(135deg, rgba(255,120,60,0.14), rgba(200,80,30,0.08));
+        color: #ff7840;
+    }
+    .bp-day-title {
+        font-family: var(--font-display);
+        font-size: 2.2rem; font-weight: 700;
+        color: #fff; letter-spacing: 2px;
+    }
+    .bp-day-subtitle {
+        color: rgba(255,255,255,0.5);
+        font-size: 13px;
+        letter-spacing: 1px;
+        margin-top: 4px;
+    }
+    .bp-day-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .bp-day-meta span {
+        padding: 8px 14px; border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.07);
+        font-size: 12px;
+        color: rgba(255,255,255,0.70);
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: border-color 0.3s, background 0.3s;
+    }
+    .bp-day-meta span:hover {
+        border-color: rgba(100,220,100,0.2);
+        background: rgba(100,220,100,0.05);
+    }
+    .bp-day-meta i { color: #6ee66e; font-size: 11px; }
+    .bp-day-meta.upper-meta i { color: #c080ff; }
+    .bp-day-meta.rest-meta i { color: #ffab40; }
+    .bp-day-meta.engine-meta i { color: #ff7840; }
+
+    /* ── LAWS BANNER ── */
+    .bp-laws-banner {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        background: linear-gradient(135deg, rgba(100,220,100,0.06), rgba(60,180,60,0.02));
+        border: 1px solid rgba(100,220,100,0.18);
+        border-radius: 18px;
+        padding: 22px 24px;
+        margin-bottom: 28px;
+        animation: bpGlowPulse 4s ease-in-out infinite;
+    }
+    .bp-laws-banner-icon {
+        width: 48px; height: 48px;
+        border-radius: 14px; flex-shrink: 0;
+        background: rgba(100,220,100,0.12);
+        border: 1px solid rgba(100,220,100,0.22);
+        display: grid; place-items: center;
+        font-size: 20px; color: #6ee66e;
+    }
+    .bp-laws-banner h4 {
+        font-size: 15px; font-weight: 800;
+        color: #6ee66e;
+        margin-bottom: 8px; letter-spacing: 1px;
+    }
+    .bp-laws-banner p {
+        font-size: 13px;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.7;
+    }
+    .bp-laws-banner strong { color: #7ef9ff; }
+
+    /* ── EXERCISE LIST (Athlete style) ── */
+    .bp-exercise-list { display: flex; flex-direction: column; gap: 14px; }
+    .bp-exercise-item {
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.07);
+        background: linear-gradient(170deg, rgba(11,18,12,0.97), rgba(8,14,9,0.99));
+        transition: border-color 0.3s, transform 0.25s, box-shadow 0.3s;
+        animation: bpSlideInUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .bp-exercise-item:nth-child(1)  { animation-delay: 0.05s; }
+    .bp-exercise-item:nth-child(2)  { animation-delay: 0.10s; }
+    .bp-exercise-item:nth-child(3)  { animation-delay: 0.15s; }
+    .bp-exercise-item:nth-child(4)  { animation-delay: 0.20s; }
+    .bp-exercise-item:nth-child(5)  { animation-delay: 0.25s; }
+    .bp-exercise-item:nth-child(6)  { animation-delay: 0.30s; }
+    .bp-exercise-item:nth-child(7)  { animation-delay: 0.35s; }
+    .bp-exercise-item:nth-child(8)  { animation-delay: 0.40s; }
+    .bp-exercise-item:hover {
+        border-color: rgba(100,220,100,0.18);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .bp-exercise-header {
+        display: flex; align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        cursor: pointer;
+        transition: background 0.2s;
+        gap: 16px;
+    }
+    .bp-exercise-header:hover { background: rgba(100,220,100,0.03); }
+    .bp-ex-left { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0; }
+    .bp-ex-num {
+        width: 46px; height: 46px;
+        border-radius: 13px; flex-shrink: 0;
+        background: linear-gradient(135deg, rgba(100,220,100,0.16), rgba(60,180,60,0.08));
+        border: 1px solid rgba(100,220,100,0.22);
+        display: grid; place-items: center;
+        font-family: var(--font-display);
+        font-size: 1.1rem; font-weight: 700;
+        color: #6ee66e;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bp-exercise-header:hover .bp-ex-num {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(100,220,100,0.2);
+    }
+    .bp-ex-num.warmup-num {
+        background: linear-gradient(135deg, rgba(255,200,80,0.16), rgba(255,150,30,0.08));
+        border-color: rgba(255,180,60,0.22);
+        color: #ffab40;
+    }
+    .bp-ex-num.upper-num {
+        background: linear-gradient(135deg, rgba(160,90,220,0.16), rgba(120,60,200,0.08));
+        border-color: rgba(160,90,220,0.22);
+        color: #c080ff;
+    }
+    .bp-ex-num.engine-num {
+        background: linear-gradient(135deg, rgba(255,120,60,0.16), rgba(200,80,30,0.08));
+        border-color: rgba(255,120,60,0.22);
+        color: #ff7840;
+    }
+    .bp-ex-info { flex: 1; min-width: 0; }
+    .bp-ex-info h3 {
+        font-size: 16px; font-weight: 800;
+        color: #fff; margin-bottom: 3px;
+    }
+    .bp-ex-meta { font-size: 12px; color: rgba(255,255,255,0.5); }
+    .bp-ex-right { display: flex; align-items: center; gap: 12px; }
+
+    /* ── TAGS ── */
+    .bp-tag {
+        padding: 5px 12px; border-radius: 999px;
+        font-size: 10px; font-weight: 800;
+        letter-spacing: 1.3px; text-transform: uppercase;
+        white-space: nowrap;
+    }
+    .tag-compound  { background: rgba(100,220,100,0.09); border: 1px solid rgba(100,220,100,0.22); color: #6ee66e; }
+    .tag-explosive { background: rgba(255,80,40,0.12);   border: 1px solid rgba(255,80,40,0.28);   color: #ff6040; }
+    .tag-hyper     { background: rgba(160,90,220,0.10);  border: 1px solid rgba(160,90,220,0.22);  color: #c080ff; }
+    .tag-core      { background: rgba(0,229,255,0.09);   border: 1px solid rgba(0,229,255,0.20);   color: #7ef9ff; }
+    .tag-armor     { background: rgba(255,171,64,0.09);  border: 1px solid rgba(255,171,64,0.22);  color: #ffab40; }
+    .tag-warmup    { background: rgba(255,200,80,0.09);  border: 1px solid rgba(255,180,60,0.22);  color: #ffab40; }
+    .tag-sprint    { background: rgba(255,120,60,0.10);  border: 1px solid rgba(255,120,60,0.25);  color: #ff7840; }
+    .tag-superset  {
+        display: inline-block;
+        padding: 2px 9px; border-radius: 999px;
+        background: rgba(255,171,64,0.15);
+        color: #ffab40;
+        font-size: 9px; font-weight: 800;
+        letter-spacing: 1px;
+        margin-left: 8px; vertical-align: middle;
+    }
+
+    .bp-toggle-icon {
+        color: rgba(255,255,255,0.5);
+        font-size: 13px;
+        transition: transform 0.3s;
+        flex-shrink: 0;
+    }
+    .bp-exercise-item.open .bp-toggle-icon { transform: rotate(180deg); }
+
+    /* ── EXERCISE BODY ── */
+    .bp-exercise-body {
+        display: none;
+        padding: 0 24px 24px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .bp-exercise-item.open .bp-exercise-body {
+        display: block;
+        animation: bpBodyReveal 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    /* ── VIDEO FRAME ── */
+    .bp-video-wrap { margin: 20px 0 16px; }
+    .bp-video-frame {
+        position: relative; width: 100%; padding-top: 56.25%;
+        border-radius: 16px; overflow: hidden;
+        background: #060908;
+        border: 1px solid rgba(255,255,255,0.07);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .bp-video-frame iframe {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        border: none;
+    }
+    .bp-video-placeholder {
+        margin: 18px 0; border-radius: 16px; overflow: hidden;
+        border: 1px dashed rgba(255,180,60,0.22);
+        background: rgba(255,180,60,0.03);
+    }
+    .bp-video-placeholder-inner {
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 10px; padding: 40px 20px;
+        color: rgba(255,255,255,0.5);
+        text-align: center;
+    }
+    .bp-video-placeholder-inner i { font-size: 32px; color: rgba(255,180,60,0.35); }
+    .bp-video-placeholder-inner span { font-size: 14px; font-weight: 700; color: rgba(255,180,60,0.65); }
+    .bp-video-placeholder-inner p { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* ── SET SCHEME ── */
+    .bp-set-scheme {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+    }
+    .bp-set-row {
+        padding: 14px 16px; border-radius: 13px;
+        background: rgba(255,255,255,0.025);
+        border: 1px solid rgba(255,255,255,0.055);
+        display: flex; flex-direction: column; gap: 5px;
+        transition: border-color 0.3s, background 0.3s;
+    }
+    .bp-set-row:hover {
+        border-color: rgba(100,220,100,0.16);
+        background: rgba(100,220,100,0.03);
+    }
+    .bp-set-label {
+        font-size: 10px; font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: rgba(255,255,255,0.5);
+    }
+    .bp-set-row strong { color: #fff; font-size: 14px; }
+
+    /* ── EXERCISE DETAILS ── */
+    .bp-details { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .bp-detail-row {
+        display: flex; align-items: flex-start;
+        gap: 10px; font-size: 13px;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.6;
+    }
+    .bp-detail-row i { color: #6ee66e; font-size: 12px; margin-top: 3px; flex-shrink: 0; }
+    .bp-detail-row.upper-detail i { color: #c080ff; }
+    .bp-detail-row.engine-detail i { color: #ff7840; }
+    .bp-detail-row.core-detail i { color: #7ef9ff; }
+
+    /* ── RECOVERY CARD ── */
+    .bp-recovery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+    }
+    .bp-recovery-card {
+        padding: 26px 22px; border-radius: 22px;
+        background: linear-gradient(170deg, rgba(11,18,12,0.96), rgba(8,14,9,0.98));
+        border: 1px solid rgba(255,171,64,0.12);
+        transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+        position: relative; overflow: hidden;
+        animation: bpSlideInUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .bp-recovery-card:nth-child(1) { animation-delay: 0.05s; }
+    .bp-recovery-card:nth-child(2) { animation-delay: 0.15s; }
+    .bp-recovery-card:nth-child(3) { animation-delay: 0.25s; }
+    .bp-recovery-card:nth-child(4) { animation-delay: 0.35s; }
+    .bp-recovery-card::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, rgba(255,171,64,0.06), transparent);
+        opacity: 0; transition: opacity 0.3s;
+    }
+    .bp-recovery-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(255,171,64,0.28);
+        box-shadow: 0 16px 40px rgba(255,171,64,0.08);
+    }
+    .bp-recovery-card:hover::before { opacity: 1; }
+    .bp-recovery-icon {
+        width: 56px; height: 56px; border-radius: 16px;
+        display: grid; place-items: center;
+        background: linear-gradient(135deg, rgba(255,171,64,0.14), rgba(255,143,0,0.08));
+        border: 1px solid rgba(255,171,64,0.22);
+        color: #ffab40; font-size: 22px;
+        margin-bottom: 14px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bp-recovery-card:hover .bp-recovery-icon {
+        transform: scale(1.1) rotate(-5deg);
+        box-shadow: 0 0 20px rgba(255,171,64,0.2);
+    }
+    .bp-recovery-card h4 {
+        font-family: var(--font-display);
+        font-size: 1.3rem; font-weight: 700;
+        color: #fff; margin-bottom: 8px; letter-spacing: 1px;
+    }
+    .bp-recovery-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.75; }
+
+    /* ── 3 LAWS ── */
+    .bp-laws-section {
+        margin-top: 56px; padding-top: 48px;
+        border-top: 1px solid rgba(100,220,100,0.08);
+    }
+    .bp-laws-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        color: #fff;
+        letter-spacing: 2px;
+        text-align: center;
+        margin-bottom: 32px;
+        text-transform: uppercase;
+    }
+    .bp-laws-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .bp-law {
+        background: rgba(100,220,100,0.04);
+        border: 1px solid rgba(100,220,100,0.10);
+        border-radius: 20px; padding: 28px;
+        transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+        animation: bpSlideInUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .bp-law:nth-child(1) { animation-delay: 0.05s; }
+    .bp-law:nth-child(2) { animation-delay: 0.15s; }
+    .bp-law:nth-child(3) { animation-delay: 0.25s; }
+    .bp-law:hover {
+        border-color: rgba(100,220,100,0.24);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(100,220,100,0.06);
+    }
+    .bp-law-num {
+        font-family: var(--font-display);
+        font-size: 3rem; font-weight: 700;
+        color: rgba(100,220,100,0.18);
+        line-height: 1; margin-bottom: 10px;
+    }
+    .bp-law h4 {
+        font-size: 14px; font-weight: 800;
+        color: #6ee66e;
+        letter-spacing: 1px; text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    .bp-law p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+        .bp-laws-grid { grid-template-columns: 1fr; }
+        .bp-day-overview { flex-direction: column; }
+        .bp-overview-card { min-width: auto; }
+    }
+    @media(max-width: 680px) {
+        .bp-day-tabs { gap: 2px; }
+        .bp-day-tab { padding: 10px 12px; font-size: 10px; }
+        .bp-day-header { flex-direction: column; }
+        .bp-set-scheme { grid-template-columns: 1fr 1fr; }
+        .bp-stats-strip { display: none; }
+    }
+    @media(max-width: 480px) {
+        .bp-exercise-header { padding: 14px 16px; }
+        .bp-exercise-body { padding: 0 14px 16px; }
+        .bp-exercise-item { border-radius: 16px; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar navbar-scrolled">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+            <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+            <div class="logo-copy">
+                <span class="logo-title">BlackOnLifter</span>
+                <span class="logo-sub">Elite Performance Archive</span>
+            </div>
+        </a>
+        <div class="nav-actions">
+            <a href="index.html" class="nav-cta"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</nav>
+
+<!-- TRACKER HERO -->
+<div class="tracker-hero">
+    <div class="tracker-hero-bg"></div>
+    <div class="tracker-hero-overlay"></div>
+    <canvas id="trackerCanvas"></canvas>
+    <div class="container tracker-hero-content">
+        <div class="tracker-eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span>YOUR DAILY BATTLEGROUND</span>
+        </div>
+        <h1 class="tracker-title">
+            <span>EXERCISE</span>
+            <span class="tracker-title-accent">TRACKER</span>
+        </h1>
+        <p class="tracker-subtitle">Track your sets, reps, weight, and progress. Watch the video guide. Dominate every session.</p>
+        <div class="today-stats">
+            <div class="today-stat">
+                <span class="today-stat-val" id="statSets">0</span>
+                <span class="today-stat-label">Sets Done</span>
+            </div>
+            <div class="today-stat-div"></div>
+            <div class="today-stat">
+                <span class="today-stat-val" id="statExercises">0</span>
+                <span class="today-stat-label">Exercises</span>
+            </div>
+            <div class="today-stat-div"></div>
+            <div class="today-stat">
+                <span class="today-stat-val" id="statVolume">0</span>
+                <span class="today-stat-label">Total Volume (kg)</span>
+            </div>
+            <div class="today-stat-div"></div>
+            <div class="today-stat">
+                <span class="today-stat-val" id="statTime">00:00</span>
+                <span class="today-stat-label">Session Time</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN TRACKER BODY -->
+<main class="tracker-main">
+    <div class="container tracker-layout">
+
+        <!-- LEFT: Exercise Log -->
+        <div class="tracker-left">
+            <div class="tracker-card add-exercise-card">
+                <div class="tracker-card-header">
+                    <h2><i class="fas fa-plus-circle"></i> Log Exercise</h2>
+                    <span class="card-badge">Live Tracking</span>
+                </div>
+                <div class="add-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Exercise Name</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-dumbbell"></i>
+                                <input type="text" id="exerciseName" placeholder="e.g. Barbell Squat" list="exerciseSuggestions"/>
+                                <datalist id="exerciseSuggestions">
+                                    <option value="Barbell Squat"/><option value="Deadlift"/><option value="Bench Press"/>
+                                    <option value="Pull-Up"/><option value="Overhead Press"/><option value="Romanian Deadlift"/>
+                                    <option value="Dumbbell Curl"/><option value="Tricep Dip"/><option value="Leg Press"/>
+                                    <option value="Hip Thrust"/><option value="Plank"/><option value="Push-Up"/>
+                                    <option value="Lunges"/><option value="Cable Row"/>
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-tag"></i>
+                                <select id="exerciseCategory">
+                                    <option value="strength">Strength</option>
+                                    <option value="cardio">Cardio</option>
+                                    <option value="bodyweight">Bodyweight</option>
+                                    <option value="flexibility">Flexibility</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row three-col">
+                        <div class="form-group"><label>Sets</label><input type="number" id="exerciseSets" placeholder="4" min="1" max="99"/></div>
+                        <div class="form-group"><label>Reps</label><input type="number" id="exerciseReps" placeholder="8" min="1" max="999"/></div>
+                        <div class="form-group"><label>Weight (kg)</label><input type="number" id="exerciseWeight" placeholder="80" min="0" step="0.5"/></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes (optional)</label>
+                        <input type="text" id="exerciseNotes" placeholder="e.g. Felt strong, increase next time"/>
+                    </div>
+                    <button class="btn-add-exercise" id="addExerciseBtn"><i class="fas fa-fire"></i> Add to Log</button>
+                </div>
+            </div>
+
+            <div class="tracker-card log-card">
+                <div class="tracker-card-header">
+                    <h2><i class="fas fa-list-check"></i> Today's Log</h2>
+                    <div class="log-header-actions">
+                        <button class="btn-icon" id="clearLogBtn" title="Clear log"><i class="fas fa-trash"></i></button>
+                        <button class="btn-icon" id="exportLogBtn" title="Export log"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div id="exerciseLog" class="exercise-log">
+                    <div class="log-empty" id="logEmpty">
+                        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+                            <path d="M15 40 C13 30, 12 15, 18 60" stroke="rgba(0,229,255,0.25)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M30 35 C28 25, 28 12, 32 60" stroke="rgba(0,229,255,0.18)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            <path d="M45 38 C43 28, 43 14, 47 60" stroke="rgba(0,229,255,0.12)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        </svg>
+                        <p>No exercises logged yet.</p>
+                        <span>Add your first exercise above to begin your session.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracker-card timer-card">
+                <div class="tracker-card-header">
+                    <h2><i class="fas fa-stopwatch"></i> Rest Timer</h2>
+                    <span class="card-badge">Auto-start on log</span>
+                </div>
+                <div class="timer-body">
+                    <div class="timer-display" id="restTimerDisplay">02:00</div>
+                    <div class="timer-presets">
+                        <button class="timer-preset" data-secs="60">1 min</button>
+                        <button class="timer-preset active" data-secs="90">90 sec</button>
+                        <button class="timer-preset" data-secs="120">2 min</button>
+                        <button class="timer-preset" data-secs="180">3 min</button>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="btn-timer" id="timerStart"><i class="fas fa-play"></i></button>
+                        <button class="btn-timer" id="timerPause"><i class="fas fa-pause"></i></button>
+                        <button class="btn-timer" id="timerReset"><i class="fas fa-redo"></i></button>
+                    </div>
+                    <div class="timer-bar-wrap">
+                        <div class="timer-bar" id="timerBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Video Guide -->
+        <div class="tracker-right">
+            <div class="tracker-card video-card">
+                <div class="tracker-card-header">
+                    <h2><i class="fas fa-play-circle"></i> Video Guide</h2>
+                    <span class="card-badge">Tutorial Library</span>
+                </div>
+                <div class="video-search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="videoSearch" placeholder="Search exercise videos..."/>
+                </div>
+                <div class="video-cats">
+                    <button class="video-cat active" data-cat="all">All</button>
+                    <button class="video-cat" data-cat="compound">Compound</button>
+                    <button class="video-cat" data-cat="legs">Legs</button>
+                    <button class="video-cat" data-cat="push">Push</button>
+                    <button class="video-cat" data-cat="pull">Pull</button>
+                    <button class="video-cat" data-cat="core">Core</button>
+                </div>
+                <div class="video-player-wrap">
+                    <div class="video-player-inner">
+                        <iframe id="videoPlayer" src="https://www.youtube.com/embed/ultWZbUMPL8?rel=0&modestbranding=1" title="Exercise Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 id="videoTitle">Barbell Back Squat — Full Tutorial</h3>
+                        <p id="videoDesc">Master the king of all lifts. Proper depth, bracing, and foot placement breakdown by elite coaches.</p>
+                        <div class="video-tags">
+                            <span id="videoMuscle"><i class="fas fa-crosshairs"></i> Quads, Glutes, Hamstrings</span>
+                            <span id="videoLevel"><i class="fas fa-signal"></i> Intermediate</span>
+                            <span id="videoEquip"><i class="fas fa-weight-hanging"></i> Barbell</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-grid" id="videoGrid"></div>
+            </div>
+
+            <div class="tracker-card progress-card">
+                <div class="tracker-card-header">
+                    <h2><i class="fas fa-chart-line"></i> Weekly Progress</h2>
+                    <span class="card-badge">Volume Tracker</span>
+                </div>
+                <div class="chart-wrap">
+                    <canvas id="progressChart" height="200"></canvas>
+                </div>
+                <div class="progress-legend">
+                    <span><i class="fas fa-circle" style="color:var(--cyan)"></i> Volume (kg)</span>
+                    <span><i class="fas fa-circle" style="color:rgba(0,229,255,0.3)"></i> Sets</span>
+                </div>
+            </div>
+
+            <div class="tracker-card pr-card">
+                <div class="tracker-card-header">
+                    <h2><i class="fas fa-trophy"></i> Personal Records</h2>
+                    <button class="btn-icon" id="clearPRBtn"><i class="fas fa-trash"></i></button>
+                </div>
+                <div id="prBoard" class="pr-board">
+                    <div class="pr-empty">No PRs yet. Log a heavy set to set a record.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ═══════════════════════════════════════════════════
+     BEGINNER PROGRAM — ATHLETE MODE REDESIGN
+═══════════════════════════════════════════════════ -->
+<section class="beginner-program-section" id="beginnerProgram" style="display:none;">
+
+    <!-- PROGRAM HERO -->
+    <div class="bp-hero">
+        <div class="bp-hero-overlay"></div>
+        <div class="container bp-hero-content">
+            <div class="bp-hero-eyebrow">
+                <span class="bp-hero-dot"></span>
+                <span>BEGINNER TRAINING SPLIT</span>
+            </div>
+            <h1 class="bp-hero-title">
+                <span>YOUR 5-DAY</span>
+                <span class="bp-hero-accent">PROGRAM</span>
+            </h1>
+            <p class="bp-hero-subtitle">A science-based split built to forge explosive power, muscle, and athletic capacity from the ground up. Every session counts.</p>
+
+            <!-- Stats Strip -->
+            <div class="bp-stats-strip">
+                <div class="bp-stat">
+                    <span class="bp-stat-val">5</span>
+                    <span class="bp-stat-label">Training Days</span>
+                </div>
+                <div class="bp-stat">
+                    <span class="bp-stat-val">28</span>
+                    <span class="bp-stat-label">Exercises</span>
+                </div>
+                <div class="bp-stat">
+                    <span class="bp-stat-val">60<small style="font-size:0.9rem">min</small></span>
+                    <span class="bp-stat-label">Per Session</span>
+                </div>
+            </div>
+
+            <!-- Day Overview Cards -->
+            <div class="bp-day-overview">
+                <div class="bp-overview-card active-bp-card" onclick="switchBPDay('bp-day1')">
+                    <span class="bp-overview-num">Day 1</span>
+                    <span class="bp-overview-name">LOWER</span>
+                    <span class="bp-overview-focus">Squat & Jump Power</span>
+                </div>
+                <div class="bp-overview-card" onclick="switchBPDay('bp-day2')">
+                    <span class="bp-overview-num">Day 2</span>
+                    <span class="bp-overview-name">UPPER</span>
+                    <span class="bp-overview-focus">Push Power & Back</span>
+                </div>
+                <div class="bp-overview-card rest-bp-card">
+                    <span class="bp-overview-num">Day 3</span>
+                    <span class="bp-overview-name">REST</span>
+                    <span class="bp-overview-focus">Active Recovery</span>
+                </div>
+                <div class="bp-overview-card" onclick="switchBPDay('bp-day4')">
+                    <span class="bp-overview-num">Day 4</span>
+                    <span class="bp-overview-name">LOWER</span>
+                    <span class="bp-overview-focus">Hip Hinge & Sprint</span>
+                </div>
+                <div class="bp-overview-card" onclick="switchBPDay('bp-day5')">
+                    <span class="bp-overview-num">Day 5</span>
+                    <span class="bp-overview-name">UPPER</span>
+                    <span class="bp-overview-focus">Pull Power & Shoulders</span>
+                </div>
+                <div class="bp-overview-card" onclick="switchBPDay('bp-day6')">
+                    <span class="bp-overview-num">Day 6</span>
+                    <span class="bp-overview-name">ENGINE</span>
+                    <span class="bp-overview-focus">Athletic Conditioning</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PROGRAM CONTENT -->
+    <div class="bp-main">
+        <div class="container">
+
+            <!-- DAY TABS -->
+            <div class="bp-day-tabs">
+                <button class="bp-day-tab active" data-bp-day="bp-day1" onclick="switchBPDay('bp-day1')">
+                    <i class="fas fa-person-walking"></i> Day 1 — Lower
+                </button>
+                <button class="bp-day-tab" data-bp-day="bp-day2" onclick="switchBPDay('bp-day2')">
+                    <i class="fas fa-arrow-up"></i> Day 2 — Upper
+                </button>
+                <button class="bp-day-tab rest-bp-tab" data-bp-day="bp-day3" onclick="switchBPDay('bp-day3')">
+                    <i class="fas fa-moon"></i> Day 3 — Rest
+                </button>
+                <button class="bp-day-tab" data-bp-day="bp-day4" onclick="switchBPDay('bp-day4')">
+                    <i class="fas fa-bolt"></i> Day 4 — Lower
+                </button>
+                <button class="bp-day-tab" data-bp-day="bp-day5" onclick="switchBPDay('bp-day5')">
+                    <i class="fas fa-arrow-down"></i> Day 5 — Upper
+                </button>
+                <button class="bp-day-tab" data-bp-day="bp-day6" onclick="switchBPDay('bp-day6')">
+                    <i class="fas fa-fire"></i> Day 6 — Engine
+                </button>
+            </div>
+
+            <!-- ═══════ DAY 1 — LOWER BODY ═══════ -->
+            <div id="bp-day1" class="bp-day-section bp-active-day">
+                <div class="bp-day-header">
+                    <div class="bp-day-header-left">
+                        <div class="bp-day-badge"><i class="fas fa-person-walking"></i></div>
+                        <div>
+                            <h2 class="bp-day-title">DAY 1 — LOWER BODY</h2>
+                            <p class="bp-day-subtitle">Acceleration & Squat Focus · Quads · Glutes · Hamstrings</p>
+                        </div>
+                    </div>
+                    <div class="bp-day-meta">
+                        <span><i class="fas fa-list"></i> 5 Exercises</span>
+                        <span><i class="fas fa-clock"></i> 55–65 min</span>
+                        <span><i class="fas fa-bullseye"></i> Explosive + Strength</span>
+                    </div>
+                </div>
+
+                <div class="bp-laws-banner">
+                    <div class="bp-laws-banner-icon"><i class="fas fa-bolt"></i></div>
+                    <div>
+                        <h4>Goal: Build explosive jump power and massive quad/glute strength.</h4>
+                        <p>Start with box jumps at <strong>100% effort</strong> before you fatigue. These aren't cardio — they're power training. Every rep should leave you feeling the electricity of maximum output.</p>
+                    </div>
+                </div>
+
+                <div class="bp-exercise-list">
+
+                    <!-- BOX JUMPS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">01</div>
+                                <div class="bp-ex-info">
+                                    <h3>Box Jumps</h3>
+                                    <span class="bp-ex-meta">3 sets · 5 reps · Maximum Power</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-explosive">Explosive</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/DXu-8TAJwi4?rel=0&modestbranding=1" title="Box Jumps Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-bolt"></i> Jump as high and as hard as you can. Don't do these for cardio — this is pure power development.</div>
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Step down gently after each jump to protect your joints. Reset fully between reps.</div>
+                                <div class="bp-detail-row"><i class="fas fa-clock"></i> Rest 60–90 seconds between sets at full recovery.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>5 (max height)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>60–90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Quads, Glutes, Calves</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BARBELL BACK SQUAT -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">02</div>
+                                <div class="bp-ex-info">
+                                    <h3>Barbell Back Squat <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(or Goblet Squat if brand new)</span></h3>
+                                    <span class="bp-ex-meta">4 sets · 6–8 reps · Heavy</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-compound">Main Strength</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/ultWZbUMPL8?rel=0&modestbranding=1" title="Barbell Back Squat Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Control the weight on the way down (3 seconds), then explode back up. Own the movement.</div>
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Knees track over toes, chest stays tall, core braced like you're about to take a punch.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>4</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>6–8</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>2–3 min</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Quads, Glutes, Hamstrings, Core</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DUMBBELL WALKING LUNGES -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">03</div>
+                                <div class="bp-ex-info">
+                                    <h3>Dumbbell Walking Lunges</h3>
+                                    <span class="bp-ex-meta">3 sets · 10–12 reps per leg · Dumbbells</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/D7KaRcUTQeE?rel=0&modestbranding=1" title="Dumbbell Walking Lunges Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Keep your torso upright. Front knee stays behind toes. Back knee lightly taps the floor.</div>
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Add weight once you can do 12 reps per leg with perfect form and zero wobble.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>10–12 per leg</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Quads, Glutes, Balance</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROMANIAN DEADLIFTS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">04</div>
+                                <div class="bp-ex-info">
+                                    <h3>Romanian Deadlifts (RDLs)</h3>
+                                    <span class="bp-ex-meta">3 sets · 8–10 reps · Barbell/Dumbbell</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/jEy_czb3RKA?rel=0&modestbranding=1" title="Romanian Deadlift Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Focus on FEELING the stretch deep in your hamstrings. This is a hinge, not a squat — push your hips back.</div>
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Keep the bar close to your body, spine neutral. Lower until you feel that deep hamstring pull, then drive up.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>8–10</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Hamstrings, Glutes, Lower Back</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PLANK -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">05</div>
+                                <div class="bp-ex-info">
+                                    <h3>Plank</h3>
+                                    <span class="bp-ex-meta">3 sets · 45–60 second holds · Bodyweight</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-core">Core Prehab</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/pSHjTRCQxIw?rel=0&modestbranding=1" title="Plank Proper Form Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row core-detail"><i class="fas fa-info-circle"></i> Elbows directly under shoulders. Squeeze your glutes, brace your abs — body in a perfect straight line.</div>
+                                <div class="bp-detail-row core-detail"><i class="fas fa-info-circle"></i> Don't let your hips sag or pike up. Quality over time — 30 perfect seconds beats 60 lazy ones.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Hold</span><strong>45–60 seconds</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>60 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Core, Glutes, Shoulders</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end day 1 -->
+
+            <!-- ═══════ DAY 2 — UPPER BODY ═══════ -->
+            <div id="bp-day2" class="bp-day-section">
+                <div class="bp-day-header">
+                    <div class="bp-day-header-left">
+                        <div class="bp-day-badge upper-badge"><i class="fas fa-arrow-up"></i></div>
+                        <div>
+                            <h2 class="bp-day-title">DAY 2 — UPPER BODY</h2>
+                            <p class="bp-day-subtitle">Push Power & Thick Back · Chest · Shoulders · Back · Arms</p>
+                        </div>
+                    </div>
+                    <div class="bp-day-meta upper-meta">
+                        <span><i class="fas fa-list"></i> 5 Exercises</span>
+                        <span><i class="fas fa-clock"></i> 55–65 min</span>
+                        <span><i class="fas fa-dumbbell"></i> Push + Pull Balance</span>
+                    </div>
+                </div>
+
+                <div class="bp-laws-banner" style="border-color:rgba(160,90,220,0.2);background:linear-gradient(135deg,rgba(160,90,220,0.06),rgba(120,60,200,0.02));">
+                    <div class="bp-laws-banner-icon" style="background:rgba(160,90,220,0.12);border-color:rgba(160,90,220,0.22);color:#c080ff;"><i class="fas fa-trophy"></i></div>
+                    <div>
+                        <h4 style="color:#c080ff;">Goal: Upper body pressing explosiveness and back width.</h4>
+                        <p>Build the kind of upper body that can absorb contact in sports — wide lats, a powerful chest, and armor-plated arms. Start every session with the explosive movement first.</p>
+                    </div>
+                </div>
+
+                <div class="bp-exercise-list">
+
+                    <!-- PLYOMETRIC PUSH-UPS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">01</div>
+                                <div class="bp-ex-info">
+                                    <h3>Plyometric Push-Ups <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(Clapping push-ups)</span></h3>
+                                    <span class="bp-ex-meta">3 sets · 5 reps · Explosive</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-explosive">Explosive</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&modestbranding=1" title="Plyometric Push-Ups Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-bolt"></i> If you can't clap yet, just push off the ground as hard as possible. Drop to knees if needed.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Land soft and absorb the impact — this protects your wrists and reloads power for the next rep.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>5 (max power)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>60–90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Chest, Triceps, Shoulders</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BENCH PRESS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">02</div>
+                                <div class="bp-ex-info">
+                                    <h3>Dumbbell or Barbell Bench Press</h3>
+                                    <span class="bp-ex-meta">4 sets · 6–8 reps · Barbell/Dumbbell</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Main Strength</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/rT7DgCr-3pg?rel=0&modestbranding=1" title="Bench Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Retract your shoulder blades and arch your back slightly. Drive your feet into the floor.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Control the bar down to your lower chest, then press with power. Don't bounce off your chest.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>4</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>6–8</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>2 min</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Chest, Shoulders, Triceps</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SINGLE ARM DUMBBELL ROW -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">03</div>
+                                <div class="bp-ex-info">
+                                    <h3>Single-Arm Dumbbell Row</h3>
+                                    <span class="bp-ex-meta">3 sets · 10 reps per arm · Dumbbell</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube-nocookie.com/embed/dFzUjzfih7k?si=zQv-rvsxWp_vHT9y&rel=0&modestbranding=1" title="Single-Arm Dumbbell Row Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Brace your core, keep your back flat. Pull your elbow back like you're starting a lawn mower. Squeeze your lat at the top.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3 per arm</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>10</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Lats, Rhomboids, Biceps</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEATED DUMBBELL SHOULDER PRESS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">04</div>
+                                <div class="bp-ex-info">
+                                    <h3>Seated Dumbbell Shoulder Press</h3>
+                                    <span class="bp-ex-meta">3 sets · 8–10 reps · Dumbbells</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/vlFGTI5JzjI?si=trdkmKP-SRAyQKV1&rel=0&modestbranding=1" title="Seated Dumbbell Shoulder Press Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Sit upright with dumbbells at ear height. Press up and slightly in — don't lock out the elbows fully. Control the descent.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>8–10</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Deltoids, Trapezius, Triceps</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ARMS SUPERSET -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">05</div>
+                                <div class="bp-ex-info">
+                                    <h3>Hammer Curls <span class="bp-tag tag-superset">SUPERSET</span> Tricep Rope Pushdowns</h3>
+                                    <span class="bp-ex-meta">3 sets · 12–15 reps each · Dumbbells + Cable</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-armor">Arms</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/TwD-YGVP4Bk?rel=0&modestbranding=1" title="Hammer Curls Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/kiuVA0gs3EI?si=xYTqgf6ABjTamm6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> <strong style="color:#fff">Hammer Curls:</strong> Neutral grip, elbows stay pinned at sides. Builds the brachialis — the muscle that pushes your bicep up.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> <strong style="color:#fff">Tricep Pushdowns:</strong> Immediately after curls with no rest. Elbows locked at sides, push down and squeeze hard at the bottom.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-clock"></i> Rest 90 seconds after completing both exercises.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>12–15 each</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec (after both)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Biceps, Brachialis, Triceps</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end day 2 -->
+
+            <!-- ═══════ DAY 3 — REST ═══════ -->
+            <div id="bp-day3" class="bp-day-section">
+                <div class="bp-day-header gold-day">
+                    <div class="bp-day-header-left">
+                        <div class="bp-day-badge rest-badge"><i class="fas fa-moon"></i></div>
+                        <div>
+                            <h2 class="bp-day-title">DAY 3 — REST</h2>
+                            <p class="bp-day-subtitle">Active Recovery · Mobility · Skill Work</p>
+                        </div>
+                    </div>
+                    <div class="bp-day-meta rest-meta">
+                        <span><i class="fas fa-heart"></i> Recovery Day</span>
+                        <span><i class="fas fa-clock"></i> 20–30 min optional</span>
+                    </div>
+                </div>
+                <div class="bp-recovery-grid">
+                    <div class="bp-recovery-card"><div class="bp-recovery-icon"><i class="fas fa-bed"></i></div><h4>Sleep</h4><p>Aim for 8–9 hours. Muscle is built in recovery, not in the gym. Protect your sleep like you protect your training.</p></div>
+                    <div class="bp-recovery-card"><div class="bp-recovery-icon"><i class="fas fa-droplet"></i></div><h4>Hydration</h4><p>Minimum 3 litres of water. Add electrolytes if you sweat heavily. Dehydration kills performance.</p></div>
+                    <div class="bp-recovery-card"><div class="bp-recovery-icon"><i class="fas fa-person-walking"></i></div><h4>Light Movement</h4><p>Optional: 20–30 min walk, light stretching, foam rolling, or sport skill practice. Keep it easy.</p></div>
+                    <div class="bp-recovery-card"><div class="bp-recovery-icon"><i class="fas fa-utensils"></i></div><h4>Nutrition</h4><p>Keep protein high (0.8–1g per lb bodyweight). Don't skip meals — rest days are when your muscles repair and grow.</p></div>
+                </div>
+            </div><!-- end day 3 -->
+
+            <!-- ═══════ DAY 4 — LOWER BODY ═══════ -->
+            <div id="bp-day4" class="bp-day-section">
+                <div class="bp-day-header">
+                    <div class="bp-day-header-left">
+                        <div class="bp-day-badge"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h2 class="bp-day-title">DAY 4 — LOWER BODY</h2>
+                            <p class="bp-day-subtitle">Hip Hinge & Sprint Power · Hamstrings · Glutes · Posterior Chain</p>
+                        </div>
+                    </div>
+                    <div class="bp-day-meta">
+                        <span><i class="fas fa-list"></i> 5 Exercises</span>
+                        <span><i class="fas fa-clock"></i> 55–70 min</span>
+                        <span><i class="fas fa-running"></i> Sprint Speed Builder</span>
+                    </div>
+                </div>
+
+                <div class="bp-laws-banner">
+                    <div class="bp-laws-banner-icon"><i class="fas fa-fire"></i></div>
+                    <div>
+                        <h4>Goal: Build a bulletproof posterior chain for sprinting speed.</h4>
+                        <p>The hamstrings, glutes and lower back are your engine for speed. <strong>Kettlebell swings</strong> are the single best exercise for training the hip snap that drives sprint acceleration. Snap your hips forward <em>violently</em>.</p>
+                    </div>
+                </div>
+
+                <div class="bp-exercise-list">
+
+                    <!-- KETTLEBELL SWINGS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">01</div>
+                                <div class="bp-ex-info">
+                                    <h3>Kettlebell Swings <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(or Broad Jumps)</span></h3>
+                                    <span class="bp-ex-meta">3 sets · 8 reps (KB) / 4 reps (Broad Jumps) · Explosive</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-explosive">Explosive</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/bDCeXbMJVNs?rel=0&modestbranding=1" title="Kettlebell Swings Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-bolt"></i> Snap your hips forward violently at the top — this is the movement pattern that drives sprint speed. The arms are just ropes.</div>
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> This is NOT a squat. Hinge at the hips, soft knees, and let the kettlebell float to shoulder height through hip power alone.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>8 (KB) / 4 (Jumps)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Glutes, Hamstrings, Core</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRAP BAR DEADLIFT -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">02</div>
+                                <div class="bp-ex-info">
+                                    <h3>Trap Bar Deadlift <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(or Conventional Barbell Deadlift)</span></h3>
+                                    <span class="bp-ex-meta">4 sets · 5 reps · Heavy</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-compound">Main Strength</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/PWJU5grrh4Y?rel=0&modestbranding=1" title="Trap Bar Deadlift Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Lift heavy — but keep your back flat and spine neutral the entire rep. There is zero compromise on form.</div>
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Push the floor away from you rather than thinking about pulling the bar up. Squeeze your glutes at the top.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>4</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>5 (heavy)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>3 min</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Hamstrings, Glutes, Back, Core</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BULGARIAN SPLIT SQUATS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">03</div>
+                                <div class="bp-ex-info">
+                                    <h3>Bulgarian Split Squats</h3>
+                                    <span class="bp-ex-meta">3 sets · 8–10 reps per leg · Bodyweight/Dumbbells</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/2C-uNgKwPLE?rel=0&modestbranding=1" title="Bulgarian Split Squats Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> The king of athletic leg builders. Rear foot elevated on a bench. Front foot far enough forward that your shin stays vertical.</div>
+                                <div class="bp-detail-row"><i class="fas fa-bolt"></i> Embrace the burn — this exercise directly translates to single-leg power, speed, and balance on the field.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3 per leg</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>8–10</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>2 min</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Quads, Glutes, Hamstrings</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LYING LEG CURLS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">04</div>
+                                <div class="bp-ex-info">
+                                    <h3>Lying Leg Curls</h3>
+                                    <span class="bp-ex-meta">3 sets · 12 reps · Machine</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/jxctD6fL_FQ?si=-OiiLUOvkGtNMHC5&rel=0&modestbranding=1" title="Lying Leg Curls Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row"><i class="fas fa-info-circle"></i> Control the weight down slowly (3 seconds) and curl it back up explosively. Don't swing or use momentum.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>12</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Hamstrings, Popliteus</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HANGING LEG RAISES -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num">05</div>
+                                <div class="bp-ex-info">
+                                    <h3>Hanging Leg Raises <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(or lying knee tucks)</span></h3>
+                                    <span class="bp-ex-meta">3 sets · 12–15 reps · Bodyweight</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-core">Core Prehab</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/Pr1ieGZ5atk?rel=0&modestbranding=1" title="Hanging Leg Raises Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row core-detail"><i class="fas fa-info-circle"></i> Hang from a pull-up bar, brace your core, and raise legs to 90° — or higher if you can. No swinging.</div>
+                                <div class="bp-detail-row core-detail"><i class="fas fa-info-circle"></i> Can't hang? Do lying knee tucks — same movement on the floor. Progress to the bar when you're ready.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>12–15</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>60 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Core, Hip Flexors, Lats</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end day 4 -->
+
+            <!-- ═══════ DAY 5 — UPPER BODY ═══════ -->
+            <div id="bp-day5" class="bp-day-section">
+                <div class="bp-day-header">
+                    <div class="bp-day-header-left">
+                        <div class="bp-day-badge upper-badge"><i class="fas fa-arrow-down"></i></div>
+                        <div>
+                            <h2 class="bp-day-title">DAY 5 — UPPER BODY</h2>
+                            <p class="bp-day-subtitle">Pull Power & Shoulders · Back · Chest · Shoulder Health</p>
+                        </div>
+                    </div>
+                    <div class="bp-day-meta upper-meta">
+                        <span><i class="fas fa-list"></i> 5 Exercises</span>
+                        <span><i class="fas fa-clock"></i> 55–65 min</span>
+                        <span><i class="fas fa-shield-halved"></i> Armor-Plated</span>
+                    </div>
+                </div>
+
+                <div class="bp-laws-banner" style="border-color:rgba(160,90,220,0.2);background:linear-gradient(135deg,rgba(160,90,220,0.06),rgba(120,60,200,0.02));">
+                    <div class="bp-laws-banner-icon" style="background:rgba(160,90,220,0.12);border-color:rgba(160,90,220,0.22);color:#c080ff;"><i class="fas fa-shield-halved"></i></div>
+                    <div>
+                        <h4 style="color:#c080ff;">Goal: Build a wide, armor-plated upper body and explosive pulling power.</h4>
+                        <p>Medicine ball slams train the explosive overhead-to-ground power pattern. Pull-ups build the wide lats that give you that <strong>V-taper</strong>. Face pulls protect your shoulders from injury.</p>
+                    </div>
+                </div>
+
+                <div class="bp-exercise-list">
+
+                    <!-- MEDICINE BALL SLAMS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">01</div>
+                                <div class="bp-ex-info">
+                                    <h3>Medicine Ball Slams</h3>
+                                    <span class="bp-ex-meta">3 sets · 8 reps · Explosive Full Body</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-explosive">Explosive</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/YFORkljMrEQ?rel=0&modestbranding=1" title="Medicine Ball Slams Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-bolt"></i> Reach HIGH overhead, then slam the ball into the floor as hard as humanly possible. Roar inside if you need to.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Use a dead rubber ball (not bouncy). Engage your lats on the overhead reach — this protects your lower back.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>8</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Core, Lats, Shoulders, Glutes</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PULL-UPS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">02</div>
+                                <div class="bp-ex-info">
+                                    <h3>Pull-Ups <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(Assisted band or Lat Pulldown if needed)</span></h3>
+                                    <span class="bp-ex-meta">4 sets · 6–8 reps · Bodyweight</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-compound">Main Strength</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/eGo4IYlbE5g?rel=0&modestbranding=1" title="Pull-Ups Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Dead hang at the bottom, chin over the bar at the top. No kipping. If you can't do 6, use an assistance band or switch to lat pulldowns.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-bolt"></i> Pull-ups are the single best upper body exercise for building a wide, powerful back. Own this movement.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>4</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>6–8</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>2–3 min</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Lats, Biceps, Rear Delts</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INCLINE DUMBBELL BENCH -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">03</div>
+                                <div class="bp-ex-info">
+                                    <h3>Incline Dumbbell Bench Press</h3>
+                                    <span class="bp-ex-meta">3 sets · 8–10 reps · Dumbbells</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-hyper">Hypertrophy</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/rT7DgCr-3pg?rel=0&modestbranding=1" title="Incline Dumbbell Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> Set bench to 30–45°. Lower dumbbells with control into a full stretch, then drive up and in. Focus on upper chest, not shoulders.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>8–10</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Upper Chest, Anterior Deltoid, Triceps</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FACE PULLS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">04</div>
+                                <div class="bp-ex-info">
+                                    <h3>Face Pulls <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(Cable machine)</span></h3>
+                                    <span class="bp-ex-meta">3 sets · 15 reps · Cable Rope</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-core">Prehab</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/0Po47vvj9g4?rel=0&modestbranding=1" title="Face Pulls Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row core-detail"><i class="fas fa-shield-halved"></i> Crucial for shoulder health and posture for all athletes. Targets the posterior deltoid and external rotators that pressing neglects.</div>
+                                <div class="bp-detail-row core-detail"><i class="fas fa-info-circle"></i> Pull the rope to your face, elbows high. Finish with your thumbs pointing behind you. Keep the tension light and controlled.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>15</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>60 sec</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Rear Delts, External Rotators, Rhomboids</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BARBELL CURLS + OVERHEAD TRICEP EXTENSION -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num upper-num">05</div>
+                                <div class="bp-ex-info">
+                                    <h3>Barbell Bicep Curls <span class="bp-tag tag-superset">SUPERSET</span> Overhead Tricep Extensions</h3>
+                                    <span class="bp-ex-meta">3 sets · 10–12 reps each · Barbell + Cable/Dumbbell</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-armor">Arms</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/LY1V6UbRHFM?rel=0&modestbranding=1" title="Barbell Bicep Curls Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> <strong style="color:#fff">Barbell Curls:</strong> Elbows stay pinned at your sides. Full range of motion — lower all the way down to a full stretch.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-info-circle"></i> <strong style="color:#fff">Overhead Extensions:</strong> Use a rope cable or dumbbell overhead. Elbows point forward — stretches the long head maximally for full tricep development.</div>
+                                <div class="bp-detail-row upper-detail"><i class="fas fa-clock"></i> No rest between the two exercises. 90 seconds after completing both.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Reps</span><strong>10–12 each</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>90 sec (after both)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Biceps, Triceps (long head)</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end day 5 -->
+
+            <!-- ═══════ DAY 6 — ATHLETIC ENGINE ═══════ -->
+            <div id="bp-day6" class="bp-day-section">
+                <div class="bp-day-header">
+                    <div class="bp-day-header-left">
+                        <div class="bp-day-badge engine-badge"><i class="fas fa-fire"></i></div>
+                        <div>
+                            <h2 class="bp-day-title">DAY 6 — ATHLETIC ENGINE</h2>
+                            <p class="bp-day-subtitle">Optional · Conditioning · Speed · Vanity Muscle</p>
+                        </div>
+                    </div>
+                    <div class="bp-day-meta engine-meta">
+                        <span><i class="fas fa-list"></i> 3 Exercises</span>
+                        <span><i class="fas fa-clock"></i> 30–45 min</span>
+                        <span><i class="fas fa-fire"></i> No Heavy Lifts</span>
+                    </div>
+                </div>
+
+                <div class="bp-laws-banner" style="border-color:rgba(255,120,60,0.22);background:linear-gradient(135deg,rgba(255,120,60,0.06),rgba(200,80,30,0.02));">
+                    <div class="bp-laws-banner-icon" style="background:rgba(255,120,60,0.12);border-color:rgba(255,120,60,0.22);color:#ff7840;"><i class="fas fa-bolt"></i></div>
+                    <div>
+                        <h4 style="color:#ff7840;">Optional Day — Conditioning, Speed & Vanity</h4>
+                        <p>No heavy barbell lifts today. This session builds your <strong>athletic engine</strong> — the conditioning that lets you perform in the 4th quarter when others fade. Sprint, move, and finish with calves and grip.</p>
+                    </div>
+                </div>
+
+                <div class="bp-exercise-list">
+
+                    <!-- 30M SPRINTS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num engine-num">01</div>
+                                <div class="bp-ex-info">
+                                    <h3>30-Meter All-Out Sprints</h3>
+                                    <span class="bp-ex-meta">6–8 sets · Walk back to recover · Full Speed</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-sprint">Sprints</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/qF88X_wLGlg?si=zszByfeyatjddPzH" title="30-Meter All-Out Sprints Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-bolt"></i> Sprint at ABSOLUTE maximum velocity — not 90%, not 95%. 100%. Every single rep.</div>
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-info-circle"></i> Walk slowly back to the start after each sprint. This is your full recovery. Never sacrifice quality for quantity.</div>
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-info-circle"></i> Stop when your sprint times start dropping noticeably — quality over quantity always wins here.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Sets</span><strong>6–8</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Distance</span><strong>30 meters</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>Walk back (full recovery)</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Glutes, Hamstrings, Quads, Calves</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONE DRILLS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num engine-num">02</div>
+                                <div class="bp-ex-info">
+                                    <h3>Cone Drills or Ladder Footwork</h3>
+                                    <span class="bp-ex-meta">10 minutes continuous · Agility & Coordination</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-core">Agility</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/VE9K9w6rOmM?si=XfRjZMxlEKMztoow" title="Cone Drills or Ladder Footwork Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-info-circle"></i> Sport-specific movement patterns: 5-10-5 shuffle, T-drill, or agility ladder if available.</div>
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-info-circle"></i> Focus on sharp cuts, change of direction speed, and body control. This directly transfers to any sport.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Duration</span><strong>10 minutes</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Format</span><strong>Continuous movement</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Rest</span><strong>Only when needed</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Focus</span><strong>Change of Direction Speed</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CALF RAISES + FARMER'S WALKS -->
+                    <div class="bp-exercise-item">
+                        <div class="bp-exercise-header" onclick="toggleBPExercise(this)">
+                            <div class="bp-ex-left">
+                                <div class="bp-ex-num engine-num">03</div>
+                                <div class="bp-ex-info">
+                                    <h3>Heavy Calf Raises <span class="bp-tag tag-superset">SUPERSET</span> Farmer's Walks</h3>
+                                    <span class="bp-ex-meta">3 rounds · Calf Raises + 60 sec Farmer's Walk</span>
+                                </div>
+                            </div>
+                            <div class="bp-ex-right">
+                                <span class="bp-tag tag-armor">Vanity</span>
+                                <i class="fas fa-chevron-down bp-toggle-icon"></i>
+                            </div>
+                        </div>
+                        <div class="bp-exercise-body">
+                            <div class="bp-video-wrap">
+                                <div class="bp-video-frame">
+                                    <iframe src="https://www.youtube.com/embed/NH7Xv-7NQNQ?si=GU1E-8kpBtswHDO-&rel=0&modestbranding=1" title="Farmer's Walks Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+                            <div class="bp-details">
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-info-circle"></i> <strong style="color:#fff">Calf Raises:</strong> 3 sets × 20 reps on a step edge, full range of motion. Pause at the top for a 1-second contraction.</div>
+                                <div class="bp-detail-row engine-detail"><i class="fas fa-info-circle"></i> <strong style="color:#fff">Farmer's Walks:</strong> Immediately grab heavy dumbbells and walk for 60 seconds. Builds grip, traps, core stability and mental toughness.</div>
+                            </div>
+                            <div class="bp-set-scheme">
+                                <div class="bp-set-row"><span class="bp-set-label">Rounds</span><strong>3</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Calf Raises</span><strong>20 reps</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Farmer's Walk</span><strong>60 sec heavy</strong></div>
+                                <div class="bp-set-row"><span class="bp-set-label">Muscles</span><strong>Calves, Traps, Grip, Core</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end day 6 -->
+
+            <!-- ═══════ 3 LAWS OF THE PROGRAM ═══════ -->
+            <div class="bp-laws-section">
+                <h3 class="bp-laws-title">🧬 The 3 Laws of This Program</h3>
+                <div class="bp-laws-grid">
+                    <div class="bp-law">
+                        <div class="bp-law-num">01</div>
+                        <h4>Progressive Overload</h4>
+                        <p>To gain muscle, you must force adaptation. Every week, try to add 5 lbs to your main lifts, or do 1 more rep than last week. Track everything.</p>
+                    </div>
+                    <div class="bp-law">
+                        <div class="bp-law-num">02</div>
+                        <h4>Explosive Intent</h4>
+                        <p>When doing the first exercise each day (jumps, slams, plyos), rest 60–90 seconds between sets. You must be at 100% maximum speed for every single rep.</p>
+                    </div>
+                    <div class="bp-law">
+                        <div class="bp-law-num">03</div>
+                        <h4>Fuel the Beast</h4>
+                        <p>You will not gain a pound of muscle without a caloric surplus and at least 0.8–1 gram of protein per pound of bodyweight, daily. Sleep 8 hours minimum.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end container -->
+    </div><!-- end bp-main -->
+</section>
+
+<!-- FOOTER -->
+<footer class="tracker-footer">
+    <div class="container">
+        <span>&copy; 2025 BlackOnLifter</span>
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+</footer>
+
+<script src="tracker.js"></script>
+<script>
+/* ═══════════════════════════════════════
+   BEGINNER PROGRAM LOGIC
+═══════════════════════════════════════ */
+(function() {
+    // Show/hide based on URL param
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('level') === 'beginner') {
+        const sec = document.getElementById('beginnerProgram');
+        if (sec) sec.style.display = 'block';
+    }
+})();
+
+function switchBPDay(dayId) {
+    // Hide all sections
+    document.querySelectorAll('.bp-day-section').forEach(s => s.classList.remove('bp-active-day'));
+    // Remove active from all tabs
+    document.querySelectorAll('.bp-day-tab').forEach(t => t.classList.remove('active'));
+    // Remove active from overview cards
+    document.querySelectorAll('.bp-overview-card').forEach(c => c.classList.remove('active-bp-card'));
+
+    // Show target section
+    const target = document.getElementById(dayId);
+    if (target) target.classList.add('bp-active-day');
+
+    // Activate matching tab
+    const tab = document.querySelector(`[data-bp-day="${dayId}"]`);
+    if (tab) tab.classList.add('active');
+
+    // Scroll to tabs
+    document.querySelector('.bp-day-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function toggleBPExercise(header) {
+    const item = header.closest('.bp-exercise-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all others in the same list
+    header.closest('.bp-exercise-list')
+          ?.querySelectorAll('.bp-exercise-item.open')
+          .forEach(el => { if (el !== item) el.classList.remove('open'); });
+
+    item.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>

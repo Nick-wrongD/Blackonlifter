@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Athlete Mode</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="athlete.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+            <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+            <div class="logo-copy">
+                <span class="logo-title">BlackOnLifter</span>
+                <span class="logo-sub">Athlete Mode</span>
+            </div>
+        </a>
+        <div class="nav-actions">
+            <a href="choose.html" class="nav-cta"><i class="fas fa-arrow-left"></i> Change Level</a>
+            <a href="index.html" class="nav-cta-home"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- ATHLETE HERO -->
+<div class="athlete-hero">
+    <div class="athlete-hero-bg"></div>
+    <div class="athlete-hero-overlay"></div>
+    <canvas id="athleteCanvas"></canvas>
+    <div class="athlete-hero-image-wrap">
+        <img src="logo2.png" alt="Muscle Reference Chart" class="athlete-ref-img"/>
+        <div class="athlete-ref-label"><i class="fas fa-crosshairs"></i> Muscle Reference Chart</div>
+    </div>
+    <div class="container athlete-hero-content">
+        <div class="athlete-eyebrow"><span class="eyebrow-dot"></span><span>ELITE 4-DAY SPLIT</span></div>
+        <h1 class="athlete-title">
+            <span>ATHLETE</span>
+            <span class="athlete-title-accent">MODE</span>
+        </h1>
+        <p class="athlete-subtitle">The apex training system. Built for those who have already conquered the basics and are ready to train like predators.</p>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats-strip">
+            <div class="hero-stat">
+                <span class="hero-stat-val">4</span>
+                <span class="hero-stat-label">Training Days</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-val">37</span>
+                <span class="hero-stat-label">Exercises</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-val">90<small style="font-size:1rem">min</small></span>
+                <span class="hero-stat-label">Max Duration</span>
+            </div>
+        </div>
+
+        <!-- Split overview -->
+        <div class="split-overview">
+            <div class="split-day active-split-day" onclick="jumpToDay('pull')">
+                <span class="split-day-num">Day 1</span>
+                <span class="split-day-name">PULL</span>
+                <span class="split-day-focus">Back, Biceps, Forearms</span>
+            </div>
+            <div class="split-day" onclick="jumpToDay('legs')">
+                <span class="split-day-num">Day 2</span>
+                <span class="split-day-name">LEGS</span>
+                <span class="split-day-focus">Quads, Glutes, Calves</span>
+            </div>
+            <div class="split-day" onclick="jumpToDay('push')">
+                <span class="split-day-num">Day 3</span>
+                <span class="split-day-name">PUSH</span>
+                <span class="split-day-focus">Chest, Shoulders, Triceps</span>
+            </div>
+            <div class="split-day rest-day">
+                <span class="split-day-num">Day 4–5</span>
+                <span class="split-day-name">REST</span>
+                <span class="split-day-focus">Recovery & Mobility</span>
+            </div>
+            <div class="split-day" onclick="jumpToDay('fullbody')">
+                <span class="split-day-num">Day 6</span>
+                <span class="split-day-name">FULL BODY</span>
+                <span class="split-day-focus">Compound Power</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="athlete-main">
+    <div class="container">
+
+        <!-- Day Tabs -->
+        <div class="day-tabs">
+            <button class="day-tab active" data-day="pull" onclick="switchDay('pull')"><i class="fas fa-arrow-down"></i> Pull Day</button>
+            <button class="day-tab" data-day="legs" onclick="switchDay('legs')"><i class="fas fa-person-walking"></i> Leg Day</button>
+            <button class="day-tab" data-day="push" onclick="switchDay('push')"><i class="fas fa-arrow-up"></i> Push Day</button>
+            <button class="day-tab rest-tab" data-day="rest" onclick="switchDay('rest')"><i class="fas fa-moon"></i> Rest</button>
+            <button class="day-tab" data-day="fullbody" onclick="switchDay('fullbody')"><i class="fas fa-circle-dot"></i> Full Body</button>
+        </div>
+
+        <!-- ═══════════════ PULL DAY ═══════════════ -->
+        <div id="day-pull" class="day-section active-day">
+            <div class="day-header">
+                <div class="day-header-left">
+                    <div class="day-badge day-badge-pull"><i class="fas fa-arrow-down"></i></div>
+                    <div>
+                        <h2 class="day-title">PULL DAY</h2>
+                        <p class="day-subtitle">Back · Biceps · Forearms · Grip</p>
+                    </div>
+                </div>
+                <div class="day-meta">
+                    <span><i class="fas fa-list"></i> 10 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 60–90 min</span>
+                    <span><i class="fas fa-fire"></i> High Volume</span>
+                </div>
+            </div>
+
+            <div class="exercise-list">
+
+                <!-- WARMUP -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num warmup-num">W</div>
+                            <div class="exercise-info"><h3>Warm-Up</h3><span class="exercise-meta">5–10 min · Mobility & Activation</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag warmup-tag">Warmup</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="video-placeholder">
+                            <div class="video-placeholder-inner">
+                                <i class="fas fa-video"></i><span>Video coming soon</span>
+                                <p>Light band pull-aparts, arm circles, cat-cow, thoracic rotation</p>
+                            </div>
+                        </div>
+                        <div class="exercise-details">
+                            <div class="detail-row"><i class="fas fa-info-circle"></i> Light band pull-aparts, arm circles, cat-cow, thoracic rotation</div>
+                            <div class="detail-row"><i class="fas fa-clock"></i> 5–10 minutes before lifting</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PULL-UPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">01</div>
+                            <div class="exercise-info"><h3>Pull-Ups</h3><span class="exercise-meta">4 sets · Max reps · Bodyweight</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe src="https://www.youtube.com/embed/eGo4IYlbE5g?rel=0&modestbranding=1" title="Pull-Ups Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="progression-panel">
+                            <div class="progression-info">
+                                <div class="progression-icon"><i class="fas fa-arrow-trend-up"></i></div>
+                                <div><h4>Level Up: Weighted Pull-Ups</h4><p>Once you can do <strong>20 consecutive pull-ups</strong>, progress to weighted pull-ups for continued strength gains.</p></div>
+                            </div>
+                            <div class="progression-check">
+                                <label class="progression-toggle">
+                                    <input type="checkbox" id="pullupProgressCheck" onchange="toggleProgression('pullupProgress',this)"/>
+                                    <span class="toggle-track"></span>
+                                    <span class="toggle-label">I can do 20 pull-ups — Unlock Weighted</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="progression-unlock" id="pullupProgress">
+                            <div class="unlock-header">
+                                <div class="unlock-icon"><i class="fas fa-unlock-alt"></i></div>
+                                <div><h4>Weighted Pull-Ups <span class="unlock-badge">UNLOCKED</span></h4><p>Add a dip belt or hold a dumbbell between your feet. Start with +5–10kg and progress weekly.</p></div>
+                            </div>
+                            <div class="unlock-sets">
+                                <div class="unlock-set-row"><span>Week 1–2</span><strong>4 × 6 reps @ +10kg</strong></div>
+                                <div class="unlock-set-row"><span>Week 3–4</span><strong>4 × 5 reps @ +15kg</strong></div>
+                                <div class="unlock-set-row"><span>Week 5+</span><strong>4 × 4 reps @ +20kg+</strong></div>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>Max (aim 8–15)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Lats, Biceps, Rear Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHOULDER PRESS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">02</div>
+                            <div class="exercise-info"><h3>Shoulder Press</h3><span class="exercise-meta">4 sets · 8–10 reps · Barbell/Dumbbell</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe src="https://www.youtube.com/embed/2yjwXTZQDDI?rel=0&modestbranding=1" title="Shoulder Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Deltoids, Trapezius, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BARBELL ROW -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">03</div>
+                            <div class="exercise-info"><h3>Barbell Row</h3><span class="exercise-meta">4 sets · 8–10 reps · Barbell</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/G8l_8chR5BE?si=3qnwLqyno1h6Ql3d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Lats, Rhomboids, Biceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UPRIGHT ROW -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">04</div>
+                            <div class="exercise-info"><h3>Upright Row</h3><span class="exercise-meta">3 sets · 10–12 reps · Barbell</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe src="https://www.youtube.com/embed/7eGuBNSPG90?rel=0&modestbranding=1" title="Upright Row Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Trapezius, Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHRUGS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">05</div>
+                            <div class="exercise-info"><h3>Shrugs</h3><span class="exercise-meta">3 sets · 12–15 reps · Barbell/Dumbbell</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe src="https://www.youtube.com/embed/g6qbq4Lf1FI?rel=0&modestbranding=1" title="Barbell Shrugs Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Trapezius m.</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LATERAL RAISES -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">06</div>
+                            <div class="exercise-info"><h3>Lateral Raises</h3><span class="exercise-meta">3 sets · 12–15 reps · Dumbbells/Cable</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/K5hFLVJnnsw?si=edTeG5-Cb2KncDT7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme";
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Deltoid (lateral head)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BICEP CURLS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">07</div>
+                            <div class="exercise-info"><h3>Bicep Curls</h3><span class="exercise-meta">3 sets · 10–12 reps · Barbell/Dumbbell</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe src="https://www.youtube.com/embed/LY1V6UbRHFM?rel=0&modestbranding=1" title="Bicep Curls Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60–90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Biceps brachii, Brachialis</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FINGER CURLS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">08</div>
+                            <div class="exercise-info"><h3>Finger Curls</h3><span class="exercise-meta">3 sets · 15–20 reps · Barbell</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Grip</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/gMGqYTG9C0c?si=RQAd63B7fO70pObF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Finger flexors, Grip</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOREARM TRAINING -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left">
+                            <div class="exercise-num">09</div>
+                            <div class="exercise-info"><h3>Forearm Training</h3><span class="exercise-meta">3 sets · 15 reps · Barbell Wrist Curl</span></div>
+                        </div>
+                        <div class="exercise-right"><span class="exercise-tag">Forearms</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap">
+                            <div class="video-frame-wrap">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/3xHrOLzTLYI?si=YlkdBdht50l0HYZ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>15</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Forearm flexors & extensors</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end pull day -->
+
+        <!-- ═══════════════ LEG DAY ═══════════════ -->
+        <div id="day-legs" class="day-section">
+            <div class="day-header">
+                <div class="day-header-left">
+                    <div class="day-badge day-badge-legs"><i class="fas fa-person-walking"></i></div>
+                    <div><h2 class="day-title">LEG DAY</h2><p class="day-subtitle">Quads · Hamstrings · Glutes · Calves</p></div>
+                </div>
+                <div class="day-meta">
+                    <span><i class="fas fa-list"></i> 8 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 60–80 min</span>
+                    <span><i class="fas fa-fire"></i> Maximum Output</span>
+                </div>
+            </div>
+            <div class="exercise-list">
+
+                <!-- WARMUP -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num warmup-num">W</div><div class="exercise-info"><h3>Warm-Up</h3><span class="exercise-meta">5–10 min · Hip Mobility & Activation</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag warmup-tag">Warmup</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="video-placeholder"><div class="video-placeholder-inner"><i class="fas fa-video"></i><span>Video coming soon</span><p>Hip circles, leg swings, bodyweight squats, glute bridges</p></div></div>
+                    </div>
+                </div>
+
+                <!-- SQUATS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">01</div><div class="exercise-info"><h3>Barbell Back Squats</h3><span class="exercise-meta">5 sets · 5–8 reps · Barbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/ultWZbUMPL8?rel=0&modestbranding=1" title="Barbell Back Squat Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>5</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>5–8 (heavy)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Quads, Glutes, Hamstrings, Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KNEELING JUMPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">02</div><div class="exercise-info"><h3>Kneeling Jumps</h3><span class="exercise-meta">4 sets · 5 reps · Explosive</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag explosive-tag">Explosive</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/3fYh4oqoZ40?si=AKiC_TUlwnQOXvzL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>5 (max power)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Glutes, Hip Flexors, Quads</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LYING HAMSTRING CURLS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">03</div><div class="exercise-info"><h3>Lying Hamstring Curls</h3><span class="exercise-meta">4 sets · 10–12 reps · Machine</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/jxctD6fL_FQ?si=5aSam8-xhVu-5gcb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Hamstrings, Popliteus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BULGARIAN SPLIT SQUATS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">04</div><div class="exercise-info"><h3>Bulgarian Split Squats</h3><span class="exercise-meta">3 sets · 8–10 reps each leg</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/2C-uNgKwPLE?rel=0&modestbranding=1" title="Bulgarian Split Squats Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3 per leg</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Quads, Glutes, Balance</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BULGARIAN SPLIT JUMPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">05</div><div class="exercise-info"><h3>Bulgarian Split Jumps</h3><span class="exercise-meta">3 sets · 6–8 reps each leg · Explosive</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag explosive-tag">Explosive</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/2C-uNgKwPLE?rel=0&modestbranding=1" title="Bulgarian Split Jump Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3 per leg</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>6–8 explosive</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Quads, Glutes, Power Output</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIP THRUSTS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">06</div><div class="exercise-info"><h3>Hip Thrusts</h3><span class="exercise-meta">4 sets · 10–12 reps · Barbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/pBH7pKHn-dI?rel=0&modestbranding=1" title="Barbell Hip Thrusts Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Glutes, Hamstrings, Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CALF RAISES -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">07</div><div class="exercise-info"><h3>Calf Raises</h3><span class="exercise-meta">4 sets · 15–20 reps · Barbell/Machine</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/gwLzBJYoWlI?rel=0&modestbranding=1" title="Calf Raises Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Gastrocnemius, Soleus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end leg day -->
+
+        <!-- ═══════════════ PUSH DAY ═══════════════ -->
+        <div id="day-push" class="day-section">
+            <div class="day-header">
+                <div class="day-header-left">
+                    <div class="day-badge day-badge-push"><i class="fas fa-arrow-up"></i></div>
+                    <div><h2 class="day-title">PUSH DAY</h2><p class="day-subtitle">Chest · Shoulders · Triceps</p></div>
+                </div>
+                <div class="day-meta">
+                    <span><i class="fas fa-list"></i> 9 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 60–80 min</span>
+                    <span><i class="fas fa-fire"></i> High Intensity</span>
+                </div>
+            </div>
+            <div class="exercise-list">
+
+                <!-- WARMUP -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num warmup-num">W</div><div class="exercise-info"><h3>Warm-Up</h3><span class="exercise-meta">5–10 min · Shoulder & Chest Activation</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag warmup-tag">Warmup</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="video-placeholder"><div class="video-placeholder-inner"><i class="fas fa-video"></i><span>Video coming soon</span><p>Band pull-aparts, shoulder circles, chest opener stretch, scapular wall slides, 10 slow push-ups</p></div></div>
+                    </div>
+                </div>
+
+                <!-- PUSH-UPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">01</div><div class="exercise-info"><h3>Push-Ups</h3><span class="exercise-meta">4 sets · Max reps · Bodyweight</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&modestbranding=1" title="Push-Ups Proper Form Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="progression-panel">
+                            <div class="progression-info"><div class="progression-icon"><i class="fas fa-arrow-trend-up"></i></div><div><h4>Level Up: Weighted Push-Ups</h4><p>Once you can do <strong>30 consecutive push-ups</strong> with perfect form, load a plate on your back.</p></div></div>
+                            <div class="progression-check"><label class="progression-toggle"><input type="checkbox" id="pushupProgressCheck" onchange="toggleProgression('pushupProgress',this)"/><span class="toggle-track"></span><span class="toggle-label">I can do 30 push-ups — Unlock Weighted</span></label></div>
+                        </div>
+                        <div class="progression-unlock" id="pushupProgress">
+                            <div class="unlock-header"><div class="unlock-icon"><i class="fas fa-unlock-alt"></i></div><div><h4>Weighted Push-Ups <span class="unlock-badge">UNLOCKED</span></h4><p>Use a weighted vest or have a partner place a plate on your upper back.</p></div></div>
+                            <div class="unlock-sets">
+                                <div class="unlock-set-row"><span>Week 1–2</span><strong>4 × 10 reps @ +10kg</strong></div>
+                                <div class="unlock-set-row"><span>Week 3–4</span><strong>4 × 8 reps @ +15kg</strong></div>
+                                <div class="unlock-set-row"><span>Week 5+</span><strong>4 × 6 reps @ +20kg+</strong></div>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>Max (aim 15–30)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Chest, Shoulders, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLYO PUSH-UPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">02</div><div class="exercise-info"><h3>Plyo Push-Ups</h3><span class="exercise-meta">3 sets · 5–8 reps · Explosive</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag explosive-tag-badge">Explosive</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/i9sTjhN4Z3M?rel=0&modestbranding=1" title="Plyometric Push-Ups Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="exercise-details">
+                            <div class="detail-row"><i class="fas fa-bolt"></i> Explode off the floor so your hands leave the ground. Clap if able. Land soft.</div>
+                            <div class="detail-row"><i class="fas fa-info-circle"></i> Rest 90 seconds between sets — this is power training, not cardio.</div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>5–8 explosive</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Chest, Triceps, Anterior Deltoid</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HEAVY SHOULDER PRESS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">03</div><div class="exercise-info"><h3>Heavy Shoulder Press</h3><span class="exercise-meta">4 sets · 5–6 reps · Barbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/nNMR9fRGRjQ?rel=0&modestbranding=1" title="Heavy Overhead Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>5–6 (heavy)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Deltoids, Trapezius, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LANDMINE PRESS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">04</div><div class="exercise-info"><h3>Landmine Press</h3><span class="exercise-meta">3 sets · 8–10 reps · Barbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/NGOeukXF4yE?si=GDxV9hstZgsU-Dye&rel=0&modestbranding=1" title="Landmine Press Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Upper Chest, Front Deltoid, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DIPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">05</div><div class="exercise-info"><h3>Dips</h3><span class="exercise-meta">4 sets · Max reps · Bodyweight</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/BjiyWC_cJW0?rel=0&modestbranding=1" title="Dips Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="progression-panel">
+                            <div class="progression-info"><div class="progression-icon"><i class="fas fa-arrow-trend-up"></i></div><div><h4>Level Up: Weighted Dips</h4><p>Once you can do <strong>20 consecutive dips</strong>, add a dip belt for real mass and strength.</p></div></div>
+                            <div class="progression-check"><label class="progression-toggle"><input type="checkbox" id="dipProgressCheck" onchange="toggleProgression('dipProgress',this)"/><span class="toggle-track"></span><span class="toggle-label">I can do 20 dips — Unlock Weighted</span></label></div>
+                        </div>
+                        <div class="progression-unlock" id="dipProgress">
+                            <div class="unlock-header"><div class="unlock-icon"><i class="fas fa-unlock-alt"></i></div><div><h4>Weighted Dips <span class="unlock-badge">UNLOCKED</span></h4><p>Use a dip belt. Torso slightly forward = chest focus. Upright = tricep focus.</p></div></div>
+                            <div class="unlock-sets">
+                                <div class="unlock-set-row"><span>Week 1–2</span><strong>4 × 8 reps @ +10kg</strong></div>
+                                <div class="unlock-set-row"><span>Week 3–4</span><strong>4 × 6 reps @ +15kg</strong></div>
+                                <div class="unlock-set-row"><span>Week 5+</span><strong>4 × 5 reps @ +20kg+</strong></div>
+                            </div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>Max (aim 10–20)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Lower Chest, Triceps, Anterior Deltoid</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INCLINE PRESS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">06</div><div class="exercise-info"><h3>Incline Press</h3><span class="exercise-meta">3 sets · 8–10 reps · Dumbbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Compound</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/hChjZQhX1Ls?si=WcBKUBQOZ0m0xmr5&rel=0&modestbranding=1" title="DB Incline Press Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Upper Chest, Anterior Deltoid, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LATERAL RAISES PUSH -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">07</div><div class="exercise-info"><h3>Lateral Raises</h3><span class="exercise-meta">4 sets · 12–20 reps · Dumbbell/Cable</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/K5hFLVJnnsw?si=edTeG5-Cb2KncDT7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>4</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>12–20</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Lateral Deltoid</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SKULL CRUSHERS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">08</div><div class="exercise-info"><h3>Skull Crushers</h3><span class="exercise-meta">3 sets · 10–12 reps · EZ Bar/Barbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag">Isolation</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/GaK2da6B2zM?rel=0&modestbranding=1" title="EZ Bar Skull Crushers Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60–90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Triceps (long head emphasis)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end push day -->
+
+        <!-- ═══════════════ REST DAY ═══════════════ -->
+        <div id="day-rest" class="day-section">
+            <div class="day-header">
+                <div class="day-header-left">
+                    <div class="day-badge day-badge-rest"><i class="fas fa-moon"></i></div>
+                    <div><h2 class="day-title">REST & RECOVERY</h2><p class="day-subtitle">Days 4–5 · Active Recovery Optional</p></div>
+                </div>
+            </div>
+            <div class="rest-grid">
+                <div class="rest-card"><div class="rest-icon"><i class="fas fa-bed"></i></div><h4>Sleep</h4><p>Aim for 8–9 hours. Growth happens during recovery, not during the session.</p></div>
+                <div class="rest-card"><div class="rest-icon"><i class="fas fa-droplet"></i></div><h4>Hydration</h4><p>Minimum 3–4 litres of water. Add electrolytes if training intensity is high.</p></div>
+                <div class="rest-card"><div class="rest-icon"><i class="fas fa-utensils"></i></div><h4>Nutrition</h4><p>Keep protein high (1.8–2.2g per kg bodyweight). Don't skip meals on rest days.</p></div>
+                <div class="rest-card"><div class="rest-icon"><i class="fas fa-person-walking"></i></div><h4>Active Recovery</h4><p>Optional: 20–30 min walk, light stretching, foam rolling, or swimming.</p></div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ FULL BODY DAY ═══════════════ -->
+        <div id="day-fullbody" class="day-section">
+            <div class="day-header">
+                <div class="day-header-left">
+                    <div class="day-badge day-badge-fullbody"><i class="fas fa-circle-dot"></i></div>
+                    <div><h2 class="day-title">FULL BODY DAY</h2><p class="day-subtitle">Contrast Method · Compound Power · Accessory Work</p></div>
+                </div>
+                <div class="day-meta">
+                    <span><i class="fas fa-list"></i> 10 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 75–90 min</span>
+                    <span><i class="fas fa-bolt"></i> Max Output</span>
+                </div>
+            </div>
+
+            <div class="contrast-banner">
+                <div class="contrast-banner-icon"><i class="fas fa-dna"></i></div>
+                <div><h4>Contrast Method Training</h4><p>Each main lift is paired with an explosive movement. Heavy strength set → 30-second rest → explosive drop set. This activates Post-Activation Potentiation (PAP). <strong>All weighted movements follow a 5RM build-up protocol.</strong></p></div>
+            </div>
+
+            <div class="fb-calculator" id="fbCalculator">
+                <div class="fb-calc-header"><i class="fas fa-calculator"></i><h4>5RM Build-Up Calculator</h4><p>Enter your 1RM for each lift to auto-calculate your working sets.</p></div>
+                <div class="fb-calc-grid">
+                    <div class="fb-calc-input"><label>Bodyweight (kg)</label><input type="number" id="bw-input" placeholder="e.g. 80" min="30" max="250" oninput="updateFBCalc()"/></div>
+                    <div class="fb-calc-input"><label>Push-Up 1RM (kg added)</label><input type="number" id="pushup1rm" placeholder="e.g. 40" min="0" oninput="updateFBCalc()"/></div>
+                    <div class="fb-calc-input"><label>Pull-Up 1RM (kg added)</label><input type="number" id="pullup1rm" placeholder="e.g. 35" min="0" oninput="updateFBCalc()"/></div>
+                    <div class="fb-calc-input"><label>Landmine Lunge 1RM (kg)</label><input type="number" id="lunge1rm" placeholder="e.g. 60" min="0" oninput="updateFBCalc()"/></div>
+                </div>
+            </div>
+
+            <div class="exercise-list">
+
+                <!-- WARMUP -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num warmup-num">W</div><div class="exercise-info"><h3>Warm-Up</h3><span class="exercise-meta">8–10 min · Full Body Activation</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag warmup-tag">Warmup</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="video-placeholder"><div class="video-placeholder-inner"><i class="fas fa-video"></i><span>Video coming soon</span></div></div>
+                        <div class="exercise-details">
+                            <div class="detail-row"><i class="fas fa-info-circle"></i> 5 min: Jumping jacks → hip circles → arm swings → inchworms × 5</div>
+                            <div class="detail-row"><i class="fas fa-info-circle"></i> 3 min: 10 bodyweight squats → 10 push-ups → 5 pull-ups (activation only)</div>
+                            <div class="detail-row"><i class="fas fa-clock"></i> Do NOT skip. The contrast method demands a fully primed CNS.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C1: WEIGHTED PUSH-UPS + PLYO -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num contrast-num">C1</div><div class="exercise-info"><h3>Weighted Push-Ups → Plyo Push-Ups</h3><span class="exercise-meta">Contrast Method · 5RM Build-Up · Drop Set</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag contrast-tag-badge">Contrast</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="fb-buildup" id="pushup-buildup">
+                            <div class="buildup-header"><i class="fas fa-chart-line"></i> 5RM Build-Up Protocol</div>
+                            <div class="buildup-sets">
+                                <div class="buildup-set"><span class="buildup-pct">50%</span><span class="buildup-desc">Warm-Up Set</span><span class="buildup-val" id="pushup-s1">— kg × 5</span></div>
+                                <div class="buildup-set"><span class="buildup-pct">65%</span><span class="buildup-desc">Ramp Set</span><span class="buildup-val" id="pushup-s2">— kg × 5</span></div>
+                                <div class="buildup-set working-set"><span class="buildup-pct">80–85%</span><span class="buildup-desc">Working 5RM</span><span class="buildup-val" id="pushup-s3">— kg × 5</span></div>
+                            </div>
+                            <div class="fb-log-row">
+                                <span class="fb-log-label">Log today's working weight:</span>
+                                <input type="number" class="fb-log-input" id="pushup-log-weight" placeholder="kg" min="0"/>
+                                <input type="number" class="fb-log-input" id="pushup-log-reps" placeholder="reps" min="1" max="10"/>
+                                <button class="fb-log-btn" onclick="logFBSet('pushup')"><i class="fas fa-save"></i> Save</button>
+                            </div>
+                            <div class="fb-log-history" id="pushup-history"></div>
+                        </div>
+                        <div class="contrast-pair">
+                            <div class="contrast-step heavy-step"><div class="contrast-step-label"><i class="fas fa-weight-hanging"></i> HEAVY SET</div><p>Perform your <strong>80–85% 1RM set for 5 reps</strong>. Full range, controlled down, explosive up.</p></div>
+                            <div class="contrast-arrow"><i class="fas fa-arrow-right"></i> 30 SEC <i class="fas fa-arrow-right"></i></div>
+                            <div class="contrast-step explosive-step"><div class="contrast-step-label"><i class="fas fa-bolt"></i> DROP SET — PLYO PUSH-UPS</div><p>Immediately perform <strong>5–8 explosive push-ups</strong>. Your nervous system is primed — max effort.</p></div>
+                        </div>
+                        <div class="inline-timer" id="contrast-timer-pushup">
+                            <span class="inline-timer-label"><i class="fas fa-stopwatch"></i> Contrast Rest Timer</span>
+                            <div class="inline-timer-display" id="ct-display-pushup">00:30</div>
+                            <button class="inline-timer-btn" onclick="startContrastTimer('pushup')"><i class="fas fa-play"></i> Start 30s</button>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Heavy Sets</span><strong>3 × 5 @ 80–85% 1RM</strong></div>
+                            <div class="set-row"><span class="set-label">Drop Sets</span><strong>3 × 5–8 Plyo Push-Ups</strong></div>
+                            <div class="set-row"><span class="set-label">Rest Between Pairs</span><strong>3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Chest, Triceps, Anterior Deltoid</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C2: WEIGHTED PULL-UPS + BW PULL-UPS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num contrast-num">C2</div><div class="exercise-info"><h3>Weighted Pull-Ups → Bodyweight Pull-Ups</h3><span class="exercise-meta">Contrast Method · 5RM Build-Up · Drop Set</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag contrast-tag-badge">Contrast</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="fb-buildup">
+                            <div class="buildup-header"><i class="fas fa-chart-line"></i> 5RM Build-Up Protocol</div>
+                            <div class="buildup-sets">
+                                <div class="buildup-set"><span class="buildup-pct">50%</span><span class="buildup-desc">Warm-Up Set</span><span class="buildup-val" id="pullup-s1">— kg × 5</span></div>
+                                <div class="buildup-set"><span class="buildup-pct">65%</span><span class="buildup-desc">Ramp Set</span><span class="buildup-val" id="pullup-s2">— kg × 5</span></div>
+                                <div class="buildup-set working-set"><span class="buildup-pct">80–85%</span><span class="buildup-desc">Working 5RM</span><span class="buildup-val" id="pullup-s3">— kg × 5</span></div>
+                            </div>
+                            <div class="fb-log-row">
+                                <span class="fb-log-label">Log today's working weight:</span>
+                                <input type="number" class="fb-log-input" id="pullup-log-weight" placeholder="kg" min="0"/>
+                                <input type="number" class="fb-log-input" id="pullup-log-reps" placeholder="reps" min="1" max="10"/>
+                                <button class="fb-log-btn" onclick="logFBSet('pullup')"><i class="fas fa-save"></i> Save</button>
+                            </div>
+                            <div class="fb-log-history" id="pullup-history"></div>
+                        </div>
+                        <div class="contrast-pair">
+                            <div class="contrast-step heavy-step"><div class="contrast-step-label"><i class="fas fa-weight-hanging"></i> HEAVY SET</div><p>Perform your <strong>80–85% 1RM for 5 reps</strong> with a dip belt. Dead hang start, full lock-out at top.</p></div>
+                            <div class="contrast-arrow"><i class="fas fa-arrow-right"></i> 30 SEC <i class="fas fa-arrow-right"></i></div>
+                            <div class="contrast-step explosive-step"><div class="contrast-step-label"><i class="fas fa-bolt"></i> DROP SET — BODYWEIGHT PULL-UPS</div><p>Remove the belt. Aim for <strong>6–10 explosive reps</strong>. Go until speed drops significantly.</p></div>
+                        </div>
+                        <div class="inline-timer" id="contrast-timer-pullup">
+                            <span class="inline-timer-label"><i class="fas fa-stopwatch"></i> Contrast Rest Timer</span>
+                            <div class="inline-timer-display" id="ct-display-pullup">00:30</div>
+                            <button class="inline-timer-btn" onclick="startContrastTimer('pullup')"><i class="fas fa-play"></i> Start 30s</button>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Heavy Sets</span><strong>3 × 5 @ 80–85% 1RM</strong></div>
+                            <div class="set-row"><span class="set-label">Drop Sets</span><strong>3 × max BW Pull-Ups</strong></div>
+                            <div class="set-row"><span class="set-label">Rest Between Pairs</span><strong>3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Lats, Biceps, Rear Delts, Rhomboids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C3: LANDMINE LUNGES + JUMP LUNGES -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num contrast-num">C3</div><div class="exercise-info"><h3>Landmine Lunges → Explosive Jump Lunges</h3><span class="exercise-meta">Contrast Method · 5RM Build-Up · Drop Set</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag contrast-tag-badge">Contrast</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="fb-buildup">
+                            <div class="buildup-header"><i class="fas fa-chart-line"></i> 5RM Build-Up Protocol</div>
+                            <div class="buildup-sets">
+                                <div class="buildup-set"><span class="buildup-pct">50%</span><span class="buildup-desc">Warm-Up Set</span><span class="buildup-val" id="lunge-s1">— kg × 5</span></div>
+                                <div class="buildup-set"><span class="buildup-pct">65%</span><span class="buildup-desc">Ramp Set</span><span class="buildup-val" id="lunge-s2">— kg × 5</span></div>
+                                <div class="buildup-set working-set"><span class="buildup-pct">80–85%</span><span class="buildup-desc">Working 5RM</span><span class="buildup-val" id="lunge-s3">— kg × 5</span></div>
+                            </div>
+                            <div class="fb-log-row">
+                                <span class="fb-log-label">Log today's working weight:</span>
+                                <input type="number" class="fb-log-input" id="lunge-log-weight" placeholder="kg" min="0"/>
+                                <input type="number" class="fb-log-input" id="lunge-log-reps" placeholder="reps" min="1" max="10"/>
+                                <button class="fb-log-btn" onclick="logFBSet('lunge')"><i class="fas fa-save"></i> Save</button>
+                            </div>
+                            <div class="fb-log-history" id="lunge-history"></div>
+                        </div>
+                        <div class="contrast-pair">
+                            <div class="contrast-step heavy-step"><div class="contrast-step-label"><i class="fas fa-weight-hanging"></i> HEAVY SET</div><p>Hold the landmine barbell at chest height and lunge forward. <strong>5 reps per leg @ 80–85% 1RM</strong>.</p></div>
+                            <div class="contrast-arrow"><i class="fas fa-arrow-right"></i> 30 SEC <i class="fas fa-arrow-right"></i></div>
+                            <div class="contrast-step explosive-step"><div class="contrast-step-label"><i class="fas fa-bolt"></i> DROP SET — JUMP LUNGES</div><p>Bodyweight only. Jump and switch legs in the air. <strong>6–10 reps alternating</strong>. Max speed and height.</p></div>
+                        </div>
+                        <div class="inline-timer" id="contrast-timer-lunge">
+                            <span class="inline-timer-label"><i class="fas fa-stopwatch"></i> Contrast Rest Timer</span>
+                            <div class="inline-timer-display" id="ct-display-lunge">00:30</div>
+                            <button class="inline-timer-btn" onclick="startContrastTimer('lunge')"><i class="fas fa-play"></i> Start 30s</button>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Heavy Sets</span><strong>3 × 5/leg @ 80–85% 1RM</strong></div>
+                            <div class="set-row"><span class="set-label">Drop Sets</span><strong>3 × 6–10 Jump Lunges</strong></div>
+                            <div class="set-row"><span class="set-label">Rest Between Pairs</span><strong>3 min</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Quads, Glutes, Hamstrings, Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A1: REAR DELT FLY -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A1</div><div class="exercise-info"><h3>Rear Delt Fly</h3><span class="exercise-meta">3 sets · 15–20 reps · Cable/Dumbbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/Iq9Q7V3AO_s?si=7ZAu4-QB-udXq9Qj&rel=0&modestbranding=1" title="Rear Delt Fly Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>45 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Posterior Deltoid, Rhomboids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A2: HAMMER CURLS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A2</div><div class="exercise-info"><h3>Hammer Curls</h3><span class="exercise-meta">3 sets · 10–12 reps · Dumbbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/TwD-YGVP4Bk?rel=0&modestbranding=1" title="Hammer Curls Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Brachialis, Biceps, Brachioradialis</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A3: OVERHEAD TRICEP EXTENSION -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A3</div><div class="exercise-info"><h3>Overhead Tricep Extension</h3><span class="exercise-meta">3 sets · 10–12 reps · Cable/Dumbbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/d_KZxkY_0cM?rel=0&modestbranding=1" title="Overhead Tricep Extension Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Triceps (long head emphasis)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A4: NORDIC HAMSTRING CURL -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A4</div><div class="exercise-info"><h3>Nordic Hamstring Curl</h3><span class="exercise-meta">3 sets · 5–8 reps · Bodyweight</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/6NCN6kOagfY?si=-r_wdmeNXDutlgbl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div></div>
+                        <div class="exercise-details">
+                            <div class="detail-row"><i class="fas fa-bolt"></i> Scientifically proven to reduce hamstring injury risk by up to 51%. Essential for sprinters and athletes.</div>
+                        </div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>5–8 (quality over quantity)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Biceps Femoris, Semimembranosus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A5: SINGLE LEG CALF RAISE -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A5</div><div class="exercise-info"><h3>Single-Leg Calf Raise</h3><span class="exercise-meta">3 sets · 15–20 reps · Bodyweight/Dumbbell</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/gwLzBJYoWlI?rel=0&modestbranding=1" title="Single Leg Calf Raise Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3 per leg</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Gastrocnemius, Soleus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A6: FOREARM ROPE CURLS -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A6</div><div class="exercise-info"><h3>Forearm Rope Curls</h3><span class="exercise-meta">3 sets · 15–20 reps · Cable Rope</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/3xHrOLzTLYI?si=YlkdBdht50l0HYZ9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Sets</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Reps</span><strong>10+10 (flex + extend)</strong></div>
+                            <div class="set-row"><span class="set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Flexor & Extensor Carpi, Finger Flexors</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A7: CORE FINISHER -->
+                <div class="exercise-item">
+                    <div class="exercise-header" onclick="toggleExercise(this)">
+                        <div class="exercise-left"><div class="exercise-num">A7</div><div class="exercise-info"><h3>Core Finisher — Hollow Body + Dragon Flag</h3><span class="exercise-meta">3 rounds · Superset · Bodyweight</span></div></div>
+                        <div class="exercise-right"><span class="exercise-tag accessory-tag-badge">Accessory</span><i class="fas fa-chevron-down toggle-icon"></i></div>
+                    </div>
+                    <div class="exercise-body">
+                        <div class="exercise-video-wrap"><div class="video-frame-wrap">
+                            <iframe src="https://www.youtube.com/embed/0qh0MDVcc2s?rel=0&modestbranding=1" title="Core Finisher Dragon Flag Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="set-scheme">
+                            <div class="set-row"><span class="set-label">Rounds</span><strong>3</strong></div>
+                            <div class="set-row"><span class="set-label">Hollow Body</span><strong>30–45 sec hold</strong></div>
+                            <div class="set-row"><span class="set-label">Dragon Flags</span><strong>5 reps (slow eccentric)</strong></div>
+                            <div class="set-row"><span class="set-label">Muscles</span><strong>Rectus Abdominis, Hip Flexors, Full Posterior Chain</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end fullbody day -->
+
+    </div><!-- end container -->
+</main>
+
+<!-- FOOTER -->
+<footer class="athlete-footer">
+    <div class="container">
+        <span>&copy; 2025 BlackOnLifter · Athlete Mode</span>
+        <div style="display:flex;gap:20px;align-items:center;">
+            <a href="choose.html"><i class="fas fa-layer-group"></i> Change Level</a>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        </div>
+    </div>
+</footer>
+
+<!-- MUSIC PLAYER BAR -->
+<div class="music-player-bar" id="musicBar">
+    <div class="music-player-info">
+        <div class="music-disc" id="musicDisc"><i class="fas fa-music"></i></div>
+        <div class="music-track-info">
+            <div class="music-track-name" id="musicTrackName">Select a track</div>
+            <div class="music-track-sub">BLACKONLIFTER · TRAINING MODE</div>
+        </div>
+    </div>
+    <div class="music-controls">
+        <button class="music-btn" id="musicPrev" title="Previous"><i class="fas fa-backward-step"></i></button>
+        <button class="music-btn play-main" id="musicPlayBtn" title="Play/Pause"><i class="fas fa-play" id="musicPlayIcon"></i></button>
+        <button class="music-btn" id="musicNext" title="Next"><i class="fas fa-forward-step"></i></button>
+    </div>
+    <div class="music-progress-wrap">
+        <span class="music-time" id="musicCurrentTime">0:00</span>
+        <div class="music-progress-bar" id="musicProgressBar">
+            <div class="music-progress-fill" id="musicProgressFill"></div>
+        </div>
+        <span class="music-time" id="musicDuration">0:00</span>
+    </div>
+    <div class="music-volume-wrap">
+        <i class="fas fa-volume-high"></i>
+        <input type="range" class="music-volume" id="musicVolume" min="0" max="1" step="0.05" value="0.7"/>
+    </div>
+    <button class="music-playlist-toggle" id="musicPlaylistToggle">
+        <i class="fas fa-list-music"></i> <span>Playlist</span>
+    </button>
+</div>
+
+<!-- PLAYLIST DRAWER -->
+<div class="music-playlist-drawer" id="musicPlaylistDrawer">
+    <div class="playlist-header"><i class="fas fa-list-music"></i> Training Playlist</div>
+    <!-- Populated by JS -->
+</div>
+
+<!-- HIDDEN AUDIO ELEMENT -->
+<audio id="musicAudio" preload="metadata"></audio>
+
+<script src="athlete.js"></script>
+<script>
+/* ═══════════════════════════════════
+   RESTORE PROGRESSION STATES
+═══════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+    ['pullupProgress','pushupProgress','dipProgress'].forEach(id => {
+        try {
+            if (localStorage.getItem(`bol_prog_${id}`)) {
+                const cb = document.getElementById(`${id}Check`);
+                const panel = document.getElementById(id);
+                if (cb) cb.checked = true;
+                if (panel) { panel.style.display = 'block'; panel.classList.add('visible'); }
+            }
+        } catch(e) {}
+    });
+    restoreFBLogs();
+    updateFBCalc();
+    initMusicPlayer();
+});
+
+/* ═══════════════════════════════════
+   5RM CALCULATOR
+═══════════════════════════════════ */
+function updateFBCalc() {
+    const pushup1rm = parseFloat(document.getElementById('pushup1rm')?.value) || 0;
+    const pullup1rm = parseFloat(document.getElementById('pullup1rm')?.value) || 0;
+    const lunge1rm  = parseFloat(document.getElementById('lunge1rm')?.value)  || 0;
+    const setCalc = (prefix, orm) => {
+        const s1 = document.getElementById(`${prefix}-s1`);
+        const s2 = document.getElementById(`${prefix}-s2`);
+        const s3 = document.getElementById(`${prefix}-s3`);
+        if (!s1) return;
+        if (orm === 0) { s1.textContent = '— kg × 5'; s2.textContent = '— kg × 5'; s3.textContent = '— kg × 5'; }
+        else {
+            s1.textContent = `${Math.round(orm * 0.50)} kg × 5`;
+            s2.textContent = `${Math.round(orm * 0.65)} kg × 5`;
+            s3.textContent = `${Math.round(orm * 0.825)} kg × 5  (${Math.round(orm * 0.80)}–${Math.round(orm * 0.85)} kg)`;
+        }
+    };
+    setCalc('pushup', pushup1rm);
+    setCalc('pullup', pullup1rm);
+    setCalc('lunge',  lunge1rm);
+    try { localStorage.setItem('bol_fb_1rm', JSON.stringify({ pushup1rm, pullup1rm, lunge1rm })); } catch(e) {}
+}
+
+/* ═══════════════════════════════════
+   FB WEIGHT LOG
+═══════════════════════════════════ */
+function logFBSet(key) {
+    const w = parseFloat(document.getElementById(`${key}-log-weight`)?.value);
+    const r = parseInt(document.getElementById(`${key}-log-reps`)?.value);
+    if (!w || !r) { alert('Enter both weight and reps.'); return; }
+    const date = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+    let hist = [];
+    try { hist = JSON.parse(localStorage.getItem(`bol_fb_${key}`) || '[]'); } catch(e) {}
+    hist.unshift({ date, weight: w, reps: r });
+    if (hist.length > 10) hist = hist.slice(0,10);
+    try { localStorage.setItem(`bol_fb_${key}`, JSON.stringify(hist)); } catch(e) {}
+    renderFBHistory(key, hist);
+    document.getElementById(`${key}-log-weight`).value = '';
+    document.getElementById(`${key}-log-reps`).value = '';
+}
+function renderFBHistory(key, hist) {
+    const el = document.getElementById(`${key}-history`);
+    if (!el || !hist.length) return;
+    el.innerHTML = `<div class="fb-history-title"><i class="fas fa-history"></i> Recent Sets</div>
+    ${hist.map(e => `<div class="fb-history-entry"><span class="fb-hist-date">${e.date}</span><span class="fb-hist-val">${e.weight} kg × ${e.reps} reps</span></div>`).join('')}`;
+}
+function restoreFBLogs() {
+    ['pushup','pullup','lunge'].forEach(k => {
+        try { renderFBHistory(k, JSON.parse(localStorage.getItem(`bol_fb_${k}`) || '[]')); } catch(e) {}
+    });
+    try {
+        const s = JSON.parse(localStorage.getItem('bol_fb_1rm') || '{}');
+        if (s.pushup1rm) document.getElementById('pushup1rm').value = s.pushup1rm;
+        if (s.pullup1rm) document.getElementById('pullup1rm').value = s.pullup1rm;
+        if (s.lunge1rm)  document.getElementById('lunge1rm').value  = s.lunge1rm;
+        updateFBCalc();
+    } catch(e) {}
+}
+
+/* ═══════════════════════════════════
+   CONTRAST TIMERS
+═══════════════════════════════════ */
+const contrastTimers = {};
+function startContrastTimer(key) {
+    if (contrastTimers[key]) clearInterval(contrastTimers[key].interval);
+    const dispEl = document.getElementById(`ct-display-${key}`);
+    const btnEl  = document.querySelector(`#contrast-timer-${key} .inline-timer-btn`);
+    let sec = 30;
+    dispEl.textContent = '00:30';
+    dispEl.classList.remove('ct-done');
+    dispEl.classList.add('ct-running');
+    if (btnEl) { btnEl.innerHTML = '<i class="fas fa-stop"></i> Running…'; btnEl.disabled = true; }
+    const interval = setInterval(() => {
+        sec--;
+        const m = String(Math.floor(sec/60)).padStart(2,'0');
+        const s = String(sec%60).padStart(2,'0');
+        if (dispEl) dispEl.textContent = `${m}:${s}`;
+        if (sec <= 0) {
+            clearInterval(interval);
+            if (dispEl) { dispEl.textContent = 'GO!'; dispEl.classList.remove('ct-running'); dispEl.classList.add('ct-done'); }
+            if (btnEl)  { btnEl.innerHTML = '<i class="fas fa-play"></i> Start 30s'; btnEl.disabled = false; }
+            setTimeout(() => { if (dispEl) { dispEl.textContent = '00:30'; dispEl.classList.remove('ct-done'); } }, 2500);
+        }
+    }, 1000);
+    contrastTimers[key] = { interval };
+}
+
+/* ═══════════════════════════════════
+   MUSIC PLAYER
+   Uses free YouTube audio-redirect.
+   Plays royalty-free workout tracks
+   from direct MP3 URLs (Pixabay/Free).
+═══════════════════════════════════ */
+const playlist = [
+    {
+        title: "Predator Mode",
+        artist: "BlackOnLifter Beats",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        dur: "3:42"
+    },
+    {
+        title: "Iron Will",
+        artist: "BlackOnLifter Beats",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        dur: "4:11"
+    },
+    {
+        title: "Beast Protocol",
+        artist: "BlackOnLifter Beats",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        dur: "3:58"
+    },
+    {
+        title: "Apex Overdrive",
+        artist: "BlackOnLifter Beats",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        dur: "4:28"
+    },
+    {
+        title: "Forged in Fire",
+        artist: "BlackOnLifter Beats",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        dur: "3:35"
+    }
+];
+
+let currentTrack = 0;
+let isPlaying    = false;
+
+function initMusicPlayer() {
+    renderPlaylist();
+    loadTrack(0, false);
+    bindMusicEvents();
+}
+
+function renderPlaylist() {
+    const drawer = document.getElementById('musicPlaylistDrawer');
+    if (!drawer) return;
+    const tracks = playlist.map((t,i) => `
+        <div class="playlist-track${i===currentTrack?' active':''}" onclick="loadTrack(${i},true)" id="pt-${i}">
+            <span class="playlist-track-num">${isPlaying && i===currentTrack ? '<i class="fas fa-volume-up" style="color:var(--cyan);font-size:10px;"></i>' : i+1}</span>
+            <div class="playlist-track-info">
+                <div class="playlist-track-title">${t.title}</div>
+                <div class="playlist-track-artist">${t.artist}</div>
+            </div>
+            <span class="playlist-track-dur">${t.dur}</span>
+        </div>`).join('');
+    drawer.innerHTML = `<div class="playlist-header"><i class="fas fa-list-music"></i> Training Playlist (${playlist.length} tracks)</div>${tracks}`;
+}
+
+function loadTrack(idx, autoPlay = false) {
+    currentTrack = idx;
+    const track  = playlist[idx];
+    const audio  = document.getElementById('musicAudio');
+    const name   = document.getElementById('musicTrackName');
+    const icon   = document.getElementById('musicPlayIcon');
+
+    audio.src = track.src;
+    audio.volume = parseFloat(document.getElementById('musicVolume')?.value || 0.7);
+    if (name) name.textContent = track.title;
+
+    if (autoPlay) {
+        audio.play().then(() => {
+            isPlaying = true;
+            if (icon) icon.className = 'fas fa-pause';
+            document.getElementById('musicDisc')?.classList.add('spinning');
+        }).catch(() => {});
+    } else {
+        isPlaying = false;
+        if (icon) icon.className = 'fas fa-play';
+        document.getElementById('musicDisc')?.classList.remove('spinning');
+    }
+
+    renderPlaylist();
+    updateProgressFill(0);
+}
+
+function bindMusicEvents() {
+    const audio   = document.getElementById('musicAudio');
+    const playBtn = document.getElementById('musicPlayBtn');
+    const icon    = document.getElementById('musicPlayIcon');
+    const disc    = document.getElementById('musicDisc');
+    const fill    = document.getElementById('musicProgressFill');
+    const curTime = document.getElementById('musicCurrentTime');
+    const durEl   = document.getElementById('musicDuration');
+    const volEl   = document.getElementById('musicVolume');
+    const bar     = document.getElementById('musicProgressBar');
+    const pToggle = document.getElementById('musicPlaylistToggle');
+    const drawer  = document.getElementById('musicPlaylistDrawer');
+    const prevBtn = document.getElementById('musicPrev');
+    const nextBtn = document.getElementById('musicNext');
+
+    if (!audio) return;
+
+    playBtn?.addEventListener('click', () => {
+        if (isPlaying) {
+            audio.pause();
+            isPlaying = false;
+            icon.className = 'fas fa-play';
+            disc?.classList.remove('spinning');
+        } else {
+            audio.play().then(() => {
+                isPlaying = true;
+                icon.className = 'fas fa-pause';
+                disc?.classList.add('spinning');
+            }).catch(() => {
+                showMusicError();
+            });
+        }
+    });
+
+    prevBtn?.addEventListener('click', () => {
+        const prev = (currentTrack - 1 + playlist.length) % playlist.length;
+        loadTrack(prev, isPlaying);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+        const next = (currentTrack + 1) % playlist.length;
+        loadTrack(next, isPlaying);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        if (fill) fill.style.width = pct + '%';
+        if (curTime) curTime.textContent = formatTime(audio.currentTime);
+        if (durEl)   durEl.textContent   = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', () => {
+        const next = (currentTrack + 1) % playlist.length;
+        loadTrack(next, true);
+    });
+
+    bar?.addEventListener('click', (e) => {
+        if (!audio.duration) return;
+        const rect = bar.getBoundingClientRect();
+        const pct  = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = pct * audio.duration;
+    });
+
+    volEl?.addEventListener('input', () => {
+        audio.volume = parseFloat(volEl.value);
+    });
+
+    pToggle?.addEventListener('click', () => {
+        drawer?.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!drawer?.contains(e.target) && !pToggle?.contains(e.target)) {
+            drawer?.classList.remove('open');
+        }
+    });
+}
+
+function updateProgressFill(pct) {
+    const fill = document.getElementById('musicProgressFill');
+    if (fill) fill.style.width = pct + '%';
+    const curTime = document.getElementById('musicCurrentTime');
+    if (curTime) curTime.textContent = '0:00';
+}
+
+function formatTime(sec) {
+    if (isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = String(Math.floor(sec % 60)).padStart(2,'0');
+    return `${m}:${s}`;
+}
+
+function showMusicError() {
+    const name = document.getElementById('musicTrackName');
+    if (name) name.textContent = '⚠ Click play to start music';
+}
+</script>
+
+<!-- EXPLOSION-PROOF TAG FIX -->
+<style>
+.explosive-tag-badge{
+    background:rgba(255,80,40,0.14);
+    border:1px solid rgba(255,80,40,0.3);
+    color:#ff6040;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+</style>
+
+</body>
+</html>

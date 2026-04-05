@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Intermediate Mode</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="intermediate.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar navbar-scrolled">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">
+            <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+            <div class="logo-copy">
+                <span class="logo-title">BlackOnLifter</span>
+                <span class="logo-sub">Intermediate Mode</span>
+            </div>
+        </a>
+        <div class="nav-actions">
+            <a href="choose.html" class="nav-cta"><i class="fas fa-arrow-left"></i> Change Level</a>
+            <a href="index.html" class="nav-cta-home"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- PROGRAM HERO -->
+<div class="ip-hero">
+    <div class="ip-hero-overlay"></div>
+    <canvas id="ipCanvas"></canvas>
+    <div class="container ip-hero-content">
+        <div class="ip-hero-eyebrow">
+            <span class="ip-hero-dot"></span>
+            <span>ATHLETE POWER & EXPLOSIVENESS</span>
+        </div>
+        <h1 class="ip-hero-title">
+            <span>INTERMEDIATE</span>
+            <span class="ip-hero-accent">MODE</span>
+        </h1>
+        <p class="ip-hero-subtitle">Sport-science training built on explosive power, structural strength, and sport-transfer mobility. 4 days a week. Zero wasted sessions.</p>
+
+        <div class="ip-stats-strip">
+            <div class="ip-stat">
+                <span class="ip-stat-val">4</span>
+                <span class="ip-stat-label">Training Days</span>
+            </div>
+            <div class="ip-stat">
+                <span class="ip-stat-val">42</span>
+                <span class="ip-stat-label">Exercises</span>
+            </div>
+            <div class="ip-stat">
+                <span class="ip-stat-val">75<small>min</small></span>
+                <span class="ip-stat-label">Avg Session</span>
+            </div>
+            <div class="ip-stat">
+                <span class="ip-stat-val">8–12</span>
+                <span class="ip-stat-label">Week Cycle</span>
+            </div>
+        </div>
+
+        <div class="ip-day-overview">
+            <div class="ip-overview-card active-ip-card" onclick="switchIPDay('ip-day1')">
+                <span class="ip-overview-num">Mon</span>
+                <span class="ip-overview-name">LOWER</span>
+                <span class="ip-overview-focus">Triple Extension, Hip Hinge</span>
+            </div>
+            <div class="ip-overview-card" onclick="switchIPDay('ip-day2')">
+                <span class="ip-overview-num">Tue</span>
+                <span class="ip-overview-name">UPPER</span>
+                <span class="ip-overview-focus">Push/Pull, Rotational Power</span>
+            </div>
+            <div class="ip-overview-card rest-ip-card" onclick="switchIPDay('ip-day-rest1')">
+                <span class="ip-overview-num">Wed</span>
+                <span class="ip-overview-name">REST</span>
+                <span class="ip-overview-focus">Active Recovery</span>
+            </div>
+            <div class="ip-overview-card" onclick="switchIPDay('ip-day3')">
+                <span class="ip-overview-num">Thu</span>
+                <span class="ip-overview-name">FULL</span>
+                <span class="ip-overview-focus">Olympic Lifts, Contrast</span>
+            </div>
+            <div class="ip-overview-card rest-ip-card" onclick="switchIPDay('ip-day-rest2')">
+                <span class="ip-overview-num">Fri</span>
+                <span class="ip-overview-name">REST</span>
+                <span class="ip-overview-focus">Recovery</span>
+            </div>
+            <div class="ip-overview-card" onclick="switchIPDay('ip-day4')">
+                <span class="ip-overview-num">Sat</span>
+                <span class="ip-overview-name">UPPER</span>
+                <span class="ip-overview-focus">Hypertrophy & Speed</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN PROGRAM -->
+<main class="ip-main">
+<div class="container">
+
+    <!-- PROGRAM OVERVIEW PILLARS -->
+    <div class="ip-pillars-section">
+        <div class="ip-pillars-header">
+            <h2 class="ip-pillars-title">Program Overview</h2>
+            <p class="ip-pillars-sub">Built on 3 pillars: explosive power, structural strength, and sport-transfer mobility.</p>
+        </div>
+        <div class="ip-pillars-stats">
+            <div class="ip-pillar-stat"><span class="ip-pillar-val">4</span><span class="ip-pillar-label">Training days/week</span></div>
+            <div class="ip-pillar-stat"><span class="ip-pillar-val">60–75</span><span class="ip-pillar-label">Minutes per session</span></div>
+            <div class="ip-pillar-stat"><span class="ip-pillar-val">8–12</span><span class="ip-pillar-label">Week progression cycle</span></div>
+            <div class="ip-pillar-stat"><span class="ip-pillar-val">3–5</span><span class="ip-pillar-label">Sets per exercise</span></div>
+        </div>
+        <div class="ip-principles-grid">
+            <div class="ip-principle">
+                <div class="ip-principle-icon"><i class="fas fa-bolt"></i></div>
+                <h4>Plyometrics First</h4>
+                <p>Always train explosive movements before heavy lifts — CNS must be fresh for max power output.</p>
+            </div>
+            <div class="ip-principle">
+                <div class="ip-principle-icon"><i class="fas fa-layer-group"></i></div>
+                <h4>Triphasic Loading</h4>
+                <p>Eccentric → isometric → concentric control for tendon health and elastic energy storage.</p>
+            </div>
+            <div class="ip-principle">
+                <div class="ip-principle-icon"><i class="fas fa-gauge-high"></i></div>
+                <h4>Intent Over Weight</h4>
+                <p>Move every rep as fast as possible — bar speed drives explosive adaptation, not just load.</p>
+            </div>
+            <div class="ip-principle">
+                <div class="ip-principle-icon"><i class="fas fa-person-walking"></i></div>
+                <h4>Unilateral Work</h4>
+                <p>Single-leg and single-arm movements close strength gaps and mirror real sport mechanics.</p>
+            </div>
+            <div class="ip-principle">
+                <div class="ip-principle-icon"><i class="fas fa-clock"></i></div>
+                <h4>Rest Between Power Sets</h4>
+                <p>Full 2–3 min rest on explosive/strength movements — partial recovery kills power output quality.</p>
+            </div>
+            <div class="ip-principle">
+                <div class="ip-principle-icon"><i class="fas fa-dna"></i></div>
+                <h4>Contrast Training</h4>
+                <p>Heavy strength set followed immediately by explosive movement — Post-Activation Potentiation (PAP).</p>
+            </div>
+        </div>
+        <div class="ip-legend">
+            <span class="ip-legend-item"><span class="ip-legend-dot explosive-dot"></span> Explosive / Plyometric</span>
+            <span class="ip-legend-item"><span class="ip-legend-dot compound-dot"></span> Compound Strength</span>
+            <span class="ip-legend-item"><span class="ip-legend-dot accessory-dot"></span> Accessory</span>
+            <span class="ip-legend-item"><span class="ip-legend-dot unilateral-dot"></span> Unilateral</span>
+            <span class="ip-legend-item"><span class="ip-legend-dot core-dot"></span> Core / Stability</span>
+        </div>
+    </div>
+
+    <!-- DAY TABS -->
+    <div class="ip-day-tabs">
+        <button class="ip-day-tab active" data-ip-day="ip-day1" onclick="switchIPDay('ip-day1')">
+            <i class="fas fa-person-walking"></i> Mon — Lower
+        </button>
+        <button class="ip-day-tab" data-ip-day="ip-day2" onclick="switchIPDay('ip-day2')">
+            <i class="fas fa-arrow-up"></i> Tue — Upper
+        </button>
+        <button class="ip-day-tab rest-ip-tab" data-ip-day="ip-day-rest1" onclick="switchIPDay('ip-day-rest1')">
+            <i class="fas fa-moon"></i> Wed — Rest
+        </button>
+        <button class="ip-day-tab" data-ip-day="ip-day3" onclick="switchIPDay('ip-day3')">
+            <i class="fas fa-circle-dot"></i> Thu — Full Body
+        </button>
+        <button class="ip-day-tab rest-ip-tab" data-ip-day="ip-day-rest2" onclick="switchIPDay('ip-day-rest2')">
+            <i class="fas fa-moon"></i> Fri — Rest
+        </button>
+        <button class="ip-day-tab" data-ip-day="ip-day4" onclick="switchIPDay('ip-day4')">
+            <i class="fas fa-bolt"></i> Sat — Upper
+        </button>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         DAY 1 — MONDAY — LOWER BODY POWER
+    ═══════════════════════════════════ -->
+    <div id="ip-day1" class="ip-day-section ip-active-day">
+        <div class="ip-day-header">
+            <div class="ip-day-header-left">
+                <div class="ip-day-badge lower-badge"><i class="fas fa-person-walking"></i></div>
+                <div>
+                    <h2 class="ip-day-title">DAY 1 — LOWER BODY POWER</h2>
+                    <p class="ip-day-subtitle">Monday · Triple Extension · Hip Hinge · Leg Drive</p>
+                </div>
+            </div>
+            <div class="ip-day-meta lower-meta">
+                <span><i class="fas fa-list"></i> 10 Exercises</span>
+                <span><i class="fas fa-clock"></i> 70–80 min</span>
+                <span><i class="fas fa-bolt"></i> Explosive + Strength</span>
+            </div>
+        </div>
+
+        <div class="ip-info-banner">
+            <div class="ip-banner-icon lower-icon"><i class="fas fa-person-walking"></i></div>
+            <div>
+                <h4>Goal: Build explosive jump power and maximal leg strength.</h4>
+                <p>Start with <strong>box jumps and broad jumps</strong> at 100% effort before any fatigue accumulates. Heavy squats follow — triphasic loading with a 3-sec eccentric builds tendon resilience and explosive rebound. The unilateral block closes left/right imbalances that cause sport injuries.</p>
+            </div>
+        </div>
+
+        <div class="ip-block-label">Warm-Up (10 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- HIP CIRCLES + LEG SWINGS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num warmup-num">W1</div>
+                        <div class="ip-ex-info">
+                            <h3>Hip Circles + Leg Swings</h3>
+                            <span class="ip-ex-meta">2 × 10 each direction · Open the hip capsule before loading</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-warmup">Mobility</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/WTKb4VkZYqI?si=3SSPSEjWnUvWgd3Q&rel=0&modestbranding=1" title="Hip Circles + Leg Swings Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Stand tall, circle each hip 10 times forward and backward. Then do front-to-back and side-to-side leg swings, 10 each.</div>
+                        <div class="ip-detail-row"><i class="fas fa-clock"></i> 5 minutes total. This is joint lubrication for heavy loading — don't rush it.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>2</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>10 each direction</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>None</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Purpose</span><strong>Hip capsule mobility</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GLUTE BRIDGES -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num warmup-num">W2</div>
+                        <div class="ip-ex-info">
+                            <h3>Glute Bridges</h3>
+                            <span class="ip-ex-meta">2 × 15 · Activate posterior chain before explosive work</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-warmup">Activation</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/OUgsJ8-Vi0E?rel=0&modestbranding=1" title="Glute Bridges" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Lie on your back, feet flat, drive hips up and squeeze glutes hard at the top for 2 seconds. Wakes up your posterior chain before explosive work.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>2</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>15</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>30 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Glutes, Hamstrings</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label explosive-label"><i class="fas fa-bolt"></i> Explosive Block (rest 2–3 min between sets)</div>
+        <div class="ip-exercise-list">
+
+            <!-- BOX JUMPS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num explosive-num">01</div>
+                        <div class="ip-ex-info">
+                            <h3>Box Jumps</h3>
+                            <span class="ip-ex-meta">4 sets · 5 reps · 24–30" box · Max intent on takeoff</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-explosive">Explosive</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/DXu-8TAJwi4?rel=0&modestbranding=1" title="Box Jumps Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Jump as high and hard as you can. Land softly, reset fully between reps. This is POWER training — max intent on every takeoff. Step down gently.</div>
+                        <div class="ip-detail-row"><i class="fas fa-clock"></i> Full 2–3 min rest between sets. CNS recovery is non-negotiable for power output.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>5 (max height)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2–3 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Quads, Glutes, Calves</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BROAD JUMPS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num explosive-num">02</div>
+                        <div class="ip-ex-info">
+                            <h3>Broad Jumps</h3>
+                            <span class="ip-ex-meta">4 sets · 4 reps · Max horizontal distance · Hip extension transfer</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-explosive">Explosive</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/7Du1KbwCdUk?si=54siSWSjcnu00m1h&rel=0&modestbranding=1" title="Broad Jumps Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Drives hip extension transfer to running and cutting. Swing arms aggressively and snap your hips through for max horizontal distance.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>4 (max distance)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2–3 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Glutes, Quads, Hip Extensors</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label strength-label"><i class="fas fa-dumbbell"></i> Strength Block (rest 2 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- BACK SQUAT -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num strength-num">03</div>
+                        <div class="ip-ex-info">
+                            <h3>Back Squat</h3>
+                            <span class="ip-ex-meta">4 sets · 4–6 reps · 75–85% 1RM · 3-sec eccentric, explode up</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Compound</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/ultWZbUMPL8?rel=0&modestbranding=1" title="Back Squat Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> 3-second controlled eccentric, then explode up. Builds maximal leg strength that transfers to all sport movements.</div>
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Knees track over toes, chest tall, core braced. No half-reps — hit depth every time.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>4–6 @ 75–85% 1RM</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Quads, Glutes, Hamstrings, Core</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROMANIAN DEADLIFT -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num strength-num">04</div>
+                        <div class="ip-ex-info">
+                            <h3>Romanian Deadlift</h3>
+                            <span class="ip-ex-meta">3 sets · 8 reps · Hamstring tension throughout · Sprint power builder</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Compound</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/jEy_czb3RKA?rel=0&modestbranding=1" title="Romanian Deadlift Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Keep hamstring tension throughout. Build posterior chain for sprint power. Hinge at the hips, not the knees — this is not a squat.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>8</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Hamstrings, Glutes, Lower Back</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label unilateral-label"><i class="fas fa-person-walking"></i> Unilateral Block (rest 90 sec)</div>
+        <div class="ip-exercise-list">
+
+            <!-- BULGARIAN SPLIT SQUAT -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num unilateral-num">05</div>
+                        <div class="ip-ex-info">
+                            <h3>Bulgarian Split Squat</h3>
+                            <span class="ip-ex-meta">3 sets · 8 each leg · Rear foot elevated · Closes L/R imbalances</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-unilateral">Unilateral</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/2C-uNgKwPLE?rel=0&modestbranding=1" title="Bulgarian Split Squat Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Rear foot elevated on bench. Mimics single-leg sport demand. Closes left/right imbalances that cause injuries in field sports.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 per leg</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>8</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Quads, Glutes, Balance</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SINGLE-LEG HIP THRUST -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num unilateral-num">06</div>
+                        <div class="ip-ex-info">
+                            <h3>Single-Leg Hip Thrust</h3>
+                            <span class="ip-ex-meta">3 sets · 10 each · Glute isolation with hip lock</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-unilateral">Unilateral</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/xKDhmWlf1UE?si=D5GQYL9uSrMODEiI&rel=0&modestbranding=1" title="Single-Leg Hip Thrust Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Transfers directly to sprint and jump mechanics. Lock the hip at the top, squeeze glute maximally for 1 second per rep.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 per leg</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>10</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Glutes, Hamstrings</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label core-label"><i class="fas fa-circle-dot"></i> Core Finisher (rest 60 sec)</div>
+        <div class="ip-exercise-list">
+
+            <!-- PALLOF PRESS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num core-num">C1</div>
+                        <div class="ip-ex-info">
+                            <h3>Pallof Press</h3>
+                            <span class="ip-ex-meta">3 sets · 12 each side · Anti-rotation core</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-core">Core</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/AH_QZLm_0-s?rel=0&modestbranding=1" title="Pallof Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Anti-rotation core training. Builds the spinal stiffness needed for power transfer between lower and upper body in all sport movements.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>12</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Core, Obliques, Hip Stabilizers</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COPENHAGEN PLANK -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num core-num">C2</div>
+                        <div class="ip-ex-info">
+                            <h3>Copenhagen Plank</h3>
+                            <span class="ip-ex-meta">3 sets · 20 sec each · Adductor strength · Groin injury prevention</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-core">Core</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/aDsaGBnvDQo?si=lTXHMZ3KgNkTa0QI&rel=0&modestbranding=1" title="Copenhagen Plank Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Prevents groin injury and improves lateral power. Essential prehab for any cutting or field sport.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Hold</span><strong>20 seconds</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Adductors, Core, Hip Stabilizers</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end day 1 -->
+
+    <!-- ═══════════════════════════════════
+         DAY 2 — TUESDAY — UPPER BODY POWER
+    ═══════════════════════════════════ -->
+    <div id="ip-day2" class="ip-day-section">
+        <div class="ip-day-header">
+            <div class="ip-day-header-left">
+                <div class="ip-day-badge upper-badge"><i class="fas fa-arrow-up"></i></div>
+                <div>
+                    <h2 class="ip-day-title">DAY 2 — UPPER BODY POWER</h2>
+                    <p class="ip-day-subtitle">Tuesday · Horizontal Push/Pull · Rotational Power · Shoulder Health</p>
+                </div>
+            </div>
+            <div class="ip-day-meta upper-meta">
+                <span><i class="fas fa-list"></i> 11 Exercises</span>
+                <span><i class="fas fa-clock"></i> 70–80 min</span>
+                <span><i class="fas fa-dna"></i> Rotational + Pressing</span>
+            </div>
+        </div>
+
+        <div class="ip-info-banner upper-banner">
+            <div class="ip-banner-icon upper-icon"><i class="fas fa-arrow-up"></i></div>
+            <div>
+                <h4>Goal: Upper body pressing explosiveness and back width.</h4>
+                <p>Medicine ball throws and rotational slams train explosive pushing and rotational power before heavy pressing. <strong>Barbell bench press</strong> and <strong>weighted pull-ups</strong> are the core strength pillars. The accessory block builds shoulder armor for longevity.</p>
+            </div>
+        </div>
+
+        <div class="ip-block-label">Warm-Up (10 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- BAND PULL-APARTS + FACE PULLS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num warmup-num">W1</div>
+                        <div class="ip-ex-info">
+                            <h3>Band Pull-Aparts + Face Pulls</h3>
+                            <span class="ip-ex-meta">3 × 15 · External rotation activation before heavy pressing</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-warmup">Activation</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/0Po47vvj9g4?rel=0&modestbranding=1" title="Band Pull-Aparts + Face Pulls" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>15</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>None</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Purpose</span><strong>Shoulder activation</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THORACIC ROTATIONS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num warmup-num">W2</div>
+                        <div class="ip-ex-info">
+                            <h3>Thoracic Rotations</h3>
+                            <span class="ip-ex-meta">2 × 10 each side · Open thoracic spine for rotational sport</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-warmup">Mobility</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/QWwiOHexU8I?si=alzWJ275MQb7pwQt&rel=0&modestbranding=1" title="Thoracic Rotations Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>2</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>10 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>None</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Purpose</span><strong>Thoracic mobility</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label explosive-label"><i class="fas fa-bolt"></i> Explosive Block (rest 2–3 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- MED BALL CHEST THROW -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num explosive-num">01</div>
+                        <div class="ip-ex-info">
+                            <h3>Medicine Ball Chest Throw</h3>
+                            <span class="ip-ex-meta">4 sets · 6 reps · Max force into wall · Horizontal push explosiveness</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-explosive">Explosive</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/t0XxbIyhEww?si=PO8OA4iLqSE8jAun&rel=0&modestbranding=1" title="Med Ball Chest Throw Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Throw into a wall with maximal force. Trains horizontal push explosiveness for sport contact and pressing power.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>6</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2–3 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Chest, Triceps, Core</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MED BALL ROTATIONAL SLAM -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num explosive-num">02</div>
+                        <div class="ip-ex-info">
+                            <h3>Med Ball Rotational Slam</h3>
+                            <span class="ip-ex-meta">4 sets · 5 each side · Full core rotation at max velocity</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-explosive">Explosive</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/YFORkljMrEQ?rel=0&modestbranding=1" title="Rotational Med Ball Slam" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Sport-specific rotational power. Full core rotation at max velocity — mirrors batting, striking, and throwing mechanics.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>5 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2–3 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Obliques, Core, Hips, Lats</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label strength-label"><i class="fas fa-dumbbell"></i> Strength Block (rest 2 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- BARBELL BENCH PRESS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num strength-num">03</div>
+                        <div class="ip-ex-info">
+                            <h3>Barbell Bench Press</h3>
+                            <span class="ip-ex-meta">4 sets · 4–6 reps · 75–85% 1RM · Touch chest, explode up</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Compound</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/rT7DgCr-3pg?rel=0&modestbranding=1" title="Bench Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Touch chest, explode up. Retract scapulae, feet driven into floor. Builds horizontal pressing power that transfers to sport.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>4–6 @ 75–85% 1RM</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Chest, Shoulders, Triceps</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WEIGHTED PULL-UPS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num strength-num">04</div>
+                        <div class="ip-ex-info">
+                            <h3>Weighted Pull-Ups</h3>
+                            <span class="ip-ex-meta">4 sets · 4–6 reps · Full ROM · Lat strength for sport</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Compound</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/IQSeF6aRe4c?si=l4nIIQAKlyJIVUvb&rel=0&modestbranding=1" title="Weighted Pull-Ups Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Full ROM — dead hang to chin over bar. Lat strength transfers to throwing, rowing, climbing, and grappling. Use a dip belt for load.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>4–6</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Lats, Biceps, Rear Delts</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label accessory-label"><i class="fas fa-layer-group"></i> Accessory Block (rest 90 sec)</div>
+        <div class="ip-exercise-list">
+
+            <!-- LANDMINE PRESS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">05</div>
+                        <div class="ip-ex-info">
+                            <h3>Landmine Press</h3>
+                            <span class="ip-ex-meta">3 sets · 10 each · Diagonal pressing · Mimics throwing/striking</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-accessory">Accessory</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/NGOeukXF4yE?si=GDxV9hstZgsU-Dye&rel=0&modestbranding=1" title="Landmine Press Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Diagonal pressing angle. Shoulder-friendly, mimics throwing and striking mechanics. Great for athletes with overhead mobility issues.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 each arm</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>10</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Upper Chest, Front Deltoid, Triceps</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHEST-SUPPORTED DB ROW -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">06</div>
+                        <div class="ip-ex-info">
+                            <h3>Chest-Supported DB Row</h3>
+                            <span class="ip-ex-meta">3 sets · 12 · Isolate mid-back · Posture & pulling strength</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-accessory">Accessory</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/ym-Mp8tCF00?si=QASvFZ58pFMeUJaX&rel=0&modestbranding=1" title="Chest-Supported DB Row Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Removes lower back from the equation. Isolates mid-back for posture and pulling endurance in sport.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>12</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Rhomboids, Mid-Traps, Lats</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REAR DELT FLY + FACE PULLS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">07</div>
+                        <div class="ip-ex-info">
+                            <h3>Rear Delt Fly <span class="ip-superset-badge">SUPERSET</span> Face Pulls</h3>
+                            <span class="ip-ex-meta">3 × 15 superset · Posterior shoulder health for sport longevity</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-health">Shoulder Health</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/Iq9Q7V3AO_s?si=7ZAu4-QB-udXq9Qj&rel=0&modestbranding=1" title="Rear Delt Fly Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-shield-halved"></i> Crucial for shoulder health. Targets the posterior deltoid and external rotators that heavy pressing neglects and destroys over time.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 (superset)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>15 each</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec (after both)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Rear Delts, External Rotators</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label core-label"><i class="fas fa-circle-dot"></i> Core Finisher</div>
+        <div class="ip-exercise-list">
+
+            <!-- CABLE WOODCHOP -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num core-num">C1</div>
+                        <div class="ip-ex-info">
+                            <h3>Cable Woodchop</h3>
+                            <span class="ip-ex-meta">3 sets · 12 each · High to low · Diagonal core pattern for sport</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-core">Core</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/rHfjG2Oflz0?si=UR_jk5P-cpBcg5ln&rel=0&modestbranding=1" title="Cable Woodchop Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Diagonal core pattern mirrors batting, striking, and throwing. High to low, controlled rotation through full range.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>12</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Obliques, Core, Hip Rotators</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end day 2 -->
+
+    <!-- ═══════ REST DAY 1 — WEDNESDAY ═══════ -->
+    <div id="ip-day-rest1" class="ip-day-section">
+        <div class="ip-day-header">
+            <div class="ip-day-header-left">
+                <div class="ip-day-badge rest-badge"><i class="fas fa-moon"></i></div>
+                <div>
+                    <h2 class="ip-day-title">REST & RECOVERY</h2>
+                    <p class="ip-day-subtitle">Wednesday · Active Recovery Optional</p>
+                </div>
+            </div>
+        </div>
+        <div class="ip-recovery-grid">
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-bed"></i></div><h4>Sleep</h4><p>8–9 hours minimum. The CNS needs recovery after explosive training. Growth happens here, not in the gym.</p></div>
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-droplet"></i></div><h4>Hydration</h4><p>3–4 litres of water. Add electrolytes if training intensity is high. Dehydration destroys performance quality.</p></div>
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-utensils"></i></div><h4>Nutrition</h4><p>Keep protein at 1.8–2.2g per kg bodyweight. Carbs refuel glycogen depleted by explosive training.</p></div>
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-person-walking"></i></div><h4>Active Recovery</h4><p>Optional: 20–30 min walk, foam rolling, light stretching. Nothing that taxes the CNS.</p></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+         DAY 3 — THURSDAY — FULL BODY POWER
+    ═══════════════════════════════════ -->
+    <div id="ip-day3" class="ip-day-section">
+        <div class="ip-day-header">
+            <div class="ip-day-header-left">
+                <div class="ip-day-badge full-badge"><i class="fas fa-circle-dot"></i></div>
+                <div>
+                    <h2 class="ip-day-title">DAY 3 — FULL BODY POWER</h2>
+                    <p class="ip-day-subtitle">Thursday · Olympic Lifts · Total Body Coordination · Reactive Strength</p>
+                </div>
+            </div>
+            <div class="ip-day-meta full-meta">
+                <span><i class="fas fa-list"></i> 9 Exercises</span>
+                <span><i class="fas fa-clock"></i> 75–85 min</span>
+                <span><i class="fas fa-bolt"></i> Olympic + PAP</span>
+            </div>
+        </div>
+
+        <div class="ip-info-banner full-banner">
+            <div class="ip-banner-icon full-icon"><i class="fas fa-dna"></i></div>
+            <div>
+                <h4>Olympic Lifting + Contrast Training</h4>
+                <p>Today features the <strong>hang power clean</strong> and <strong>push press</strong> — the kings of athletic power development. The contrast pair (trap bar deadlift → trap bar jump) uses <strong>Post-Activation Potentiation (PAP)</strong> to prime your CNS for maximum explosive output on the jump sets.</p>
+            </div>
+        </div>
+
+        <div class="ip-block-label">Warm-Up (12 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- HANG CLEAN TECHNIQUE DRILL -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num warmup-num">W</div>
+                        <div class="ip-ex-info">
+                            <h3>Hang Clean Technique Drill</h3>
+                            <span class="ip-ex-meta">2 × 5 with empty bar · Groove the pull pattern before loading</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-technique">Technique</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/QCQuZITCnPk?si=7utIs9mWoLV7xQcS&rel=0&modestbranding=1" title="Hang Clean Technique" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>2</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>5 (empty bar)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Purpose</span><strong>Pattern grooming</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label power-label"><i class="fas fa-fire"></i> Olympic / Power Block (rest 3 min — non-negotiable)</div>
+        <div class="ip-exercise-list">
+
+            <!-- HANG POWER CLEAN -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num power-num">01</div>
+                        <div class="ip-ex-info">
+                            <h3>Hang Power Clean</h3>
+                            <span class="ip-ex-meta">5 sets · 3 reps · 70–80% 1RM · The king of athletic power</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-power">Power</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/QCQuZITCnPk?si=7utIs9mWoLV7xQcS&rel=0&modestbranding=1" title="Hang Power Clean Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Full triple extension, fast elbows. The single best exercise for developing total-body athletic explosiveness — bar none.</div>
+                        <div class="ip-detail-row"><i class="fas fa-clock"></i> Rest 3 minutes between sets — non-negotiable. CNS recovery is essential for quality reps at this intensity.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>5</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>3 @ 70–80% 1RM</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>3 min (mandatory)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Full Body — Traps, Glutes, Quads, Core</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PUSH PRESS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num power-num">02</div>
+                        <div class="ip-ex-info">
+                            <h3>Push Press</h3>
+                            <span class="ip-ex-meta">4 sets · 4 reps · Leg drive into overhead press · Total body ballistic</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-power">Power</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/iaBVSJm78ko?rel=0&modestbranding=1" title="Push Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Dip the knees, then DRIVE the bar overhead using leg power. This is a total body ballistic movement — not a strict press.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>3 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Shoulders, Triceps, Quads, Core</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label contrast-label"><i class="fas fa-dna"></i> Contrast Training (Pair A + B, rest 90 sec between pairs)</div>
+        <div class="ip-exercise-list">
+
+            <!-- TRAP BAR DEADLIFT -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num contrast-a-num">A</div>
+                        <div class="ip-ex-info">
+                            <h3>Trap Bar Deadlift</h3>
+                            <span class="ip-ex-meta">3 sets · 4 reps · 80% 1RM · Builds total posterior chain</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Strength</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/PWJU5grrh4Y?rel=0&modestbranding=1" title="Trap Bar Deadlift" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Hip-dominant, athletic stance. Pair with trap bar jumps immediately after for the PAP (Post-Activation Potentiation) effect.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>4 @ 80% 1RM</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec (then jump)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Glutes, Hamstrings, Quads, Back</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRAP BAR JUMP -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num contrast-b-num">B</div>
+                        <div class="ip-ex-info">
+                            <h3>Trap Bar Jump</h3>
+                            <span class="ip-ex-meta">3 sets · 5 reps · Light (30% BW) · Immediately after deadlift — PAP</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-pap">PAP</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/2otULCju4WE?si=r-90J8BS3k6eCfPx&rel=0&modestbranding=1" title="Trap Bar Jump Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Post-Activation Potentiation in action — your nervous system is primed from the heavy deadlift. Jump with absolute max intent immediately.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>5 @ 30% BW</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec (then back to A)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Quads, Glutes, Full Power Chain</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label accessory-label"><i class="fas fa-layer-group"></i> Athletic Accessory (rest 90 sec)</div>
+        <div class="ip-exercise-list">
+
+            <!-- LATERAL BAND WALKS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">03</div>
+                        <div class="ip-ex-info">
+                            <h3>Lateral Band Walks</h3>
+                            <span class="ip-ex-meta">3 sets · 15 steps each · Hip abductor strength · Knee valgus prevention</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-prehab">Prehab</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/vExUfXBDCSw?si=GErh6t9xwkw2yDKz&rel=0&modestbranding=1" title="Lateral Band Walks Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>15 steps each way</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Hip Abductors, Glute Med</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SINGLE-LEG RDL -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">04</div>
+                        <div class="ip-ex-info">
+                            <h3>Single-Leg RDL</h3>
+                            <span class="ip-ex-meta">3 sets · 8 each · Balance + hamstring · Deceleration strength</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-unilateral">Unilateral</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/lI8-igvsnVQ?si=VsnufDQjoNMmcMuV&rel=0&modestbranding=1" title="Single-Leg RDL Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 each leg</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>8</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Hamstrings, Glutes, Balance</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label core-label"><i class="fas fa-circle-dot"></i> Core Finisher</div>
+        <div class="ip-exercise-list">
+
+            <!-- DEAD BUG -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num core-num">C1</div>
+                        <div class="ip-ex-info">
+                            <h3>Dead Bug</h3>
+                            <span class="ip-ex-meta">3 sets · 8 each side · Anti-extension · Spinal stability</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-core">Core</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/4XLEnwUr1d8?rel=0&modestbranding=1" title="Dead Bug Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Anti-extension core — spinal stability under dynamic limb loading. The foundation of power transfer in all athletic movements.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>8 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Core, Hip Flexors, Stabilizers</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end day 3 -->
+
+    <!-- ═══════ REST DAY 2 — FRIDAY ═══════ -->
+    <div id="ip-day-rest2" class="ip-day-section">
+        <div class="ip-day-header">
+            <div class="ip-day-header-left">
+                <div class="ip-day-badge rest-badge"><i class="fas fa-moon"></i></div>
+                <div>
+                    <h2 class="ip-day-title">REST & RECOVERY</h2>
+                    <p class="ip-day-subtitle">Friday · Full CNS Recovery Before Saturday</p>
+                </div>
+            </div>
+        </div>
+        <div class="ip-recovery-grid">
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-bed"></i></div><h4>Sleep</h4><p>Critical after Olympic lifting. 8–9 hours. Your CNS needs full recovery before Saturday's upper session.</p></div>
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-droplet"></i></div><h4>Hydration</h4><p>3–4 litres. Rehydrate fully after Thursday's demanding full body session.</p></div>
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-utensils"></i></div><h4>Nutrition</h4><p>High protein, adequate carbs. Refuel glycogen stores for Saturday's hypertrophy session.</p></div>
+            <div class="ip-recovery-card"><div class="ip-recovery-icon"><i class="fas fa-person-walking"></i></div><h4>Active Recovery</h4><p>Light walk, mobility work, foam rolling. Nothing intense. Prepare the body for Saturday's session.</p></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         DAY 4 — SATURDAY — UPPER BODY HYPERTROPHY + SPEED
+    ═══════════════════════════════════════════ -->
+    <div id="ip-day4" class="ip-day-section">
+        <div class="ip-day-header">
+            <div class="ip-day-header-left">
+                <div class="ip-day-badge upper-badge"><i class="fas fa-bolt"></i></div>
+                <div>
+                    <h2 class="ip-day-title">DAY 4 — UPPER HYPERTROPHY + SPEED</h2>
+                    <p class="ip-day-subtitle">Saturday · Muscle Quality · Overhead Strength · Grip · Sport Endurance</p>
+                </div>
+            </div>
+            <div class="ip-day-meta upper-meta">
+                <span><i class="fas fa-list"></i> 10 Exercises</span>
+                <span><i class="fas fa-clock"></i> 70–80 min</span>
+                <span><i class="fas fa-fire"></i> Hypertrophy + Functional</span>
+            </div>
+        </div>
+
+        <div class="ip-info-banner upper-banner">
+            <div class="ip-banner-icon upper-icon"><i class="fas fa-fire"></i></div>
+            <div>
+                <h4>Goal: Muscle quality, overhead strength, and sport endurance.</h4>
+                <p>Clap push-ups and med ball slams prime the fast-twitch fibers first. Heavy overhead press and Pendlay rows build structural strength. The accessory and core work builds the athletic armor that keeps you performing at the highest level through a full season.</p>
+            </div>
+        </div>
+
+        <div class="ip-block-label explosive-label"><i class="fas fa-bolt"></i> Explosive Block (rest 2 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- CLAP PUSH-UPS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num explosive-num">01</div>
+                        <div class="ip-ex-info">
+                            <h3>Clap Push-Ups</h3>
+                            <span class="ip-ex-meta">4 sets · 5 reps · True upper body plyometric · Fast-twitch activation</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-explosive">Explosive</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/Z9psWZT0WuQ?si=uf1QEnzHGQpnH0QP&rel=0&modestbranding=1" title="Clap Push-Ups Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Scapular power and fast-twitch chest activation. True upper body plyometric — land soft and absorb the impact.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>5</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Chest, Triceps, Scapular Stabilizers</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MED BALL OVERHEAD SLAM -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num explosive-num">02</div>
+                        <div class="ip-ex-info">
+                            <h3>Med Ball Overhead Slam</h3>
+                            <span class="ip-ex-meta">4 sets · 6 reps · Full overhead to floor · Lat-to-core power chain</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-explosive">Explosive</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/YFORkljMrEQ?rel=0&modestbranding=1" title="Med Ball Overhead Slam" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-bolt"></i> Full overhead reach, then slam with maximal force. Total body stiffness and lat-to-core power chain development.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>6</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Core, Lats, Shoulders</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label strength-label"><i class="fas fa-dumbbell"></i> Strength Block (rest 2 min)</div>
+        <div class="ip-exercise-list">
+
+            <!-- OVERHEAD PRESS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num strength-num">03</div>
+                        <div class="ip-ex-info">
+                            <h3>Overhead Press (Barbell)</h3>
+                            <span class="ip-ex-meta">4 sets · 5 reps · Strict form · Overhead strength and stability</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Compound</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/2yjwXTZQDDI?rel=0&modestbranding=1" title="Overhead Press Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Strict form — no leg drive. Overhead strength and shoulder stability. Core braced throughout the entire press.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>5</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Deltoids, Triceps, Core</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PENDLAY ROWS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num strength-num">04</div>
+                        <div class="ip-ex-info">
+                            <h3>Pendlay Rows</h3>
+                            <span class="ip-ex-meta">4 sets · 6 reps · Dead-stop each rep · Explosive pulling from static</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-compound">Compound</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/8CrrVQi6t4w?si=4LryRKht-xmmuE-M&rel=0&modestbranding=1" title="Pendlay Rows Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Dead-stop each rep on the floor. Trains explosive pulling from a static position — no momentum cheating. Builds real back strength.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>4</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>6</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>2 min</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Lats, Rhomboids, Lower Back</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label accessory-label"><i class="fas fa-layer-group"></i> Accessory Block (rest 90 sec)</div>
+        <div class="ip-exercise-list">
+
+            <!-- DB INCLINE PRESS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">05</div>
+                        <div class="ip-ex-info">
+                            <h3>DB Incline Press</h3>
+                            <span class="ip-ex-meta">3 sets · 12 · Muscle quality · Shoulder angle variation</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-hyper">Hypertrophy</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/hChjZQhX1Ls?si=WcBKUBQOZ0m0xmr5&rel=0&modestbranding=1" title="DB Incline Press Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Muscle quality, shoulder angle variation. Prevents overuse injuries from flat pressing dominance in the program.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>12</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Upper Chest, Anterior Deltoid</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CABLE ROWS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">06</div>
+                        <div class="ip-ex-info">
+                            <h3>Cable Rows (Neutral Grip)</h3>
+                            <span class="ip-ex-meta">3 sets · 12 · Mid-back thickness · Posture and pulling endurance</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-hyper">Hypertrophy</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/vwHG9Jfu4sw?si=LQ44HJtAchhxi9gw&rel=0&modestbranding=1" title="Cable Rows Neutral Grip Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>12</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Mid-Back, Lats, Biceps</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FARMER'S CARRIES -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">07</div>
+                        <div class="ip-ex-info">
+                            <h3>Farmer's Carries</h3>
+                            <span class="ip-ex-meta">3 sets · 30m · Heavy dumbbells · Grip, traps, total body bracing</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-functional">Functional</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/NH7Xv-7NQNQ?si=GU1E-8kpBtswHDO-&rel=0&modestbranding=1" title="Farmer's Carries Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Grip strength, trap hypertrophy, total body bracing. Walk tall with shoulders packed down and core rigid.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Distance</span><strong>30 meters</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Grip, Traps, Core, Total Body</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRICEP DIPS + HAMMER CURLS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num accessory-num">08</div>
+                        <div class="ip-ex-info">
+                            <h3>Tricep Dips <span class="ip-superset-badge">SUPERSET</span> Hammer Curls</h3>
+                            <span class="ip-ex-meta">3 × 12 superset · Arm health and elbow joint strength</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-accessory">Accessory</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/BjiyWC_cJW0?rel=0&modestbranding=1" title="Tricep Dips Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Superset — dips immediately into hammer curls. Arm health and elbow joint strength for longevity under sport repetition loads.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 (superset)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>12 each</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>90 sec (after both)</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Triceps, Biceps, Brachialis</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ip-block-label core-label"><i class="fas fa-circle-dot"></i> Core Finisher</div>
+        <div class="ip-exercise-list">
+
+            <!-- AB WHEEL ROLLOUTS -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num core-num">C1</div>
+                        <div class="ip-ex-info">
+                            <h3>Ab Wheel Rollouts</h3>
+                            <span class="ip-ex-meta">3 sets · 8 · Anti-extension · Trunk rigidity for power transfer</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-core">Core</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/PK4n7qJpOhM?si=9WaDN1ZM8Gzklg5O&rel=0&modestbranding=1" title="Ab Wheel Rollouts Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Anti-extension — builds the trunk rigidity that transfers power from lower to upper body. One of the hardest core exercises that exists.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>8</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Core, Lats, Hip Flexors</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIDE PLANK WITH ROTATION -->
+            <div class="ip-exercise-item">
+                <div class="ip-exercise-header" onclick="toggleIPExercise(this)">
+                    <div class="ip-ex-left">
+                        <div class="ip-ex-num core-num">C2</div>
+                        <div class="ip-ex-info">
+                            <h3>Side Plank with Rotation</h3>
+                            <span class="ip-ex-meta">3 sets · 10 each · Lateral stability under movement</span>
+                        </div>
+                    </div>
+                    <div class="ip-ex-right">
+                        <span class="ip-tag tag-core">Core</span>
+                        <i class="fas fa-chevron-down ip-toggle-icon"></i>
+                    </div>
+                </div>
+                <div class="ip-exercise-body">
+                    <div class="ip-video-wrap"><div class="ip-video-frame">
+                        <iframe src="https://www.youtube.com/embed/DXQ9YKHtcsk?si=nvB_S2gpBJi1Z3Ce&rel=0&modestbranding=1" title="Side Plank with Rotation Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div></div>
+                    <div class="ip-details">
+                        <div class="ip-detail-row"><i class="fas fa-info-circle"></i> Lateral stability under movement — mimics sport's unpredictable force demands. Trains the obliques through a full rotational pattern.</div>
+                    </div>
+                    <div class="ip-set-scheme">
+                        <div class="ip-set-row"><span class="ip-set-label">Sets</span><strong>3 each side</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Reps</span><strong>10</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Rest</span><strong>60 sec</strong></div>
+                        <div class="ip-set-row"><span class="ip-set-label">Muscles</span><strong>Obliques, Glute Med, Core</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end day 4 -->
+
+    <!-- ═══════ PROGRAM PRINCIPLES BOTTOM ═══════ -->
+    <div class="ip-principles-bottom">
+        <h3 class="ip-principles-bottom-title">🧬 Core Principles of Intermediate Training</h3>
+        <div class="ip-principles-bottom-grid">
+            <div class="ip-principle-card">
+                <div class="ip-principle-card-num">01</div>
+                <h4>Progressive Overload</h4>
+                <p>Add 2.5–5 kg to your main lifts every 1–2 weeks. Or add 1 rep. Track everything obsessively — what gets measured gets improved.</p>
+            </div>
+            <div class="ip-principle-card">
+                <div class="ip-principle-card-num">02</div>
+                <h4>Explosive Intent Always</h4>
+                <p>Every rep of every power and plyometric movement should be at absolute maximum intent. Partial effort produces partial results. Full throttle or go home.</p>
+            </div>
+            <div class="ip-principle-card">
+                <div class="ip-principle-card-num">03</div>
+                <h4>Respect the Rest Periods</h4>
+                <p>Power sets need 2–3 min rest. This is non-negotiable. Cutting rest periods turns strength training into garbage cardio. CNS recovery drives adaptation.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- end container -->
+</main>
+
+<!-- FOOTER -->
+<footer class="ip-footer">
+    <div class="container">
+        <span>&copy; 2025 BlackOnLifter · Intermediate Mode</span>
+        <div style="display:flex;gap:20px;align-items:center;">
+            <a href="choose.html"><i class="fas fa-layer-group"></i> Change Level</a>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        </div>
+    </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button id="ipScrollTop" class="ip-scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="intermediate.js"></script>
+</body>
+</html>

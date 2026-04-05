@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Advanced Mode</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="advanced.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+            <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+            <div class="logo-copy">
+                <span class="logo-title">BlackOnLifter</span>
+                <span class="logo-sub">Advanced Mode</span>
+            </div>
+        </a>
+        <div class="nav-actions">
+            <a href="choose.html" class="nav-cta"><i class="fas fa-arrow-left"></i> Change Level</a>
+            <a href="index.html" class="nav-cta-home"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="adv-hero">
+    <div class="adv-hero-bg"></div>
+    <div class="adv-hero-overlay"></div>
+    <canvas id="advCanvas"></canvas>
+
+    <div class="adv-hero-image-wrap">
+        <img src="advanced.png" alt="Advanced Mode" class="adv-ref-img" />
+        <div class="adv-ref-label"><i class="fas fa-fire"></i> Advanced Mode</div>
+    </div>
+
+    <div class="container adv-hero-content">
+        <div class="adv-eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span>5-DAY SPECIALIZED SPLIT</span>
+        </div>
+        <h1 class="adv-title">
+            <span class="adv-title-line1">ADVANCED</span>
+            <span class="adv-title-accent">MODE</span>
+        </h1>
+        <p class="adv-subtitle">
+            Years of grinding forged this. Every variable optimized — volume, intensity, frequency, deload.
+            This is where elite physiques are built.
+        </p>
+
+        <!-- Stats strip -->
+        <div class="adv-stats-strip">
+            <div class="adv-stat">
+                <span class="adv-stat-val">5</span>
+                <span class="adv-stat-label">Training Days</span>
+            </div>
+            <div class="adv-stat">
+                <span class="adv-stat-val">42</span>
+                <span class="adv-stat-label">Exercises</span>
+            </div>
+            <div class="adv-stat">
+                <span class="adv-stat-val">75<small style="font-size:.9rem">min</small></span>
+                <span class="adv-stat-label">Avg Duration</span>
+            </div>
+        </div>
+
+        <!-- Split overview -->
+        <div class="adv-split-overview">
+            <div class="adv-split-day active-split-day" data-adv-split="adv-chest" onclick="jumpAdvToDay('adv-chest')">
+                <span class="adv-split-num">Day 1</span>
+                <span class="adv-split-name">CHEST</span>
+                <span class="adv-split-focus">Pecs, Anterior Delts</span>
+            </div>
+            <div class="adv-split-day" data-adv-split="adv-back" onclick="jumpAdvToDay('adv-back')">
+                <span class="adv-split-num">Day 2</span>
+                <span class="adv-split-name">BACK</span>
+                <span class="adv-split-focus">Lats, Rhomboids, Traps</span>
+            </div>
+            <div class="adv-split-day" data-adv-split="adv-shoulders" onclick="jumpAdvToDay('adv-shoulders')">
+                <span class="adv-split-num">Day 3</span>
+                <span class="adv-split-name">SHOULDERS</span>
+                <span class="adv-split-focus">All Three Heads</span>
+            </div>
+            <div class="adv-split-day" data-adv-split="adv-arms" onclick="jumpAdvToDay('adv-arms')">
+                <span class="adv-split-num">Day 4</span>
+                <span class="adv-split-name">ARMS</span>
+                <span class="adv-split-focus">Biceps, Triceps, Forearms</span>
+            </div>
+            <div class="adv-split-day" data-adv-split="adv-legs" onclick="jumpAdvToDay('adv-legs')">
+                <span class="adv-split-num">Day 5</span>
+                <span class="adv-split-name">LEGS</span>
+                <span class="adv-split-focus">Quads, Hams, Glutes, Calves</span>
+            </div>
+            <div class="adv-split-day rest-day">
+                <span class="adv-split-num">Day 6–7</span>
+                <span class="adv-split-name">REST</span>
+                <span class="adv-split-focus">Recovery & Deload</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="adv-main">
+    <div class="container">
+
+        <!-- RPE Guide -->
+        <div class="adv-rpe-guide">
+            <div class="adv-rpe-header">
+                <i class="fas fa-gauge-high"></i>
+                <h4>INTENSITY SCALE — RPE GUIDE</h4>
+                <p>Use RPE to auto-regulate load each session</p>
+            </div>
+            <div class="adv-rpe-bars">
+                <div class="adv-rpe-row">
+                    <span class="adv-rpe-num">RPE 6</span>
+                    <div class="adv-rpe-track"><div class="adv-rpe-fill" data-width="55%" style="background:linear-gradient(90deg,#2a5c2a,#3ddc3d);"></div></div>
+                    <span class="adv-rpe-desc">Warm-up / feeder</span>
+                </div>
+                <div class="adv-rpe-row">
+                    <span class="adv-rpe-num">RPE 7</span>
+                    <div class="adv-rpe-track"><div class="adv-rpe-fill" data-width="68%" style="background:linear-gradient(90deg,#3ddc3d,#a0cc00);"></div></div>
+                    <span class="adv-rpe-desc">Moderate — 3 reps left</span>
+                </div>
+                <div class="adv-rpe-row">
+                    <span class="adv-rpe-num">RPE 8</span>
+                    <div class="adv-rpe-track"><div class="adv-rpe-fill" data-width="79%" style="background:linear-gradient(90deg,#ffab40,#ff8f00);"></div></div>
+                    <span class="adv-rpe-desc">Hard — 2 reps left</span>
+                </div>
+                <div class="adv-rpe-row">
+                    <span class="adv-rpe-num">RPE 9</span>
+                    <div class="adv-rpe-track"><div class="adv-rpe-fill" data-width="90%" style="background:linear-gradient(90deg,#ff6a00,#ff3d3d);"></div></div>
+                    <span class="adv-rpe-desc">Very hard — 1 rep left</span>
+                </div>
+                <div class="adv-rpe-row">
+                    <span class="adv-rpe-num">RPE 10</span>
+                    <div class="adv-rpe-track"><div class="adv-rpe-fill" data-width="100%" style="background:linear-gradient(90deg,#cc1a1a,#ff3d3d);"></div></div>
+                    <span class="adv-rpe-desc">Max effort — failure</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Volume tracker -->
+        <div class="volume-tracker">
+            <div class="volume-tracker-header">
+                <i class="fas fa-chart-bar"></i>
+                <h4>WEEKLY VOLUME DISTRIBUTION</h4>
+                <p>Optimal sets per muscle group</p>
+            </div>
+            <div class="volume-bars">
+                <div class="volume-bar-row">
+                    <span class="volume-bar-label">Chest</span>
+                    <div class="volume-bar-track"><div class="volume-bar-fill vb-red" data-width="80%"></div></div>
+                    <span class="volume-bar-val">16 sets</span>
+                </div>
+                <div class="volume-bar-row">
+                    <span class="volume-bar-label">Back</span>
+                    <div class="volume-bar-track"><div class="volume-bar-fill vb-red" data-width="90%"></div></div>
+                    <span class="volume-bar-val">18 sets</span>
+                </div>
+                <div class="volume-bar-row">
+                    <span class="volume-bar-label">Shoulders</span>
+                    <div class="volume-bar-track"><div class="volume-bar-fill vb-orange" data-width="70%"></div></div>
+                    <span class="volume-bar-val">14 sets</span>
+                </div>
+                <div class="volume-bar-row">
+                    <span class="volume-bar-label">Arms</span>
+                    <div class="volume-bar-track"><div class="volume-bar-fill vb-gold" data-width="65%"></div></div>
+                    <span class="volume-bar-val">13 sets</span>
+                </div>
+                <div class="volume-bar-row">
+                    <span class="volume-bar-label">Legs</span>
+                    <div class="volume-bar-track"><div class="volume-bar-fill vb-cyan" data-width="100%"></div></div>
+                    <span class="volume-bar-val">20 sets</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deload banner -->
+        <div class="deload-banner">
+            <div class="deload-banner-icon"><i class="fas fa-bed"></i></div>
+            <div>
+                <h4>DELOAD PROTOCOL — Every 4–6 Weeks</h4>
+                <p>Signs you need a deload: persistent joint pain, stalled PRs for 2+ weeks, disrupted sleep, loss of motivation, reduced bar speed. When these hit, take a 7-day deload: drop volume by 40–50%, keep intensity at RPE 6–7, prioritize sleep and nutrition recovery.</p>
+                <span class="deload-tag"><i class="fas fa-shield-halved"></i> Deload = Progress Insurance</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ DAY TABS ═══════════ -->
+        <div class="adv-day-tabs">
+            <button class="adv-day-tab active" data-adv-day="adv-chest" onclick="switchAdvDay('adv-chest')"><i class="fas fa-circle-dot"></i> Chest</button>
+            <button class="adv-day-tab" data-adv-day="adv-back" onclick="switchAdvDay('adv-back')"><i class="fas fa-arrow-down-wide-short"></i> Back</button>
+            <button class="adv-day-tab" data-adv-day="adv-shoulders" onclick="switchAdvDay('adv-shoulders')"><i class="fas fa-person-rays"></i> Shoulders</button>
+            <button class="adv-day-tab" data-adv-day="adv-arms" onclick="switchAdvDay('adv-arms')"><i class="fas fa-hand-fist"></i> Arms</button>
+            <button class="adv-day-tab" data-adv-day="adv-legs" onclick="switchAdvDay('adv-legs')"><i class="fas fa-person-walking"></i> Legs</button>
+            <button class="adv-day-tab rest-tab" data-adv-day="adv-rest" onclick="switchAdvDay('adv-rest')"><i class="fas fa-moon"></i> Rest</button>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             DAY 1 — CHEST
+        ═══════════════════════════════════ -->
+        <div id="adv-chest" class="adv-day-section adv-active-day">
+            <div class="adv-day-header">
+                <div class="adv-day-header-left">
+                    <div class="adv-day-badge"><i class="fas fa-circle-dot"></i></div>
+                    <div>
+                        <h2 class="adv-day-title">CHEST DAY</h2>
+                        <p class="adv-day-subtitle">Pectorals · Anterior Deltoids · Serratus</p>
+                    </div>
+                </div>
+                <div class="adv-day-meta">
+                    <span><i class="fas fa-list"></i> 8 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 70–85 min</span>
+                    <span><i class="fas fa-fire"></i> High Volume</span>
+                </div>
+            </div>
+
+            <div class="adv-exercise-list">
+
+                <!-- WARMUP -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num adv-warmup-num">W</div>
+                            <div class="adv-exercise-info"><h3>Warm-Up</h3><span class="adv-exercise-meta">8–10 min · Chest & Shoulder Activation</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-warmup-tag">Warmup</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-placeholder"><i class="fas fa-video"></i><span>Band pull-aparts, shoulder circles, 15 slow push-ups, chest opener stretch, scapular retractions</span></div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Duration</span><strong>8–10 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Intensity</span><strong>RPE 4–5</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1 — BARBELL BENCH PRESS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">01</div>
+                            <div class="adv-exercise-info"><h3>Barbell Bench Press</h3><span class="adv-exercise-meta">5 sets · 3–5 reps heavy → 6–8 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/gRVjAtPip0Y?rel=0&modestbranding=1" title="Barbell Bench Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-weight-hanging"></i></div>
+                            <div>
+                                <h5>ADVANCED LOADING SCHEME</h5>
+                                <p>Sets 1–2: Work up to a heavy 3–5RM (RPE 9). Sets 3–5: Drop to 80% of that weight for 6–8 reps (RPE 8). This wave loading maximizes both strength and hypertrophy stimulus.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>5</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>3–5 / 6–8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>3–4 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Pecs, Ant. Deltoids, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 — INCLINE DUMBBELL PRESS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">02</div>
+                            <div class="adv-exercise-info"><h3>Incline Dumbbell Press</h3><span class="adv-exercise-meta">4 sets · 8–10 reps · Dumbbells · 30–45°</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/8iPEnn-ltC8?rel=0&modestbranding=1" title="Incline Dumbbell Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Upper Pecs, Anterior Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 — CABLE FLYES (superset with pushups) -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">03</div>
+                            <div class="adv-exercise-info"><h3>Cable Crossover Fly ↔ Push-Up</h3><span class="adv-exercise-meta">3 rounds · 12 + max reps · Superset</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-superset-tag">Superset</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/taI4XduLpTk?rel=0&modestbranding=1" title="Cable Fly" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-superset-panel">
+                            <div class="adv-superset-label"><i class="fas fa-rotate"></i> Superset Protocol — No Rest Between A & B</div>
+                            <div class="adv-superset-row">
+                                <div class="adv-ss-step adv-ss-a">
+                                    <div class="adv-ss-label"><i class="fas fa-a"></i> Exercise A</div>
+                                    <p><strong>Cable Crossover Fly</strong> — 12 reps, RPE 8. Full stretch at bottom, squeeze hard at peak contraction. Keep chest tall.</p>
+                                </div>
+                                <div class="adv-ss-divider">→</div>
+                                <div class="adv-ss-step adv-ss-b">
+                                    <div class="adv-ss-label"><i class="fas fa-b"></i> Exercise B</div>
+                                    <p><strong>Close-Grip Push-Ups</strong> — Max reps to failure. Elbows tucked, squeeze at top. This pre-exhaustion floods the pecs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Rounds</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>90 sec after B</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">RPE (Fly)</span><strong>8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Mid Pecs, Inner Pecs</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 — DECLINE PRESS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">04</div>
+                            <div class="adv-exercise-info"><h3>Decline Barbell Press</h3><span class="adv-exercise-meta">3 sets · 8–10 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/LfyQBUKR8SE?si=1rXRw7aDFEUiQKMS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Lower Pecs, Sternocostal Head</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 — DIPS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">05</div>
+                            <div class="adv-exercise-info"><h3>Weighted Chest Dips</h3><span class="adv-exercise-meta">4 sets · 8–12 reps · Bodyweight + Load</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/yN6Q1UI_xkE?rel=0&modestbranding=1" title="Chest Dips" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-circle-info"></i></div>
+                            <div>
+                                <h5>CHEST FOCUS CUE</h5>
+                                <p>Lean forward 20–30° throughout. Let elbows flare slightly. Go deep enough to feel the lower-chest stretch — don't lock out at the top.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>8–12</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Lower Pecs, Triceps, Shoulders</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 — PEC DECK -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">06</div>
+                            <div class="adv-exercise-info"><h3>Pec Deck Machine</h3><span class="adv-exercise-meta">3 sets · 12–15 reps · Drop set on last</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/Z57CtFmRMxA?rel=0&modestbranding=1" title="Pec Deck Fly" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-fire-flame-curved"></i></div>
+                            <div>
+                                <h5>DROP SET FINISHER</h5>
+                                <p>On your final set: complete 12–15 reps, immediately drop the weight 25–30%, squeeze out another 8–10 reps. No rest between drops. This is your finisher.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>12–15 + drop</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Inner Pecs, Mid Chest</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end chest -->
+
+        <!-- ═══════════════════════════════════
+             DAY 2 — BACK
+        ═══════════════════════════════════ -->
+        <div id="adv-back" class="adv-day-section">
+            <div class="adv-day-header">
+                <div class="adv-day-header-left">
+                    <div class="adv-day-badge"><i class="fas fa-arrow-down-wide-short"></i></div>
+                    <div>
+                        <h2 class="adv-day-title">BACK DAY</h2>
+                        <p class="adv-day-subtitle">Lats · Rhomboids · Traps · Erectors · Rear Delts</p>
+                    </div>
+                </div>
+                <div class="adv-day-meta">
+                    <span><i class="fas fa-list"></i> 8 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 75–90 min</span>
+                    <span><i class="fas fa-fire"></i> Max Width</span>
+                </div>
+            </div>
+            <div class="adv-exercise-list">
+
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num adv-warmup-num">W</div>
+                            <div class="adv-exercise-info"><h3>Warm-Up</h3><span class="adv-exercise-meta">Band pull-aparts, cat-cow, thoracic rotations, lat stretch</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-warmup-tag">Warmup</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-placeholder"><i class="fas fa-video"></i><span>Light band pull-aparts, cat-cow, thoracic rotation, 10 slow dead hangs</span></div>
+                    </div>
+                </div>
+
+                <!-- 1 — DEADLIFT -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">01</div>
+                            <div class="adv-exercise-info"><h3>Conventional Deadlift</h3><span class="adv-exercise-meta">4 sets · 4–6 reps heavy · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-power-tag">Power</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/op9kVnSso6Q?rel=0&modestbranding=1" title="Deadlift Tutorial" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-skull"></i></div>
+                            <div>
+                                <h5>KING OF BACK EXERCISES</h5>
+                                <p>Work up to a top set of 4–6 reps at RPE 9. Reset grip and brace between every single rep. Do not rush. Bar speed should be maximal on the way up.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>4–6</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>4–5 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Entire Posterior Chain</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 — WEIGHTED PULL-UPS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">02</div>
+                            <div class="adv-exercise-info"><h3>Weighted Pull-Ups</h3><span class="adv-exercise-meta">4 sets · 5–8 reps · Dip belt or vest</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/IQSeF6aRe4c?si=l4nIIQAKlyJIVUvb&rel=0&modestbranding=1" title="Weighted Pull-Ups Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>5–8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Lats, Biceps, Rear Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 — BARBELL ROW -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">03</div>
+                            <div class="adv-exercise-info"><h3>Barbell Pendlay Row</h3><span class="adv-exercise-meta">4 sets · 6–8 reps · Explosive pull</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-power-tag">Power</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/G8l_8chR5BE?si=3qnwLqyno1h6Ql3d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>6–8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Mid Back, Lats, Rear Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 — CABLE ROWS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">04</div>
+                            <div class="adv-exercise-info"><h3>Seated Cable Row (Narrow Grip)</h3><span class="adv-exercise-meta">3 sets · 10–12 reps · Cable machine</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/GZbfZ033f74?rel=0&modestbranding=1" title="Seated Cable Row" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Rhomboids, Mid Traps, Lats</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 — LAT PULLDOWN -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">05</div>
+                            <div class="adv-exercise-info"><h3>Wide-Grip Lat Pulldown</h3><span class="adv-exercise-meta">3 sets · 10–12 reps · Cable</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/CAwf7n6Luuc?rel=0&modestbranding=1" title="Lat Pulldown" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Lats, Teres Major</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 — SHRUGS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">06</div>
+                            <div class="adv-exercise-info"><h3>Heavy Barbell Shrugs</h3><span class="adv-exercise-meta">4 sets · 8–12 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/g6qbq4Lf1FI?rel=0&modestbranding=1" title="Barbell Shrugs" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>8–12</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Upper Traps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end back -->
+
+        <!-- ═══════════════════════════════════
+             DAY 3 — SHOULDERS
+        ═══════════════════════════════════ -->
+        <div id="adv-shoulders" class="adv-day-section">
+            <div class="adv-day-header">
+                <div class="adv-day-header-left">
+                    <div class="adv-day-badge"><i class="fas fa-person-rays"></i></div>
+                    <div>
+                        <h2 class="adv-day-title">SHOULDER DAY</h2>
+                        <p class="adv-day-subtitle">Anterior · Lateral · Posterior Deltoids · Rotator Cuff</p>
+                    </div>
+                </div>
+                <div class="adv-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 65–75 min</span>
+                    <span><i class="fas fa-fire"></i> 3D Delts</span>
+                </div>
+            </div>
+            <div class="adv-exercise-list">
+
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num adv-warmup-num">W</div>
+                            <div class="adv-exercise-info"><h3>Warm-Up</h3><span class="adv-exercise-meta">Rotator cuff activation, band pull-aparts, Cuban press 2×12</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-warmup-tag">Warmup</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-placeholder"><i class="fas fa-video"></i><span>Band pull-aparts, face pulls, Cuban press, shoulder dislocates with dowel</span></div>
+                    </div>
+                </div>
+
+                <!-- 1 — OHP -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">01</div>
+                            <div class="adv-exercise-info"><h3>Barbell Overhead Press (Standing)</h3><span class="adv-exercise-meta">5 sets · 4–6 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-power-tag">Power</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/2yjwXTZQDDI?rel=0&modestbranding=1" title="Barbell Overhead Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-weight-hanging"></i></div>
+                            <div>
+                                <h5>STANDING — NOT SEATED</h5>
+                                <p>Standing OHP forces full core and lower-body stability. Use strict form — no excessive lumbar arch. Push bar slightly back at the top to lock out directly over the traps.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>5</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>4–6</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>3–4 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>All Delt Heads, Triceps, Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 — DB LATERAL RAISES -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">02</div>
+                            <div class="adv-exercise-info"><h3>Dumbbell Lateral Raises</h3><span class="adv-exercise-meta">5 sets · 12–15 reps · Mechanical drop set on last</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/K5hFLVJnnsw?si=edTeG5-Cb2KncDT7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme";
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>5</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>60–75 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Lateral Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 — FACE PULLS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">03</div>
+                            <div class="adv-exercise-info"><h3>Cable Face Pulls</h3><span class="adv-exercise-meta">4 sets · 15–20 reps · Cable at face height</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/rep-qVOkqgk?rel=0&modestbranding=1" title="Cable Face Pulls" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-shield"></i></div>
+                            <div>
+                                <h5>SHOULDER HEALTH ESSENTIAL</h5>
+                                <p>Face pulls keep your rotator cuff healthy after heavy pressing. Never skip these. External rotation at the end of the movement is the key — elbows high, thumbs back.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Rear Delts, Rotator Cuff</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 — REAR DELT FLYES -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">04</div>
+                            <div class="adv-exercise-info"><h3>Rear Delt Dumbbell Flyes</h3><span class="adv-exercise-meta">3 sets · 15–20 reps · Bent over</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/Iq9Q7V3AO_s?si=7ZAu4-QB-udXq9Qj&rel=0&modestbranding=1" title="Rear Delt Fly Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Posterior Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end shoulders -->
+
+        <!-- ═══════════════════════════════════
+             DAY 4 — ARMS
+        ═══════════════════════════════════ -->
+        <div id="adv-arms" class="adv-day-section">
+            <div class="adv-day-header">
+                <div class="adv-day-header-left">
+                    <div class="adv-day-badge"><i class="fas fa-hand-fist"></i></div>
+                    <div>
+                        <h2 class="adv-day-title">ARMS DAY</h2>
+                        <p class="adv-day-subtitle">Biceps · Triceps · Brachialis · Forearms</p>
+                    </div>
+                </div>
+                <div class="adv-day-meta">
+                    <span><i class="fas fa-list"></i> 8 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 60–70 min</span>
+                    <span><i class="fas fa-fire"></i> Peak Isolation</span>
+                </div>
+            </div>
+            <div class="adv-exercise-list">
+
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num adv-warmup-num">W</div>
+                            <div class="adv-exercise-info"><h3>Warm-Up</h3><span class="adv-exercise-meta">Wrist circles, light cable curls × 20, tricep cable pushdowns × 20</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-warmup-tag">Warmup</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-placeholder"><i class="fas fa-video"></i><span>Light blood flow work — 2×20 cable curls, 2×20 tricep pushdowns, wrist mobility</span></div>
+                    </div>
+                </div>
+
+                <!-- 1 — CLOSE GRIP BENCH -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">01</div>
+                            <div class="adv-exercise-info"><h3>Close-Grip Bench Press</h3><span class="adv-exercise-meta">4 sets · 6–8 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/nEF0bv2FW94?rel=0&modestbranding=1" title="Close Grip Bench Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>6–8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Triceps, Inner Chest</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 — BARBELL CURL -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">02</div>
+                            <div class="adv-exercise-info"><h3>Barbell Curl</h3><span class="adv-exercise-meta">4 sets · 6–8 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/ykJmrZ5v0Oo?rel=0&modestbranding=1" title="Barbell Curl" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>6–8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Biceps Long Head, Brachialis</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 — SKULL CRUSHERS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">03</div>
+                            <div class="adv-exercise-info"><h3>EZ-Bar Skull Crushers</h3><span class="adv-exercise-meta">4 sets · 8–10 reps · EZ-Bar</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/d_KZxkY_0cM?rel=0&modestbranding=1" title="Skull Crushers" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Triceps Long Head</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 — INCLINE CURL ↔ CABLE PUSHDOWN superset -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">04</div>
+                            <div class="adv-exercise-info"><h3>Incline DB Curl ↔ Rope Pushdown</h3><span class="adv-exercise-meta">3 rounds · 10 + 12 reps · Superset</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-superset-tag">Superset</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-superset-panel">
+                            <div class="adv-superset-label"><i class="fas fa-rotate"></i> Antagonist Superset — Max arm pump</div>
+                            <div class="adv-superset-row">
+                                <div class="adv-ss-step adv-ss-a">
+                                    <div class="adv-ss-label"><i class="fas fa-a"></i> Biceps</div>
+                                    <p><strong>Incline Dumbbell Curl</strong> — 10 reps. Full stretch at bottom. Slow eccentric (3 sec down). Hits the long head from a stretched position.</p>
+                                </div>
+                                <div class="adv-ss-divider">→</div>
+                                <div class="adv-ss-step adv-ss-b">
+                                    <div class="adv-ss-label"><i class="fas fa-b"></i> Triceps</div>
+                                    <p><strong>Rope Pushdown</strong> — 12 reps. Spread the rope at the bottom. Keep elbows pinned. Full extension and squeeze each rep.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/kiuVA0gs3EI?si=xYTqgf6ABjTamm6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Rounds</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>90 sec after B</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Biceps Long + Triceps Lat Head</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Goal</span><strong>Maximum pump</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 — HAMMER CURLS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">05</div>
+                            <div class="adv-exercise-info"><h3>Hammer Curls</h3><span class="adv-exercise-meta">3 sets · 10–12 reps · Dumbbells</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/zC3nLlEvin4?rel=0&modestbranding=1" title="Hammer Curls" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Brachialis, Brachioradialis</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end arms -->
+
+        <!-- ═══════════════════════════════════
+             DAY 5 — LEGS
+        ═══════════════════════════════════ -->
+        <div id="adv-legs" class="adv-day-section">
+            <div class="adv-day-header">
+                <div class="adv-day-header-left">
+                    <div class="adv-day-badge"><i class="fas fa-person-walking"></i></div>
+                    <div>
+                        <h2 class="adv-day-title">LEG DAY</h2>
+                        <p class="adv-day-subtitle">Quads · Hamstrings · Glutes · Adductors · Calves</p>
+                    </div>
+                </div>
+                <div class="adv-day-meta">
+                    <span><i class="fas fa-list"></i> 8 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 80–95 min</span>
+                    <span><i class="fas fa-fire"></i> Leg Destroyer</span>
+                </div>
+            </div>
+            <div class="adv-exercise-list">
+
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num adv-warmup-num">W</div>
+                            <div class="adv-exercise-info"><h3>Warm-Up</h3><span class="adv-exercise-meta">Hip mobility, leg swings, goblet squat × 15, glute bridges × 20</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-warmup-tag">Warmup</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-placeholder"><i class="fas fa-video"></i><span>Hip circles, leg swings, 2×15 goblet squat, 2×20 glute bridge, hamstring stretch, 90-90 hip rotation</span></div>
+                    </div>
+                </div>
+
+                <!-- 1 — SQUAT -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">01</div>
+                            <div class="adv-exercise-info"><h3>Barbell Back Squat</h3><span class="adv-exercise-meta">5 sets · 4–6 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-power-tag">Power</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/ultWZbUMPL8?rel=0&modestbranding=1" title="Barbell Squat" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-skull"></i></div>
+                            <div>
+                                <h5>ADVANCED SQUAT PROTOCOL</h5>
+                                <p>Build to a top heavy set at RPE 9, then drop 10% for remaining sets. Full depth — hip crease below knee. Brace hard through the entire rep. Bar travels in a vertical path.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>5</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>4–6</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>4–5 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Quads, Glutes, Hamstrings, Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 — ROMANIAN DEADLIFT -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">02</div>
+                            <div class="adv-exercise-info"><h3>Romanian Deadlift</h3><span class="adv-exercise-meta">4 sets · 8–10 reps · Barbell</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/JCXUYuzwNrM?rel=0&modestbranding=1" title="Romanian Deadlift" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2–3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Hamstrings, Glutes, Erectors</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 — LEG PRESS -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">03</div>
+                            <div class="adv-exercise-info"><h3>Leg Press (High & Wide)</h3><span class="adv-exercise-meta">4 sets · 10–15 reps + 1 burnout set</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-strength-tag">Strength</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/IZxyjW7MPJQ?rel=0&modestbranding=1" title="Leg Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>4 + 1 burnout</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>10–15 / max</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Quads, Glutes, Hamstrings</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 — NORDIC HAMSTRING -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">04</div>
+                            <div class="adv-exercise-info"><h3>Nordic Hamstring Curl</h3><span class="adv-exercise-meta">3 sets · 6–8 reps · Advanced eccentric</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-power-tag">Power</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/6NCN6kOagfY?si=-r_wdmeNXDutlgbl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-intensity-note">
+                            <div class="adv-intensity-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                            <div>
+                                <h5>INJURY PREVENTION ESSENTIAL</h5>
+                                <p>Nordics are one of the most proven hamstring injury prevention tools in sport science. Control the descent maximally — this is an advanced exercise. Lower over 3–4 seconds, push up with hands if needed.</p>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>3</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>6–8</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Biceps Femoris, Hamstrings</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 — CALF RAISES -->
+                <div class="adv-exercise-item">
+                    <div class="adv-exercise-header" onclick="toggleAdvExercise(this)">
+                        <div class="adv-exercise-left">
+                            <div class="adv-exercise-num">05</div>
+                            <div class="adv-exercise-info"><h3>Standing Calf Raises</h3><span class="adv-exercise-meta">5 sets · 15–20 reps · Slow & controlled</span></div>
+                        </div>
+                        <div class="adv-exercise-right"><span class="adv-exercise-tag adv-isolation-tag">Isolation</span><i class="fas fa-chevron-down adv-toggle-icon"></i></div>
+                    </div>
+                    <div class="adv-exercise-body">
+                        <div class="adv-video-wrap">
+                            <div class="adv-video-frame">
+                                <iframe src="https://www.youtube.com/embed/gwLzBJYoWlI?rel=0&modestbranding=1" title="Standing Calf Raises" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="adv-set-scheme">
+                            <div class="adv-set-row"><span class="adv-set-label">Sets</span><strong>5</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="adv-set-row"><span class="adv-set-label">Muscles</span><strong>Gastrocnemius, Soleus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end legs -->
+
+        <!-- ═══════════════════════════════════
+             REST DAY
+        ═══════════════════════════════════ -->
+        <div id="adv-rest" class="adv-day-section">
+            <div class="adv-day-header">
+                <div class="adv-day-header-left">
+                    <div class="adv-day-badge" style="background:linear-gradient(135deg,rgba(255,171,64,0.18),rgba(255,143,0,0.07));border-color:rgba(255,171,64,0.26);color:var(--gold);">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div>
+                        <h2 class="adv-day-title" style="color:var(--gold);">REST DAYS</h2>
+                        <p class="adv-day-subtitle">Day 6 & 7 — Active Recovery & Adaptation</p>
+                    </div>
+                </div>
+                <div class="adv-day-meta">
+                    <span><i class="fas fa-bed"></i> 2 days off</span>
+                    <span><i class="fas fa-shield-halved"></i> Adaptation Phase</span>
+                </div>
+            </div>
+
+            <div class="adv-rest-grid">
+                <div class="adv-rest-card">
+                    <div class="adv-rest-icon"><i class="fas fa-moon"></i></div>
+                    <h4>SLEEP PROTOCOL</h4>
+                    <p>8–9 hours minimum. Your muscles grow during sleep, not during training. Growth hormone peaks in deep sleep cycles. Blackout curtains, 67°F room, no screens 1 hour before bed.</p>
+                </div>
+                <div class="adv-rest-card">
+                    <div class="adv-rest-icon"><i class="fas fa-utensils"></i></div>
+                    <h4>NUTRITION ON REST DAYS</h4>
+                    <p>Slightly reduce carbohydrates (–15%) on rest days. Maintain high protein intake (1g per lb bodyweight). Prioritize micronutrients: leafy greens, zinc, magnesium, omega-3s.</p>
+                </div>
+                <div class="adv-rest-card">
+                    <div class="adv-rest-icon"><i class="fas fa-person-walking"></i></div>
+                    <h4>ACTIVE RECOVERY</h4>
+                    <p>20–30 min low-intensity walk, swim, or bike. Light yoga or mobility work. Foam rolling trigger points: IT band, thoracic spine, lats, hip flexors. Nothing that elevates heart rate above 130 BPM.</p>
+                </div>
+                <div class="adv-rest-card">
+                    <div class="adv-rest-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>DELOAD INDICATORS</h4>
+                    <p>Track these signs every week: bar speed declining over 2+ sessions, persistent joint pain, grip strength reduction, sleep quality dropping, motivation near zero. Any 3 of these = schedule a deload week immediately.</p>
+                </div>
+                <div class="adv-rest-card">
+                    <div class="adv-rest-icon"><i class="fas fa-droplet"></i></div>
+                    <h4>HYDRATION</h4>
+                    <p>Minimum 3–4 liters of water daily. Add electrolytes if sweating heavily. Dehydration as little as 2% can reduce strength by 10–15%. Creatine monohydrate 5g/day, any time.</p>
+                </div>
+                <div class="adv-rest-card">
+                    <div class="adv-rest-icon"><i class="fas fa-brain"></i></div>
+                    <h4>MENTAL RECOVERY</h4>
+                    <p>Psychological fatigue is real. Use rest days to disconnect — no training videos, no macro-tracking obsession. Journal progress. Visualize next week's sessions. Stress management directly impacts cortisol and recovery.</p>
+                </div>
+            </div>
+        </div><!-- end rest -->
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="adv-footer">
+    <div class="container">
+        <span>&copy; 2025 BlackOnLifter</span>
+        <a href="choose.html"><i class="fas fa-arrow-left"></i> Change Level</a>
+    </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="advScrollTop" class="adv-scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="advanced.js"></script>
+</body>

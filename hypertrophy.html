@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Hypertrophy Mode</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="hypertrophy.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+            <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+            <div class="logo-copy">
+                <span class="logo-title">BlackOnLifter</span>
+                <span class="logo-sub">Hypertrophy Mode</span>
+            </div>
+        </a>
+        <div class="nav-actions">
+            <a href="choose.html" class="nav-cta"><i class="fas fa-arrow-left"></i> Change Level</a>
+            <a href="index.html" class="nav-cta-home"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hyp-hero">
+    <div class="hyp-hero-bg"></div>
+    <div class="hyp-hero-overlay"></div>
+    <canvas id="hypCanvas"></canvas>
+
+    <div class="hyp-hero-image-wrap">
+        <img src="hypertrophy.png" alt="Hypertrophy Mode" class="hyp-ref-img" />
+        <div class="hyp-ref-label"><i class="fas fa-dna"></i> Aesthetic Bodybuilding</div>
+    </div>
+
+    <div class="container hyp-hero-content">
+        <div class="hyp-eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span>6-DAY PPL × 2 SPLIT</span>
+        </div>
+        <h1 class="hyp-title">
+            <span class="hyp-title-line1">HYPERTROPHY</span>
+            <span class="hyp-title-accent">MODE</span>
+        </h1>
+        <p class="hyp-subtitle">
+            The gold standard for aesthetic bodybuilding. Every muscle trained twice per week.
+            Built for maximum size, symmetry, and the classic physique.
+        </p>
+
+        <!-- Stats strip -->
+        <div class="hyp-stats-strip">
+            <div class="hyp-stat">
+                <span class="hyp-stat-val">6</span>
+                <span class="hyp-stat-label">Training Days</span>
+            </div>
+            <div class="hyp-stat">
+                <span class="hyp-stat-val">42</span>
+                <span class="hyp-stat-label">Exercises</span>
+            </div>
+            <div class="hyp-stat">
+                <span class="hyp-stat-val">2×</span>
+                <span class="hyp-stat-label">Per Week / Muscle</span>
+            </div>
+            <div class="hyp-stat">
+                <span class="hyp-stat-val">8–15</span>
+                <span class="hyp-stat-label">Rep Range</span>
+            </div>
+        </div>
+
+        <!-- Split overview -->
+        <div class="hyp-split-overview">
+            <div class="hyp-split-day active-split-day" data-hyp-split="hyp-push-a" onclick="jumpHypToDay('hyp-push-a')">
+                <span class="hyp-split-num">Mon</span>
+                <span class="hyp-split-name">PUSH A</span>
+                <span class="hyp-split-focus">Chest emphasis</span>
+            </div>
+            <div class="hyp-split-day" data-hyp-split="hyp-pull-a" onclick="jumpHypToDay('hyp-pull-a')">
+                <span class="hyp-split-num">Tue</span>
+                <span class="hyp-split-name">PULL A</span>
+                <span class="hyp-split-focus">Width emphasis</span>
+            </div>
+            <div class="hyp-split-day" data-hyp-split="hyp-legs-a" onclick="jumpHypToDay('hyp-legs-a')">
+                <span class="hyp-split-num">Wed</span>
+                <span class="hyp-split-name">LEGS A</span>
+                <span class="hyp-split-focus">Quad-dominant</span>
+            </div>
+            <div class="hyp-split-day rest-day">
+                <span class="hyp-split-num">Thu</span>
+                <span class="hyp-split-name">REST</span>
+                <span class="hyp-split-focus">Active recovery</span>
+            </div>
+            <div class="hyp-split-day" data-hyp-split="hyp-push-b" onclick="jumpHypToDay('hyp-push-b')">
+                <span class="hyp-split-num">Fri</span>
+                <span class="hyp-split-name">PUSH B</span>
+                <span class="hyp-split-focus">Shoulder emphasis</span>
+            </div>
+            <div class="hyp-split-day" data-hyp-split="hyp-pull-b" onclick="jumpHypToDay('hyp-pull-b')">
+                <span class="hyp-split-num">Sat</span>
+                <span class="hyp-split-name">PULL B</span>
+                <span class="hyp-split-focus">Thickness emphasis</span>
+            </div>
+            <div class="hyp-split-day" data-hyp-split="hyp-legs-b" onclick="jumpHypToDay('hyp-legs-b')">
+                <span class="hyp-split-num">Sun</span>
+                <span class="hyp-split-name">LEGS B</span>
+                <span class="hyp-split-focus">Hip-dominant</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="hyp-main">
+    <div class="container">
+
+        <!-- Philosophy banner -->
+        <div class="hyp-philosophy">
+            <div class="hyp-philosophy-icon"><i class="fas fa-dna"></i></div>
+            <div>
+                <h4>HYPERTROPHY PRINCIPLES</h4>
+                <p>Every set taken to 0–2 reps from failure. Progressive overload every session. Rep ranges 8–15 for maximum hypertrophy stimulus. 90 sec rest for isolations, 2–3 min for compounds. Deload every 6–8 weeks — drop volume 40%, keep intensity. Aesthetics over athletics: lats, side delts, upper chest, outer quads, tricep long head.</p>
+                <span class="hyp-badge"><i class="fas fa-star"></i> Aesthetics Over Athletics</span>
+            </div>
+        </div>
+
+        <!-- Volume tracker -->
+        <div class="volume-tracker">
+            <div class="volume-tracker-header">
+                <i class="fas fa-chart-bar"></i>
+                <h4>WEEKLY VOLUME DISTRIBUTION</h4>
+                <p>Sets per muscle group per week</p>
+            </div>
+            <div class="volume-bars">
+                <div class="volume-bar-row"><span class="volume-bar-label">Chest</span><div class="volume-bar-track"><div class="volume-bar-fill vb-purple" data-width="90%"></div></div><span class="volume-bar-val">18 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Back</span><div class="volume-bar-track"><div class="volume-bar-fill vb-purple" data-width="100%"></div></div><span class="volume-bar-val">20 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Shoulders</span><div class="volume-bar-track"><div class="volume-bar-fill vb-violet" data-width="80%"></div></div><span class="volume-bar-val">16 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Biceps</span><div class="volume-bar-track"><div class="volume-bar-fill vb-violet" data-width="70%"></div></div><span class="volume-bar-val">14 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Triceps</span><div class="volume-bar-track"><div class="volume-bar-fill vb-violet" data-width="70%"></div></div><span class="volume-bar-val">14 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Quads</span><div class="volume-bar-track"><div class="volume-bar-fill vb-pink" data-width="100%"></div></div><span class="volume-bar-val">20 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Hamstrings</span><div class="volume-bar-track"><div class="volume-bar-fill vb-pink" data-width="80%"></div></div><span class="volume-bar-val">16 sets</span></div>
+                <div class="volume-bar-row"><span class="volume-bar-label">Calves</span><div class="volume-bar-track"><div class="volume-bar-fill vb-purple" data-width="70%"></div></div><span class="volume-bar-val">14 sets</span></div>
+            </div>
+        </div>
+
+        <!-- ═══════════ DAY TABS ═══════════ -->
+        <div class="hyp-day-tabs">
+            <button class="hyp-day-tab active" data-hyp-day="hyp-push-a" onclick="switchHypDay('hyp-push-a')"><i class="fas fa-circle-dot"></i> Push A</button>
+            <button class="hyp-day-tab" data-hyp-day="hyp-pull-a" onclick="switchHypDay('hyp-pull-a')"><i class="fas fa-arrow-down-wide-short"></i> Pull A</button>
+            <button class="hyp-day-tab" data-hyp-day="hyp-legs-a" onclick="switchHypDay('hyp-legs-a')"><i class="fas fa-person-walking"></i> Legs A</button>
+            <button class="hyp-day-tab rest-tab" data-hyp-day="hyp-rest" onclick="switchHypDay('hyp-rest')"><i class="fas fa-moon"></i> Rest</button>
+            <button class="hyp-day-tab" data-hyp-day="hyp-push-b" onclick="switchHypDay('hyp-push-b')"><i class="fas fa-circle-dot"></i> Push B</button>
+            <button class="hyp-day-tab" data-hyp-day="hyp-pull-b" onclick="switchHypDay('hyp-pull-b')"><i class="fas fa-arrow-down-wide-short"></i> Pull B</button>
+            <button class="hyp-day-tab" data-hyp-day="hyp-legs-b" onclick="switchHypDay('hyp-legs-b')"><i class="fas fa-person-walking"></i> Legs B</button>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             PUSH A — Monday (Chest emphasis)
+        ══════════════════════════════════════ -->
+        <div id="hyp-push-a" class="hyp-day-section hyp-active-day">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge"><i class="fas fa-circle-dot"></i></div>
+                    <div>
+                        <h2 class="hyp-day-title">PUSH A — MONDAY</h2>
+                        <p class="hyp-day-subtitle">Chest · Shoulders · Triceps | Chest emphasis</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 65–75 min</span>
+                    <span><i class="fas fa-bullseye"></i> Upper Chest Priority</span>
+                </div>
+            </div>
+            <div class="hyp-exercise-list">
+
+                <!-- WARMUP -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num hyp-warmup-num">W</div>
+                            <div class="hyp-exercise-info"><h3>Warm-Up</h3><span class="hyp-exercise-meta">8–10 min · Chest & Shoulder activation</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-warmup-tag">Warmup</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-placeholder"><i class="fas fa-video"></i><span>Band pull-aparts, shoulder circles, 15 slow push-ups, chest opener stretch, scapular wall slides</span></div>
+                    </div>
+                </div>
+
+                <!-- 1 — INCLINE BARBELL PRESS -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">01</div>
+                            <div class="hyp-exercise-info"><h3>Incline Barbell Press</h3><span class="hyp-exercise-meta">4 sets · 6–10 reps · Barbell · 30–45°</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/jPLdzuHckI8?rel=0&modestbranding=1" title="Incline Barbell Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-intensity-note">
+                            <div class="hyp-intensity-icon"><i class="fas fa-star"></i></div>
+                            <div><h5>UPPER CHEST PRIORITY</h5><p>Incline press leads every chest session. The upper chest "shelf" is the most aesthetic component of the pec — it creates visual separation from the collar bone. Keep the angle at 30–45°. Wider = more delt, less pec.</p></div>
+                        </div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>6–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Upper Pecs, Ant. Delts, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 — FLAT DUMBBELL PRESS -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">02</div>
+                            <div class="hyp-exercise-info"><h3>Flat Dumbbell Press</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Dumbbells</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/VmB1G1K7v94?rel=0&modestbranding=1" title="Dumbbell Bench Press" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Mid Pecs, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 — CABLE CROSSOVER -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">03</div>
+                            <div class="hyp-exercise-info"><h3>Cable Crossover (low-to-high)</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Cable</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/taI4XduLpTk?rel=0&modestbranding=1" title="Cable Crossover" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-intensity-note">
+                            <div class="hyp-intensity-icon"><i class="fas fa-circle-info"></i></div>
+                            <div><h5>SERRATUS ANTERIOR TIE-IN</h5><p>Drive hands upward and inward, finishing with full protraction — arms cross over at the top. This hits the upper inner chest AND serratus anterior, the finger-like muscles on your ribcage that frame the physique.</p></div>
+                        </div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Upper Inner Pecs, Serratus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 — INCLINE DUMBBELL FLY -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">04</div>
+                            <div class="hyp-exercise-info"><h3>Incline Dumbbell Fly</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Dumbbells</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/Y4PmQ4_7kqY?rel=0&modestbranding=1" title="Incline Dumbbell Fly" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Upper Pecs, Stretch Focus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 — CABLE LATERAL RAISE -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">05</div>
+                            <div class="hyp-exercise-info"><h3>Cable Lateral Raise</h3><span class="hyp-exercise-meta">4 sets · 12–15 reps · Cable (single arm)</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/3VcKaXpzqRo?rel=0&modestbranding=1" title="Cable Lateral Raise" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-intensity-note">
+                            <div class="hyp-intensity-icon"><i class="fas fa-star"></i></div>
+                            <div><h5>MOST IMPORTANT AESTHETIC MUSCLE</h5><p>Lateral deltoids make your waist look small. Cable keeps constant tension throughout the entire range — dumbbells drop tension at the bottom. Lead with your pinky, don't shrug, stop at parallel. 16 sets/week total on shoulders.</p></div>
+                        </div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lateral Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 — OVERHEAD TRICEP EXTENSION -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">06</div>
+                            <div class="hyp-exercise-info"><h3>Overhead Tricep Extension (cable rope)</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Cable rope</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/YzDMpn1jAkI?rel=0&modestbranding=1" title="Overhead Tricep Extension" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-intensity-note">
+                            <div class="hyp-intensity-icon"><i class="fas fa-circle-info"></i></div>
+                            <div><h5>LONG HEAD EMPHASIS</h5><p>Overhead position places the long head of the tricep in full stretch. This is what gives your arm length and fullness when viewed from the side. Keep elbows pointed at the ceiling — don't let them flare.</p></div>
+                        </div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Triceps Long Head</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 — TRICEP PUSHDOWN -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left">
+                            <div class="hyp-exercise-num">07</div>
+                            <div class="hyp-exercise-info"><h3>Tricep Pushdown (straight bar)</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Cable</span></div>
+                        </div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-finisher-tag">Finisher</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame">
+                            <iframe src="https://www.youtube.com/embed/6Fzep104f0s?rel=0&modestbranding=1" title="Tricep Pushdown" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Triceps All Heads</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end push-a -->
+
+        <!-- ══════════════════════════════════════
+             PULL A — Tuesday (Width emphasis)
+        ══════════════════════════════════════ -->
+        <div id="hyp-pull-a" class="hyp-day-section">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge"><i class="fas fa-arrow-down-wide-short"></i></div>
+                    <div>
+                        <h2 class="hyp-day-title">PULL A — TUESDAY</h2>
+                        <p class="hyp-day-subtitle">Back · Biceps · Rear Delts | Width emphasis</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 65–75 min</span>
+                    <span><i class="fas fa-bullseye"></i> V-Taper Priority</span>
+                </div>
+            </div>
+            <div class="hyp-exercise-list">
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num hyp-warmup-num">W</div><div class="hyp-exercise-info"><h3>Warm-Up</h3><span class="hyp-exercise-meta">Band pull-aparts, dead hangs, lat stretch, arm circles</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-warmup-tag">Warmup</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body"><div class="hyp-video-placeholder"><i class="fas fa-video"></i><span>Light band pull-aparts, 10 dead hangs, thoracic rotation, lat stretch on a pole</span></div></div>
+                </div>
+
+                <!-- 1 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">01</div><div class="hyp-exercise-info"><h3>Weighted Pull-Up (wide grip)</h3><span class="hyp-exercise-meta">4 sets · 6–10 reps · Dip belt or vest</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/eGo4IYlbE5g?rel=0&modestbranding=1" title="Pull-Ups" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-star"></i></div><div><h5>V-TAPER STARTS HERE</h5><p>#1 exercise for lat width. Full dead hang at bottom, pull until chin clears bar. Initiate with lats, not biceps — think "elbows to hips." Add weight once you can do 12+ clean reps.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>6–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lats, Biceps, Rear Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">02</div><div class="hyp-exercise-info"><h3>Barbell Pendlay Row</h3><span class="hyp-exercise-meta">4 sets · 8–10 reps · Barbell · explosive pull</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/LuqHKd_dYqY?rel=0&modestbranding=1" title="Pendlay Row" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2.5 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Mid Back, Lats, Rear Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">03</div><div class="hyp-exercise-info"><h3>Seated Cable Row (wide, overhand)</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Cable</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/GZbfZ033f74?rel=0&modestbranding=1" title="Seated Cable Row" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Upper Back, Rear Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">04</div><div class="hyp-exercise-info"><h3>Straight-Arm Lat Pulldown</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Cable</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/aTnzH8CYI4g?rel=0&modestbranding=1" title="Straight Arm Pulldown" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-star"></i></div><div><h5>PURE LAT ISOLATION</h5><p>Arms stay straight — no bicep involvement. Pure lat pulldown. Huge for V-taper. Stretch the lat fully at the top, squeeze hard at the hips. This is one of the best exercises for lat width you're not doing.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lats, Teres Major</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">05</div><div class="hyp-exercise-info"><h3>Face Pull (rope, cable)</h3><span class="hyp-exercise-meta">3 sets · 15–20 reps · Cable rope</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/rep-qVOkqgk?rel=0&modestbranding=1" title="Face Pulls" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Rear Delts, External Rotation</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">06</div><div class="hyp-exercise-info"><h3>Incline Dumbbell Curl</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Dumbbells</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/kGYMqZPHDrk?rel=0&modestbranding=1" title="Incline Dumbbell Curl" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-circle-info"></i></div><div><h5>PEAK BUILDER</h5><p>Incline angle places the long head of the bicep in a fully stretched position. Slow eccentric (3 sec down). This is the primary peak builder — gives the bicep height when viewed from the side.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Biceps Long Head</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">07</div><div class="hyp-exercise-info"><h3>Hammer Curl</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Dumbbells</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-finisher-tag">Finisher</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/zC3nLlEvin4?rel=0&modestbranding=1" title="Hammer Curl" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Brachialis, Brachioradialis, Forearms</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end pull-a -->
+
+        <!-- ══════════════════════════════════════
+             LEGS A — Wednesday (Quad-dominant)
+        ══════════════════════════════════════ -->
+        <div id="hyp-legs-a" class="hyp-day-section">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge"><i class="fas fa-person-walking"></i></div>
+                    <div>
+                        <h2 class="hyp-day-title">LEGS A — WEDNESDAY</h2>
+                        <p class="hyp-day-subtitle">Quads · Hamstrings · Calves | Quad-dominant</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 70–80 min</span>
+                    <span><i class="fas fa-bullseye"></i> Quad Sweep Priority</span>
+                </div>
+            </div>
+            <div class="hyp-exercise-list">
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num hyp-warmup-num">W</div><div class="hyp-exercise-info"><h3>Warm-Up</h3><span class="hyp-exercise-meta">Hip circles, leg swings, goblet squat ×15, glute bridges ×20</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-warmup-tag">Warmup</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body"><div class="hyp-video-placeholder"><i class="fas fa-video"></i><span>Hip circles, leg swings, 2×15 goblet squat, 2×20 glute bridge, hamstring stretch, 90-90 hip rotation</span></div></div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">01</div><div class="hyp-exercise-info"><h3>Barbell Back Squat</h3><span class="hyp-exercise-meta">4 sets · 8–10 reps · High bar · Full depth</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/ultWZbUMPL8?rel=0&modestbranding=1" title="Barbell Squat" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-star"></i></div><div><h5>OUTER QUAD SWEEP</h5><p>High bar position keeps the torso upright, maximizing quad activation. Toes slightly inward targets the vastus lateralis — the outer quad sweep that wraps around the knee. Full depth — hip crease below knee.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Quads, Glutes, Hamstrings</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">02</div><div class="hyp-exercise-info"><h3>Hack Squat (machine)</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Feet low and close</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/0tn5K9NlCfo?rel=0&modestbranding=1" title="Hack Squat" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2.5 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Quads, Less Low-Back</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">03</div><div class="hyp-exercise-info"><h3>Leg Extension</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Machine · 1-sec peak hold</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/ljO4jkqFnoo?rel=0&modestbranding=1" title="Leg Extension" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Quads (pure isolation)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">04</div><div class="hyp-exercise-info"><h3>Romanian Deadlift</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Barbell</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/JCXUYuzwNrM?rel=0&modestbranding=1" title="Romanian Deadlift" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Hamstrings, Glutes</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">05</div><div class="hyp-exercise-info"><h3>Lying Leg Curl</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Machine · slow eccentric</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/qBaUEcIFiAE?rel=0&modestbranding=1" title="Lying Leg Curl" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Hamstrings</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">06</div><div class="hyp-exercise-info"><h3>Standing Calf Raise</h3><span class="hyp-exercise-meta">4 sets · 12–15 reps · Full range</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/gwLzBJYoWlI?rel=0&modestbranding=1" title="Standing Calf Raises" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Gastrocnemius</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">07</div><div class="hyp-exercise-info"><h3>Seated Calf Raise</h3><span class="hyp-exercise-meta">3 sets · 15–20 reps · Machine</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-finisher-tag">Finisher</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/JbyjNymZOt0?rel=0&modestbranding=1" title="Seated Calf Raise" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Soleus (lower calf)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end legs-a -->
+
+        <!-- ══════════════════════════════════
+             REST DAY — Thursday
+        ══════════════════════════════════ -->
+        <div id="hyp-rest" class="hyp-day-section">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge" style="background:linear-gradient(135deg,rgba(255,171,64,0.18),rgba(255,143,0,0.07));border-color:rgba(255,171,64,0.26);color:var(--gold);">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div>
+                        <h2 class="hyp-day-title" style="color:var(--gold);">REST — THURSDAY</h2>
+                        <p class="hyp-day-subtitle">Active Recovery · Adaptation · Nutrition</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta"><span><i class="fas fa-bed"></i> Full rest day</span><span><i class="fas fa-shield-halved"></i> Muscle grows here</span></div>
+            </div>
+            <div class="hyp-rest-grid">
+                <div class="hyp-rest-card"><div class="hyp-rest-icon"><i class="fas fa-person-walking"></i></div><h4>ACTIVE RECOVERY</h4><p>20–30 min low-intensity walk. Light yoga or mobility work. Foam roll: IT band, thoracic spine, lats, hip flexors. Heart rate stays below 130 BPM — nothing that taxes the nervous system.</p></div>
+                <div class="hyp-rest-card"><div class="hyp-rest-icon"><i class="fas fa-moon"></i></div><h4>SLEEP PROTOCOL</h4><p>8–9 hours minimum. Growth hormone peaks in slow-wave sleep — this is when you grow. Sleep deprivation reduces muscle protein synthesis by up to 18%. No screen time 1 hour before bed.</p></div>
+                <div class="hyp-rest-card"><div class="hyp-rest-icon"><i class="fas fa-utensils"></i></div><h4>NUTRITION TODAY</h4><p>Maintain protein at 0.8–1g per lb bodyweight. Reduce carbs slightly on rest days (–15%). Prioritize micronutrients: leafy greens, zinc, magnesium, omega-3. This is a recovery tool, not a cheat day.</p></div>
+                <div class="hyp-rest-card"><div class="hyp-rest-icon"><i class="fas fa-droplet"></i></div><h4>HYDRATION</h4><p>3–4 liters of water. Add electrolytes if you sweat heavily during training. Dehydration as little as 2% reduces strength output by 10–15%. Creatine monohydrate 5g/day — any time.</p></div>
+            </div>
+        </div><!-- end rest -->
+
+        <!-- ══════════════════════════════════════
+             PUSH B — Friday (Shoulder emphasis)
+        ══════════════════════════════════════ -->
+        <div id="hyp-push-b" class="hyp-day-section">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge"><i class="fas fa-circle-dot"></i></div>
+                    <div>
+                        <h2 class="hyp-day-title">PUSH B — FRIDAY</h2>
+                        <p class="hyp-day-subtitle">Chest · Shoulders · Triceps | Shoulder emphasis</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 65–75 min</span>
+                    <span><i class="fas fa-bullseye"></i> Side Delt Priority</span>
+                </div>
+            </div>
+            <div class="hyp-exercise-list">
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num hyp-warmup-num">W</div><div class="hyp-exercise-info"><h3>Warm-Up</h3><span class="hyp-exercise-meta">Band pull-aparts, shoulder circles, Cuban press ×12, 10 slow push-ups</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-warmup-tag">Warmup</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body"><div class="hyp-video-placeholder"><i class="fas fa-video"></i><span>Band pull-aparts, face pulls, Cuban press with light weight, scapular circles</span></div></div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">01</div><div class="hyp-exercise-info"><h3>Seated Dumbbell Shoulder Press</h3><span class="hyp-exercise-meta">4 sets · 8–10 reps · Dumbbells</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/qEwKCR5JCog?rel=0&modestbranding=1" title="Seated Dumbbell Press" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>All Delt Heads, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">02</div><div class="hyp-exercise-info"><h3>Flat Barbell Bench Press</h3><span class="hyp-exercise-meta">4 sets · 8–10 reps · Barbell</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/gRVjAtPip0Y?rel=0&modestbranding=1" title="Flat Bench Press" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2.5 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Pecs, Triceps, Ant. Delts</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">03</div><div class="hyp-exercise-info"><h3>Cable Lateral Raise (high volume)</h3><span class="hyp-exercise-meta">4 sets · 15–20 reps · Cable · both arms</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/3VcKaXpzqRo?rel=0&modestbranding=1" title="Cable Lateral Raise" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lateral Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">04</div><div class="hyp-exercise-info"><h3>Pec Deck / Machine Fly</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Machine</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/Z57CtFmRMxA?rel=0&modestbranding=1" title="Pec Deck" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Inner Chest, Mid Pecs</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">05</div><div class="hyp-exercise-info"><h3>Chest Dips (forward lean)</h3><span class="hyp-exercise-meta">3 sets · 10–15 reps · Weighted if easy</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/yN6Q1UI_xkE?rel=0&modestbranding=1" title="Chest Dips" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lower Chest, Triceps</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">06</div><div class="hyp-exercise-info"><h3>Close-Grip Bench Press</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Barbell</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/nEF0bv2FW94?rel=0&modestbranding=1" title="Close Grip Bench Press" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Triceps All Heads</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">07</div><div class="hyp-exercise-info"><h3>Single-Arm Cable Lateral Raise</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Unilateral</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-finisher-tag">Finisher</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/PPdJEuFYrRs?rel=0&modestbranding=1" title="Single Arm Cable Lateral Raise" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lateral Delts (fixes imbalances)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end push-b -->
+
+        <!-- ══════════════════════════════════════
+             PULL B — Saturday (Thickness emphasis)
+        ══════════════════════════════════════ -->
+        <div id="hyp-pull-b" class="hyp-day-section">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge"><i class="fas fa-arrow-down-wide-short"></i></div>
+                    <div>
+                        <h2 class="hyp-day-title">PULL B — SATURDAY</h2>
+                        <p class="hyp-day-subtitle">Back · Biceps · Rear Delts | Thickness emphasis</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 70–80 min</span>
+                    <span><i class="fas fa-bullseye"></i> Mid-Back Thickness</span>
+                </div>
+            </div>
+            <div class="hyp-exercise-list">
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num hyp-warmup-num">W</div><div class="hyp-exercise-info"><h3>Warm-Up</h3><span class="hyp-exercise-meta">Light band pull-aparts, cat-cow, thoracic rotations, lat stretch</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-warmup-tag">Warmup</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body"><div class="hyp-video-placeholder"><i class="fas fa-video"></i><span>Band pull-aparts, cat-cow, thoracic rotation, 10 slow dead hangs</span></div></div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">01</div><div class="hyp-exercise-info"><h3>Barbell Deadlift</h3><span class="hyp-exercise-meta">4 sets · 5–8 reps · Heavier · lower reps</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/op9kVnSso6Q?rel=0&modestbranding=1" title="Barbell Deadlift" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-circle-info"></i></div><div><h5>ERECTOR THICKNESS</h5><p>Lower reps than Pull A. Heavier weight builds the entire posterior chain and creates visible erector spinae — the "Christmas tree" detail in the lower back visible in elite physiques. Reset between every rep.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>5–8</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>4 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Entire Posterior Chain</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">02</div><div class="hyp-exercise-info"><h3>Chest-Supported Row (machine or DB)</h3><span class="hyp-exercise-meta">4 sets · 10–12 reps</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/MiDGBgT2HVc?rel=0&modestbranding=1" title="Chest Supported Row" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Mid Back, Rhomboids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">03</div><div class="hyp-exercise-info"><h3>Wide-Grip Lat Pulldown</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Cable</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/CAwf7n6Luuc?rel=0&modestbranding=1" title="Lat Pulldown" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lats, Teres Major</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">04</div><div class="hyp-exercise-info"><h3>Single-Arm Dumbbell Row</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps · Dumbbells</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/pYcpY20QaE8?rel=0&modestbranding=1" title="One Arm Dumbbell Row" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>90 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Lats, Rhomboids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">05</div><div class="hyp-exercise-info"><h3>Rear Delt Fly (machine or bent-over)</h3><span class="hyp-exercise-meta">3 sets · 15–20 reps</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/EA7u4Q_8HQ0?rel=0&modestbranding=1" title="Rear Delt Fly" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Posterior Deltoids</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">06</div><div class="hyp-exercise-info"><h3>Barbell Curl (EZ-bar)</h3><span class="hyp-exercise-meta">3 sets · 8–10 reps · EZ bar</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/ykJmrZ5v0Oo?rel=0&modestbranding=1" title="EZ Bar Curl" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Biceps, Strength Base</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">07</div><div class="hyp-exercise-info"><h3>Cable Curl (low pulley)</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · Slow eccentric</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-finisher-tag">Finisher</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/NFzTWp2qpiE?rel=0&modestbranding=1" title="Cable Curl" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>75 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Biceps Peak Contraction</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end pull-b -->
+
+        <!-- ══════════════════════════════════════
+             LEGS B — Sunday (Hip-dominant)
+        ══════════════════════════════════════ -->
+        <div id="hyp-legs-b" class="hyp-day-section">
+            <div class="hyp-day-header">
+                <div class="hyp-day-header-left">
+                    <div class="hyp-day-badge"><i class="fas fa-person-walking"></i></div>
+                    <div>
+                        <h2 class="hyp-day-title">LEGS B — SUNDAY</h2>
+                        <p class="hyp-day-subtitle">Hamstrings · Glutes · Calves | Hip-dominant</p>
+                    </div>
+                </div>
+                <div class="hyp-day-meta">
+                    <span><i class="fas fa-list"></i> 7 Exercises</span>
+                    <span><i class="fas fa-clock"></i> 70–80 min</span>
+                    <span><i class="fas fa-bullseye"></i> Glute & Ham Priority</span>
+                </div>
+            </div>
+            <div class="hyp-exercise-list">
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num hyp-warmup-num">W</div><div class="hyp-exercise-info"><h3>Warm-Up</h3><span class="hyp-exercise-meta">Hip circles, hamstring stretch, glute activation bridges ×25, banded walks ×20</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-warmup-tag">Warmup</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body"><div class="hyp-video-placeholder"><i class="fas fa-video"></i><span>Hip circles, hamstring stretch, glute activation bridges, banded lateral walks</span></div></div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">01</div><div class="hyp-exercise-info"><h3>Romanian Deadlift</h3><span class="hyp-exercise-meta">4 sets · 8–10 reps · Hip hinge priority</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/JCXUYuzwNrM?rel=0&modestbranding=1" title="Romanian Deadlift" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-star"></i></div><div><h5>HAMSTRING & GLUTE PRIORITY</h5><p>Today's RDL focuses on the hip hinge. Push your hips back as far as possible — stretch the hamstrings maximally. Bar stays in contact with legs. Squeeze glutes aggressively at the top, don't hyperextend the lower back.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>8–10</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Hamstrings, Glutes, Erectors</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">02</div><div class="hyp-exercise-info"><h3>Bulgarian Split Squat</h3><span class="hyp-exercise-meta">3 sets · 10–12 reps per leg · Dumbbells</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/2C-uNgKwPLE?rel=0&modestbranding=1" title="Bulgarian Split Squat" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3 per leg</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2.5 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Quads, Glutes, Symmetry</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">03</div><div class="hyp-exercise-info"><h3>Hip Thrust (barbell)</h3><span class="hyp-exercise-meta">4 sets · 10–12 reps · 1-sec squeeze at top</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/pBH7pKHn-dI?rel=0&modestbranding=1" title="Barbell Hip Thrust" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-star"></i></div><div><h5>THE GLUTE EXERCISE</h5><p>Full hip extension at the top — hold 1 second and squeeze hard. Drive through your heels. Don't hyperextend your lower back — the glutes do the work. Hip thrusts are the single most effective glute isolation movement.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>10–12</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Glutes, Hamstrings, Core</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">04</div><div class="hyp-exercise-info"><h3>Leg Press (feet high and wide)</h3><span class="hyp-exercise-meta">3 sets · 12–15 reps · High foot placement</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/IZxyjW7MPJQ?rel=0&modestbranding=1" title="Leg Press High Feet" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>12–15</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>2 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Glutes, Hamstrings (high feet)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">05</div><div class="hyp-exercise-info"><h3>Nordic Hamstring Curl</h3><span class="hyp-exercise-meta">3 sets · 6–8 reps · Controlled eccentric</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-compound-tag">Compound</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/G7e7JIoE3Cs?rel=0&modestbranding=1" title="Nordic Hamstring Curl" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>3</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>6–8</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>3 min</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Hamstrings (eccentric)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">06</div><div class="hyp-exercise-info"><h3>Seated Calf Raise</h3><span class="hyp-exercise-meta">4 sets · 15–20 reps · Slow and controlled</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-isolation-tag">Isolation</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/JbyjNymZOt0?rel=0&modestbranding=1" title="Seated Calf Raise" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>4</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>15–20</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Soleus</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hyp-exercise-item">
+                    <div class="hyp-exercise-header" onclick="toggleHypExercise(this)">
+                        <div class="hyp-exercise-left"><div class="hyp-exercise-num">07</div><div class="hyp-exercise-info"><h3>Tibialis Raise</h3><span class="hyp-exercise-meta">2 sets · 20–25 reps · Bodyweight or band</span></div></div>
+                        <div class="hyp-exercise-right"><span class="hyp-exercise-tag hyp-finisher-tag">Finisher</span><i class="fas fa-chevron-down hyp-toggle-icon"></i></div>
+                    </div>
+                    <div class="hyp-exercise-body">
+                        <div class="hyp-video-wrap"><div class="hyp-video-frame"><iframe src="https://www.youtube.com/embed/F6_pJ7OVhFw?rel=0&modestbranding=1" title="Tibialis Raise" frameborder="0" allowfullscreen loading="lazy"></iframe></div></div>
+                        <div class="hyp-intensity-note"><div class="hyp-intensity-icon"><i class="fas fa-circle-info"></i></div><div><h5>COMPLETES THE LOWER LEG</h5><p>The tibialis anterior — the muscle on the front of the shin — is almost universally neglected. Training it completes the lower leg aesthetic and provides injury prevention for ankles. Lean against a wall, heels on ground, pull toes up toward your shins.</p></div></div>
+                        <div class="hyp-set-scheme">
+                            <div class="hyp-set-row"><span class="hyp-set-label">Sets</span><strong>2</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Reps</span><strong>20–25</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Rest</span><strong>60 sec</strong></div>
+                            <div class="hyp-set-row"><span class="hyp-set-label">Muscles</span><strong>Tibialis Anterior (shin)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end legs-b -->
+
+        <!-- NUTRITION SECTION -->
+        <div class="hyp-nutrition">
+            <div class="hyp-nutrition-header">
+                <i class="fas fa-utensils"></i>
+                <h4>NUTRITION ESSENTIALS FOR HYPERTROPHY</h4>
+            </div>
+            <div class="hyp-nutrition-grid">
+                <div class="hyp-nutrition-card"><h5><i class="fas fa-drumstick-bite"></i> Protein</h5><p>0.8–1g per pound of bodyweight every single day. Distribute across 3–5 meals. Chicken, eggs, beef, fish, Greek yogurt. This is the rate-limiting factor — no program rescues a protein deficit.</p></div>
+                <div class="hyp-nutrition-card"><h5><i class="fas fa-fire-flame-curved"></i> Calories</h5><p>Eat at a modest surplus of 200–350 calories above maintenance. Aggressive bulks build fat, not extra muscle. Slow surplus = mostly muscle, minimal fat. Track for at least 4 weeks before adjusting.</p></div>
+                <div class="hyp-nutrition-card"><h5><i class="fas fa-bread-slice"></i> Carbohydrates</h5><p>Your primary training fuel. Eat the majority of your carbs around your workouts — 1–2 hours before and within 2 hours after. Rice, oats, potatoes, fruit. Carbs are not the enemy.</p></div>
+                <div class="hyp-nutrition-card"><h5><i class="fas fa-moon"></i> Sleep</h5><p>7–9 hours. Growth hormone peaks in slow-wave sleep. Sleep deprivation reduces muscle protein synthesis by up to 18% — no supplement compensates for this. Sleep is the most underrated anabolic tool.</p></div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="hyp-footer">
+    <div class="container">
+        <span>&copy; 2025 BlackOnLifter</span>
+        <a href="choose.html"><i class="fas fa-arrow-left"></i> Change Level</a>
+    </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="hypScrollTop" class="hyp-scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="hypertrophy.js"></script>
+</body>
+</html>

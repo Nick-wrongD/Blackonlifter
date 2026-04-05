@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Elite Training</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- LOADING -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loader-primal">
+            <div class="roar-ring roar-ring-1"></div>
+            <div class="roar-ring roar-ring-2"></div>
+            <div class="roar-ring roar-ring-3"></div>
+            <img src="claw.png" alt="Claw" class="loader-icon-img" />
+        </div>
+        <div class="loader-text">BLACKONLIFTER</div>
+        <div class="loader-subtext">Initializing Elite Archive</div>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar" class="navbar">
+        <div class="container nav-inner">
+            <div class="logo">
+                <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+                <div class="logo-copy">
+                    <span class="logo-title">BlackOnLifter</span>
+                    <span class="logo-sub">Elite Performance Archive</span>
+                </div>
+            </div>
+            <ul id="navLinks" class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#workouts">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="choose.html" class="nav-cta-primary">
+                    <i class="fas fa-play"></i> Start Training
+                </a>
+                <a href="#workouts" class="nav-cta">Explore Library</a>
+                <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-layer layer-1"></div>
+        <div class="hero-bg-layer layer-2"></div>
+        <div class="hero-bg-layer layer-3"></div>
+
+        <div class="hero-gradient-overlay"></div>
+        <div class="hero-radial-overlay"></div>
+        <div class="fog-container">
+            <div class="fog fog-1"></div>
+            <div class="fog fog-2"></div>
+            <div class="fog fog-3"></div>
+        </div>
+        <div class="vignette-overlay"></div>
+        <div class="grid-overlay"></div>
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- MOUNTAIN — subtle bottom layer behind content -->
+        <div class="hero-mountain-layer" aria-hidden="true">
+            <img src="mountain.png" alt="" class="hero-mountain-img" />
+        </div>
+
+        <!-- Primal reference graphic — now using logo2.png (barbell shoulder throw) -->
+        <div class="hero-primal-graphic" aria-hidden="true">
+            <img src="https://www.genspark.ai/api/files/s/2jNYNGqt" alt="" class="barbell-hero-img" />
+        </div>
+
+        <div class="hero-side-label">PREDATOR MODE</div>
+
+        <!-- HERO CONTENT -->
+        <div class="hero-content">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        <span>SURVIVE. ADAPT. CONQUER.</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        <span class="title-sm">TRAIN LIKE</span>
+                        <span class="title-a">A</span>
+                        <span class="title-main">MONSTER</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Unlock primal workout systems and battle-tested fitness resources
+                        designed to build monstrous strength and unbreakable discipline.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="choose.html" class="btn btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            Start Training
+                        </a>
+                        <a href="#workouts" class="btn btn-primary">
+                            <i class="fas fa-bolt"></i>
+                            Access Programs
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-headset"></i>
+                            Contact Support
+                        </a>
+                    </div>
+
+                    <div class="hero-metrics">
+                        <div class="metric-card">
+                            <span class="metric-value">12+</span>
+                            <span class="metric-label">Training Systems</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">Apex</span>
+                            <span class="metric-label">Programming</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-value">24/7</span>
+                            <span class="metric-label">Instant Access</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-panel">
+                    <div class="panel-glow"></div>
+                    <div class="hero-card">
+                        <img src="https://www.genspark.ai/api/files/s/osgnXoKB" alt="" class="card-barbell-img" />
+                        <div class="hero-card-top">
+                            <span class="status-dot"></span>
+                            <span class="status-text">✦ Featured Evolution</span>
+                        </div>
+                        <h3>Legs of Steel</h3>
+                        <p>A high-impact lower body strength program built to forge the power necessary to stand your
+                            ground against anything.</p>
+                        <div class="hero-card-stats">
+                            <div><strong>45</strong><span>Pages</span></div>
+                            <div><strong>2.3 MB</strong><span>Size</span></div>
+                            <div><strong>PDF</strong><span>Format</span></div>
+                        </div>
+                        <button class="hero-card-btn" onclick="downloadPDF('https://bit.ly/47Ropkr','Legs of Steel')">
+                            <i class="fas fa-download"></i> Download Guide
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-bottom-fade"></div>
+
+        <!-- MOUNTAIN DIVIDER — bottom of hero flowing into next section -->
+        <div class="hero-mountain-divider" aria-hidden="true">
+            <img src="mountain.png" alt="" class="hero-mountain-divider-img" />
+        </div>
+    </section>
+
+    <!-- RESOURCE SECTION -->
+    <section id="workouts" class="workout-section">
+        <div class="section-watermark" aria-hidden="true">
+            <!-- subtle mountain watermark behind resources -->
+            <img src="mountain.png" alt="" class="watermark-mountain-img" />
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">The Vault</span>
+                <h2 class="section-title">RESOURCE LIBRARY</h2>
+                <p class="section-subtitle">Download high-performance guides covering strength, conditioning, nutrition,
+                    flexibility, and bodyweight systems.</p>
+            </div>
+            <div class="controls-shell">
+                <div class="controls-wrapper">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" class="search-input"
+                            placeholder="Search programs, categories, or descriptions..." autocomplete="off">
+                        <button id="clearSearch" class="clear-search" style="display:none;"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                    <button id="downloadAllBtn" class="btn-download-all">
+                        <i class="fas fa-cloud-download-alt"></i> Download All
+                    </button>
+                </div>
+                <div class="filter-tags">
+                    <button class="filter-tag active" data-category="all">All Resources</button>
+                    <button class="filter-tag" data-category="strength">Strength</button>
+                    <button class="filter-tag" data-category="cardio">Cardio</button>
+                    <button class="filter-tag" data-category="nutrition">Nutrition</button>
+                    <button class="filter-tag" data-category="bodyweight">Bodyweight</button>
+                    <button class="filter-tag" data-category="flexibility">Flexibility</button>
+                </div>
+            </div>
+            <div class="library-meta">
+                <div class="library-meta-card"><span class="library-meta-label">Access Type</span><strong>Instant
+                        Download</strong></div>
+                <div class="library-meta-card"><span class="library-meta-label">Format</span><strong>Premium PDF
+                        Guides</strong></div>
+                <div class="library-meta-card"><span class="library-meta-label">Use Case</span><strong>Strength /
+                        Performance / Recovery</strong></div>
+            </div>
+            <div id="pdfGrid" class="pdf-grid"></div>
+            <div id="noResults" class="no-results" style="display:none;">
+                <i class="fas fa-box-open"></i>
+                <h3>No results found</h3>
+                <p>Try adjusting your search criteria or filter selection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOUNTAIN RANGE DIVIDER between sections -->
+    <div class="primal-divider" aria-hidden="true">
+        <img src="mountain.png" alt="" class="divider-mountain-img" />
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-shell">
+                <div class="contact-copy">
+                    <span class="section-kicker">Support</span>
+                    <h2 class="section-title small">GET IN TOUCH</h2>
+                    <p class="section-subtitle">Need help accessing a guide, downloading a file, or choosing the right
+                        training resource?</p>
+                    <div class="contact-mountain-accent" aria-hidden="true">
+                        <img src="mountain.png" alt="" class="contact-mountain-img" />
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div><span>Email Support</span><a
+                                href="mailto:support@blackonlifter.com">support@blackonlifter.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div><span>Call Us</span><a href="tel:5551234567">+1 (555) 123-4567</a></div>
+                    </div>
+                    <a href="mailto:support@blackonlifter.com" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Send Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-terrain" aria-hidden="true">
+            <img src="mountain.png" alt="" class="footer-mountain-img" />
+        </div>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+                        <div class="logo-copy">
+                            <span class="logo-title">BlackOnLifter</span>
+                            <span class="logo-sub">Elite Performance Archive</span>
+                        </div>
+                    </div>
+                    <p>Premium training resources for lifters who want more than motivation.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#workouts">Resources</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="tracker.html">Start Training</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Strength Systems</a></li>
+                        <li><a href="#">Conditioning Plans</a></li>
+                        <li><a href="#">Nutrition Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column contact-info">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Fitness Way, NY 10001</a></li>
+                        <li><a href="mailto:support@blackonlifter.com"><i class="fas fa-envelope"></i>
+                                support@blackonlifter.com</a></li>
+                        <li><a href="tel:5551234567"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BlackOnLifter. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button id="scrollTop" class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

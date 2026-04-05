@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackOnLifter | Choose Your Level</title>
+    <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="choose.css">
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo" style="text-decoration:none;">
+                <div class="logo-mark"><img src="main.png" alt="BlackOnLifter Logo"></div>
+                <div class="logo-copy">
+                    <span class="logo-title">BlackOnLifter</span>
+                    <span class="logo-sub">Elite Performance Archive</span>
+                </div>
+            </a>
+            <div class="nav-actions">
+                <a href="index.html" class="nav-cta">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <div class="choose-hero">
+        <div class="choose-hero-bg"></div>
+        <div class="choose-hero-overlay"></div>
+        <canvas id="chooseCanvas"></canvas>
+        <div class="container choose-hero-content">
+            <div class="choose-eyebrow">
+                <span class="eyebrow-dot"></span>
+                <span>SELECT YOUR BATTLEFIELD</span>
+            </div>
+            <h1 class="choose-title">
+                <span>CHOOSE YOUR</span>
+                <span class="choose-title-accent">LEVEL</span>
+            </h1>
+            <p class="choose-subtitle">
+                Select the training tier that matches your current strength, experience, and ambition.
+                Every level unlocks a different beast.
+            </p>
+        </div>
+    </div>
+
+    <!-- LEVEL CARDS -->
+    <main class="choose-main">
+        <div class="container">
+            <div class="level-grid">
+
+                <!-- BEGINNER -->
+                <div class="level-card" data-level="beginner" onclick="selectLevel('beginner')">
+                    <div class="level-card-glow"></div>
+                    <div class="level-claw-mark" aria-hidden="true">
+                        <img src="clawgreen.png" alt=""
+                            style="width:100%;height:100%;object-fit:contain;opacity:0.75;" />
+                    </div>
+                    <div class="level-tier">Tier 01</div>
+                    <div class="level-icon-wrap">
+                        <div class="level-icon level-icon-beginner">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                    </div>
+                    <h2 class="level-name">BEGINNER</h2>
+                    <p class="level-desc">Build your foundation. Learn movement patterns, develop consistency, and
+                        ignite your potential from zero.</p>
+                    <div class="level-tags">
+                        <span>0–12 months</span>
+                        <span>3× per week</span>
+                        <span>Full Body Focus</span>
+                    </div>
+                    <div class="level-features">
+                        <div class="level-feature"><i class="fas fa-check"></i> Beginner-friendly programs</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> Video guides included</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> Rest timer & tracking</div>
+                    </div>
+                    <button class="level-btn level-btn-beginner">
+                        <i class="fas fa-play"></i> Start as Beginner
+                    </button>
+                </div>
+
+                <!-- INTERMEDIATE -->
+                <div class="level-card" data-level="intermediate" onclick="selectLevel('intermediate')">
+                    <div class="level-card-glow glow-intermediate"></div>
+                    <div class="level-claw-mark" aria-hidden="true">
+                        <img src="claw.png" alt="" style="width:100%;height:100%;object-fit:contain;opacity:0.75;" />
+                    </div>
+                    <div class="level-tier">Tier 02</div>
+                    <div class="level-icon-wrap">
+                        <div class="level-icon level-icon-intermediate">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                    <h2 class="level-name">INTERMEDIATE</h2>
+                    <p class="level-desc">You've built the base. Now you push past plateaus, add intensity, and start
+                        training like you mean it.</p>
+                    <div class="level-tags">
+                        <span>1–3 years</span>
+                        <span>4× per week</span>
+                        <span>PPL / Upper-Lower</span>
+                    </div>
+                    <div class="level-features">
+                        <div class="level-feature"><i class="fas fa-check"></i> Push / Pull / Legs split</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> Progressive overload tracking</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> PR detection system</div>
+                    </div>
+                    <button class="level-btn level-btn-intermediate">
+                        <i class="fas fa-bolt"></i> Start as Intermediate
+                    </button>
+                </div>
+
+                <!-- ADVANCED -->
+                <div class="level-card" data-level="advanced" onclick="selectLevel('advanced')">
+                    <div class="level-card-glow glow-advanced"></div>
+                    <div class="level-claw-mark" aria-hidden="true">
+                        <img src="clawred.png" alt="" style="width:100%;height:100%;object-fit:contain;opacity:0.75;" />
+                    </div>
+                    <div class="level-tier">Tier 03</div>
+                    <div class="level-icon-wrap">
+                        <div class="level-icon level-icon-advanced">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                    <h2 class="level-name">ADVANCED</h2>
+                    <p class="level-desc">Years of grind. Refined technique. Now it's about maximizing every variable,
+                        every session, every rep.</p>
+                    <div class="level-tags">
+                        <span>3+ years</span>
+                        <span>5× per week</span>
+                        <span>Specialized Splits</span>
+                    </div>
+                    <div class="level-features">
+                        <div class="level-feature"><i class="fas fa-check"></i> Advanced split programming</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> Volume & intensity tracking</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> Deload indicators</div>
+                    </div>
+                    <button class="level-btn level-btn-advanced">
+                        <i class="fas fa-fire"></i> Start as Advanced
+                    </button>
+                </div>
+
+                <!-- HYPERTROPHY -->
+                <div class="level-card level-card-hypertrophy" data-level="hypertrophy" onclick="selectLevel('hypertrophy')">
+                    <div class="level-card-glow glow-hypertrophy"></div>
+                    <div class="level-claw-mark" aria-hidden="true">
+                        <img src="purple.png" alt=""
+                            style="width:100%;height:100%;object-fit:contain;opacity:0.75;" />
+                    </div>
+                    <div class="level-tier">Specialized</div>
+                    <div class="level-icon-wrap">
+                        <div class="level-icon level-icon-hypertrophy">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                    </div>
+                    <h2 class="level-name">HYPERTROPHY</h2>
+                    <p class="level-desc">The gold standard for aesthetic bodybuilding. Every muscle trained twice per week.
+                        Built for maximum size, symmetry, and the classic physique.</p>
+                    <div class="level-tags">
+                        <span>6-Day PPL × 2</span>
+                        <span>Aesthetic Focus</span>
+                        <span>8–15 Rep Range</span>
+                    </div>
+                    <div class="level-features">
+                        <div class="level-feature"><i class="fas fa-check"></i> 6-Day PPL × 2 Split</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> 42 Exercises included</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> 2× Per Week / Muscle</div>
+                        <div class="level-feature"><i class="fas fa-check"></i> 8–15 Rep Range Focus</div>
+                    </div>
+                    <button class="level-btn level-btn-hypertrophy">
+                        <i class="fas fa-dna"></i> Enter Hypertrophy Mode
+                    </button>
+                </div>
+
+                <!-- ATHLETE -->
+                <div class="level-card level-card-athlete" data-level="athlete" onclick="selectLevel('athlete')">
+                    <div class="level-card-glow glow-athlete"></div>
+                    <div class="athlete-crown" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 25 L5 8 L25 18 L40 3 L55 18 L75 8 L75 25 Z" fill="none"
+                                stroke="rgba(255,171,64,0.6)" stroke-width="1.5" stroke-linejoin="round" />
+                            <circle cx="40" cy="3" r="3" fill="rgba(255,171,64,0.8)" />
+                            <circle cx="5" cy="8" r="2" fill="rgba(255,171,64,0.5)" />
+                            <circle cx="75" cy="8" r="2" fill="rgba(255,171,64,0.5)" />
+                        </svg>
+                    </div>
+                    <div class="athlete-badge">ELITE TIER</div>
+                    <div class="level-claw-mark" aria-hidden="true">
+                        <img src="clawcopper.png" alt=""
+                            style="width:100%;height:100%;object-fit:contain;opacity:0.75;" />
+                    </div>
+                    <div class="level-tier level-tier-athlete">Tier 04</div>
+                    <div class="level-icon-wrap">
+                        <div class="level-icon level-icon-athlete">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    </div>
+                    <h2 class="level-name level-name-athlete">ATHLETE</h2>
+                    <p class="level-desc">This is the apex. A 4-day sport-science split designed for those who train
+                        like predators and recover like machines.</p>
+                    <div class="level-tags level-tags-athlete">
+                        <span>Elite level</span>
+                        <span>4-Day Split</span>
+                        <span>Pull/Legs/Push/Full</span>
+                    </div>
+                    <div class="level-features">
+                        <div class="level-feature athlete-feature"><i class="fas fa-check"></i> Pull Day — Back, Biceps,
+                            Forearms</div>
+                        <div class="level-feature athlete-feature"><i class="fas fa-check"></i> Leg Day — Squat,
+                            Bulgarian, Thrust</div>
+                        <div class="level-feature athlete-feature"><i class="fas fa-check"></i> Push Day — Press,
+                            Raises, Triceps</div>
+                        <div class="level-feature athlete-feature"><i class="fas fa-check"></i> Full Body — Compound
+                            Power Day</div>
+                    </div>
+                    <button class="level-btn level-btn-athlete">
+                        <i class="fas fa-trophy"></i> Enter Athlete Mode
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="choose-footer">
+        <div class="container">
+            <span>&copy; 2025 BlackOnLifter</span>
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </footer>
+
+    <script src="choose.js"></script>
+</body>
+
+</html>
