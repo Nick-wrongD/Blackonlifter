@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>BlackOnLifter | Advanced Mode</title>
     <link rel="shortcut icon" href="main.png" type="image/x-icon">
+    <!-- Preload critical assets for faster loading -->
+    <link rel="preload" href="advanced.png" as="image" fetchpriority="high">
+    <link rel="preload" href="advanced.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="advanced.css">
@@ -34,8 +40,8 @@
     <div class="adv-hero-overlay"></div>
     <canvas id="advCanvas"></canvas>
 
-    <div class="adv-hero-image-wrap">
-        <img src="advanced.png" alt="Advanced Mode" class="adv-ref-img" />
+<div class="adv-hero-image-wrap">
+        <img src="advanced.png" alt="Advanced Mode" class="adv-ref-img" loading="eager" decoding="async" fetchpriority="high" />
         <div class="adv-ref-label"><i class="fas fa-fire"></i> Advanced Mode</div>
     </div>
 
