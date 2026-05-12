@@ -91,23 +91,23 @@ export default function BeginnerPage() {
           </div>
 
           {/* Program Overview */}
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50 rounded-2xl p-6 sm:p-8 mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 flex items-center gap-2">
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 flex items-center gap-2">
               <span className="text-cyan-400">→</span> PROGRAM OVERVIEW
             </h2>
-            <p className="text-slate-300 mb-6">
+            <p className="text-slate-300 mb-8">
               This beginner program focuses on learning proper form, building work capacity, and establishing consistent training habits. All exercises are compound movements that build functional strength.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
                 { value: '3', label: 'TRAINING DAYS' },
                 { value: '45-60m', label: 'DURATION' },
                 { value: '8-12', label: 'REPS PER SET' },
                 { value: '3-4', label: 'SETS PER EX' },
               ].map((item, idx) => (
-                <div key={idx} className="text-center">
-                  <p className="text-xl sm:text-2xl font-bold text-cyan-400 mb-1">{item.value}</p>
-                  <p className="text-xs text-slate-400 uppercase tracking-wider">{item.label}</p>
+                <div key={idx} className="bg-slate-800/70 border border-slate-700 rounded-lg p-4 text-center">
+                  <p className="text-3xl sm:text-4xl font-bold text-cyan-400 mb-2">{item.value}</p>
+                  <p className="text-xs sm:text-sm text-slate-300 uppercase tracking-widest font-semibold">{item.label}</p>
                 </div>
               ))}
             </div>
