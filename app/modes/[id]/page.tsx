@@ -2,7 +2,6 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ProtectedRoute } from '@/components/protected-route';
 import { trainingModes } from '@/lib/training-modes';
 import { useState } from 'react';
 
@@ -188,9 +187,5 @@ function ModeContent() {
 }
 
 export default function ModePage() {
-  return (
-    <ProtectedRoute>
-      <ModeContent />
-    </ProtectedRoute>
-  );
+  return <ModeContent />;
 }

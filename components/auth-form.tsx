@@ -6,7 +6,7 @@ import { auth, googleProvider } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-export function AuthForm() {
+export function AuthForm({ onSuccess }: { onSuccess?: () => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
@@ -19,7 +19,11 @@ export function AuthForm() {
     setError('');
     try {
       await signInWithPopup(auth, googleProvider);
-      router.push('/modes');
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push('/modes');
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to sign in with Google');
     } finally {
@@ -38,7 +42,11 @@ export function AuthForm() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      router.push('/modes');
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push('/modes');
+      }
     } catch (err: any) {
       setError(err.message || 'Authentication failed');
     } finally {

@@ -1,9 +1,10 @@
 'use client';
 
 import { useAuth } from '@/app/context/auth-context';
-import { ProtectedRoute } from '@/components/protected-route';
 import { trainingModes } from '@/lib/training-modes';
+import { AuthForm } from '@/components/auth-form';
 import Link from 'next/link';
+import { useState } from 'react';
 
 function ModeCard({ mode }: { mode: typeof trainingModes[0] }) {
   const colorMap = {
@@ -58,6 +59,7 @@ function ModeCard({ mode }: { mode: typeof trainingModes[0] }) {
 
 function ModesContent() {
   const { user, logout } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   return (
     <main className="min-h-screen px-4 py-8">
@@ -74,12 +76,29 @@ function ModesContent() {
             <p className="text-muted-foreground text-sm">Choose Your Training Program</p>
           </div>
 
-          <button
-            onClick={logout}
-            className="px-4 py-2 rounded-lg border border-white/10 hover:border-white/20 transition text-sm font-medium"
-          >
-            Sign Out
-          </button>
+          <div className="flex items-center gap-3">
+            {user ? (
+              <>
+                <div className="text-right hidden sm:block">
+                  <p className="text-sm font-medium">{user.email || 'User'}</p>
+                  <p className="text-xs text-muted-foreground">Logged in</p>
+                </div>
+                <button
+                  onClick={logout}
+                  className="px-4 py-2 rounded-lg border border-red-500/30 hover:border-red-500/50 text-red-400 hover:bg-red-500/10 transition text-sm font-medium"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setShowAuthModal(true)}
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-medium transition text-sm"
+              >
+                Sign In / Create Account
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Welcome */}
@@ -87,6 +106,11 @@ function ModesContent() {
           <h2 className="section-title mb-2">Select Your Training Level</h2>
           <p className="section-subtitle max-w-2xl">
             Choose the training program that matches your fitness level and goals. Each program is scientifically designed for optimal results.
+            {!user && (
+              <span className="block text-xs text-teal-400 mt-2">
+                Tip: Sign in to save your progress and personalize your training experience.
+              </span>
+            )}
           </p>
         </div>
 
@@ -104,14 +128,27 @@ function ModesContent() {
           </p>
         </div>
       </div>
+
+      {/* Auth Modal */}
+      {showAuthModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="w-full max-w-md relative">
+            <button
+              onClick={() => setShowAuthModal(false)}
+              className="absolute -top-10 right-0 text-white hover:text-slate-400 transition text-sm font-medium"
+            >
+              Close
+            </button>
+            <div className="rounded-xl border border-slate-700 bg-slate-900/90 backdrop-blur overflow-hidden">
+              <AuthForm onSuccess={() => setShowAuthModal(false)} />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
 
 export default function ModesPage() {
-  return (
-    <ProtectedRoute>
-      <ModesContent />
-    </ProtectedRoute>
-  );
+  return <ModesContent />;
 }
